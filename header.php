@@ -132,22 +132,19 @@ $res_logo = $db->getResult();
 
                         $db->sql($sql_query);
                         $result = $db->getResult();
-                        foreach ($result as $row) {
-                            $user = $row['name'];
-                            $email = $row['email'];
                         ?>
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="images/avatar.png" class="user-image" alt="User Image">
-                                    <span class="hidden-xs"><?= $user; ?></span>
+                                    <span class="hidden-xs"><?= $result[0]['name']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
                                         <img src="images/avatar.png" class="img-circle" alt="User Image">
                                         <p>
-                                            <?= $user; ?>
-                                            <small><?= $email; ?></small>
+                                            <?= $result[0]['name']; ?>
+                                            <small><?= $result[0]['email']; ?></small>
                                         </p>
                                     </li>
                                     <li class="user-footer">
@@ -170,7 +167,6 @@ $res_logo = $db->getResult();
         <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-            <?php } ?>
             <ul class="sidebar-menu">
                 <li class="treeview">
                     <a href="home.php">
@@ -185,8 +181,6 @@ $res_logo = $db->getResult();
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="bulk-student-upload.php"><i class="fa fa-sliders"></i> Bulk Student Upload</a></li>
-                    </ul>
-                    <ul class="treeview-menu">
                         <li><a href="students.php"><i class="fa fa-sliders"></i> Manage Students</a></li>
                     </ul>
                 </li>

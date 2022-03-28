@@ -18,48 +18,15 @@
                     <!-- <div class="col-xs-6"> -->
                     <div class="box-header">
                         <div class="form-group col-md-3">
-                            <h4 class="box-title">Filter by Community</h4>
-                            <form method="post">
-                                <select id="community_id" name="community_id" placeholder="Select Community" required class="form-control col-xs-3" style="width: 300px;">
-                                    <?php
-                                    $Query = "select name, id from students";
-                                    $db->sql($Query);
-                                    $result = $db->getResult();
-                                    if ($result) {
-                                    ?>
-                                        <option value="">All Students</option>
-                                        <option value='<?= $row['id'] ?>'><?= $row['name'] ?></option>
-                                    <?php 
-                                        
-                                    }
-                                    ?>
-                                </select>
-                            </form>
-                        </div>
-                        <?php
-                        $Query = "select id,name from seller where status=1";
-                        $db->sql($Query);
-                        $sellers = $db->getResult(); ?>
-                        <div class="form-group col-md-3">
-                            <h4 class="box-title">Filter Products by Seller </h4>
-                            <select id='seller_id' name="seller_id" class='form-control'>
-                                <option value=''>Select Seller</option>
-                                <?php foreach ($sellers as $seller) { ?>
-                                    <option value='<?= $seller['id'] ?>'><?= $seller['name'] ?></option>
-                                <?php } ?>
+                            <h4 class="box-title">Filter by Community </h4>
+                            <select id='community' name="community" class='form-control'>
+                                <option value="">ALL</option>
+                                <option value="MBC">MBC</option>
+                                <option value="BC">BC</option>
+                                <option value="SC">SC</option>
+                                <option value="OC">OC</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-3">
-                            <h4 class="box-title">Filter Products by Status </h4>
-                            <select id='is_approved' name="is_approved" class='form-control'>
-                                <option value=''>Select Status</option>
-                                <option value="1">Approved</option>
-                                <option value="2">Not-Approved</option>
-
-                            </select>
-                        </div>
-                    </div>
-                    <div class="box-header">
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive">
@@ -92,15 +59,15 @@
     $('#seller_id').on('change', function() {
         $('#products_table').bootstrapTable('refresh');
     });
-    $('#is_approved').on('change', function() {
-        $('#products_table').bootstrapTable('refresh');
+    $('#community').on('change', function() {
+        $('#students_table').bootstrapTable('refresh');
     });
 
     function queryParams(p) {
         return {
             "category_id": $('#category_id').val(),
             "seller_id": $('#seller_id').val(),
-            "is_approved": $('#is_approved').val(),
+            "community": $('#community').val(),
             limit: p.limit,
             sort: p.sort,
             order: p.order,

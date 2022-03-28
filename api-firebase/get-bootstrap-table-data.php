@@ -44,7 +44,12 @@ if (isset($config['system_timezone']) && isset($config['system_timezone_gmt'])) 
     $db->sql("SET `time_zone` = '+05:30'");
 }
 if (isset($_GET['table']) && $_GET['table'] == 'students') {
-    $sql = "SELECT * FROM students";
+    $where = '';
+    if (isset($_GET['community']) && $_GET['community'] != '') {
+        $community = $db->escapeString($fn->xss_clean($_GET['community']));
+        $where .= " WHERE community = '$community' ";
+    }
+    $sql = "SELECT * FROM students $where";
     $db->sql($sql);
     $res = $db->getResult();
     $rows = array();
