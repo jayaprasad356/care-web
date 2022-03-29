@@ -184,6 +184,39 @@ $res_logo = $db->getResult();
                         <li><a href="students.php"><i class="fa fa-sliders"></i> Manage Students</a></li>
                     </ul>
                 </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-bullseye"></i>
+                        <span>Staffs</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="add-staff.php"><i class="fa fa-sliders"></i> Add Staff</a></li>
+                        <li><a href="staffs.php"><i class="fa fa-sliders"></i> Manage Staffs</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-bullseye"></i>
+                        <span>Subjects</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="add-subject.php"><i class="fa fa-sliders"></i> Add Subject</a></li>
+                        <li><a href="subjects.php"><i class="fa fa-sliders"></i> Manage Subjects</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-bullseye"></i>
+                        <span>Companies</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="add-company.php"><i class="fa fa-sliders"></i> Add Company</a></li>
+                        <li><a href="companies.php"><i class="fa fa-sliders"></i> Manage Companies</a></li>
+                    </ul>
+                </li>
             </ul>
             </section>
             <!-- /.sidebar -->
