@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2022 at 09:55 AM
+-- Generation Time: Mar 29, 2022 at 10:25 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `care`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `companies`
+--
+
+CREATE TABLE `companies` (
+  `id` int(100) NOT NULL,
+  `company_name` text DEFAULT NULL,
+  `job_role` text DEFAULT NULL,
+  `location` text DEFAULT NULL,
+  `sslc_mark` int(11) DEFAULT NULL,
+  `hsc_mark` int(11) DEFAULT NULL,
+  `cgpa` int(11) DEFAULT NULL,
+  `salary` int(11) DEFAULT NULL,
+  `registration_link` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `companies`
+--
+
+INSERT INTO `companies` (`id`, `company_name`, `job_role`, `location`, `sslc_mark`, `hsc_mark`, `cgpa`, `salary`, `registration_link`) VALUES
+(1, 'Jandroid  Tech Solutions', 'Web Design/ Mobile app Development', 'Trichy', 449, 926, 77, 3, 'https://sbsbshvs/csojfsij');
 
 -- --------------------------------------------------------
 
@@ -80,7 +105,8 @@ CREATE TABLE `staffs` (
 --
 
 INSERT INTO `staffs` (`id`, `name`, `email`, `mobile`, `password`, `department`, `role`, `last_updated`, `date_created`) VALUES
-(1, 'Deepalakshimi', 'deepa@care.ac.in', '8907654321', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', 'CC', '2022-03-24 14:59:42', '2022-03-24 14:51:35');
+(1, 'Deepalakshimi', 'deepa@care.ac.in', '8907654321', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', 'CC', '2022-03-24 14:59:42', '2022-03-24 14:51:35'),
+(2, 'jeyarani', 'jeyarani@care.ac.in', '9866543457', '12345678', 'ECE', 'HOD', NULL, '2022-03-28 10:08:01');
 
 -- --------------------------------------------------------
 
@@ -116,11 +142,40 @@ INSERT INTO `students` (`id`, `roll_no`, `name`, `email`, `mobile`, `password`, 
 (1, 810718106005, 'Prasad', 'prasad@gmail.com', '8778624681', '12345678', 'ECE', 2018, 'BE', NULL, 'M', 'BC', 'Kammalar', NULL, NULL, '2022-03-25 04:33:11', '2022-03-25 04:20:57'),
 (2, 810718106009, 'surya', 'surya@gmail.com', 'surya@gmail.com', 'surya@gmail.com', 'surya@gmail.com', 0, 'surya@gmail.com', 'surya@gmail.com', 'surya@gmail.com', 'MBC', 'surya@gmail.com', 'surya@gmail.com', 'surya@gmail.com', '2022-03-26 07:33:30', '2022-03-25 06:19:16'),
 (3, 810718106009, 'surya', 'surya@gmail.com', '8778634567', '12345678', 'cse', 2018, 'BE', 'logo.jpg', 'M', 'BC', '', 'sholapuram', 'kumbakonam', NULL, '2022-03-25 06:21:32'),
-(4, 810718106005, 'Nagarajan', NULL, '9876543210', '1234567890', 'ECE', NULL, NULL, NULL, 'M', 'MBC', NULL, NULL, NULL, NULL, '2022-03-26 02:15:51');
+(4, 810718106005, 'Nagarajan', NULL, '9876543210', '1234567890', 'ECE', NULL, NULL, NULL, 'M', 'MBC', NULL, NULL, NULL, NULL, '2022-03-26 02:15:51'),
+(5, 810718106003, 'Divakar', NULL, '8080808080', '12345678', 'ECE', NULL, NULL, NULL, 'M', 'MBC', NULL, NULL, NULL, NULL, '2022-03-28 08:04:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `id` int(11) NOT NULL,
+  `department` text DEFAULT NULL,
+  `subject_name` text DEFAULT NULL,
+  `subject_code` text DEFAULT NULL,
+  `regulation` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `subjects`
+--
+
+INSERT INTO `subjects` (`id`, `department`, `subject_name`, `subject_code`, `regulation`) VALUES
+(1, 'ECE', 'CARE website', 'EC8701', '2017'),
+(2, 'ECE', 'WIRELESS', 'EC8901', '2013');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `companies`
+--
+ALTER TABLE `companies`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `settings`
@@ -141,8 +196,20 @@ ALTER TABLE `students`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `companies`
+--
+ALTER TABLE `companies`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -154,13 +221,19 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `staffs`
 --
 ALTER TABLE `staffs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
