@@ -1,10 +1,10 @@
 <section class="content-header">
     <h1>
-        Staffs /
+        Notifications /
         <small><a href="home.php"><i class="fa fa-home"></i> Home</a></small>
     </h1>
     <ol class="breadcrumb">
-        <a class="btn btn-block btn-default" href="add-student.php"><i class="fa fa-plus-square"></i> Add New Staff</a>
+        <a class="btn btn-block btn-default" href="add-notification.php"><i class="fa fa-plus-square"></i> Add New Notification</a>
     </ol>
     
 </section>
@@ -18,27 +18,30 @@
                     <!-- <div class="col-xs-6"> -->
                     <div class="box-header">
                         <div class="form-group col-md-3">
-                            <h4 class="box-title">Filter by Role </h4>
-                            <select id='role' name="role" class='form-control'>
+                            <h4 class="box-title">Filter by Department </h4>
+                            <select id='department' name="department" class='form-control'>
                                 <option value="">ALL</option>
-                                <option value="Subject Staff">Subject Staff</option>
-                                <option value="CC">CC</option>
-                                <option value="HOD">HOD</option>
+                                <option value="ECE">ECE</option>
+                                <option value="Civil">Civil</option>
+                                <option value="CSE">CSE</option>
+                                <option value="Mech">Mech</option>
                             </select>
                         </div>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive">
-                        <table id='staffs_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=staffs" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-search="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-sort-name="id" data-sort-order="desc" data-show-export="true" data-export-types='["txt","excel"]' data-export-options='{
-                            "fileName": "staffs-list-<?= date('d-m-Y') ?>",
+                        <table id='students_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=notifications" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-search="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-sort-name="id" data-sort-order="desc" data-show-export="true" data-export-types='["txt","excel"]' data-export-options='{
+                            "fileName": "students-list-<?= date('d-m-Y') ?>",
                             "ignoreColumn": ["operate"] 
                         }'>
                             <thead>
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
-                                    <th data-field="name" data-sortable="true">Name</th>
-                                    <th data-field="department" data-sortable="true" >Department</th>
-                                    <th data-field="role" data-sortable="true">Role</th>
+                                    <th data-field="title" data-sortable="true">Title</th>
+                                    <th data-field="description" data-sortable="true">Description</th>
+                                    <th data-field="department" data-sortable="true">Department</th>
+                                    <th data-field="year" data-sortable="true">Year</th>
+                                    <th data-field="category" data-sortable="true">Category</th>
                                     <th data-field="operate" data-events="actionEvents">Action</th>
                                 </tr>
                             </thead>
@@ -65,7 +68,7 @@
         return {
             "category_id": $('#category_id').val(),
             "seller_id": $('#seller_id').val(),
-            "role": $('#role').val(),
+            "community": $('#community').val(),
             limit: p.limit,
             sort: p.sort,
             order: p.order,

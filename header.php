@@ -217,6 +217,17 @@ $res_logo = $db->getResult();
                         <li><a href="companies.php"><i class="fa fa-sliders"></i> Manage Companies</a></li>
                     </ul>
                 </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-bullseye"></i>
+                        <span>Notifications</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="add-notification.php"><i class="fa fa-sliders"></i> Add Notification</a></li>
+                        <li><a href="notifications.php"><i class="fa fa-sliders"></i> Manage Notifications</a></li>
+                    </ul>
+                </li>
             </ul>
             </section>
             <!-- /.sidebar -->

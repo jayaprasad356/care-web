@@ -57,6 +57,8 @@ if (isset($_GET['table']) && $_GET['table'] == 'students') {
     foreach ($res as $row) {
 
         $operate = '<a href="view-product-variants.php?id=' . $row['id'] . '" title="View"><i class="fa fa-folder-open"></i></a>';
+        $operate .= '<a href="edit-student.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
+        
         $tempRow['id'] = $row['id'];
         $tempRow['name'] = $row['name'];
         $tempRow['roll_no'] = $row['roll_no'];
@@ -79,6 +81,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'students') {
         foreach ($res as $row) {
     
             $operate = '<a href="view-product-variants.php?id=' . $row['id'] . '" title="View"><i class="fa fa-folder-open"></i></a>';
+            $operate .= ' <a href="edit-staff.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
             $tempRow['id'] = $row['id'];
             $tempRow['name'] = $row['name'];
             $tempRow['mobile'] = $row['mobile'];
@@ -101,6 +104,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'subjects') {
     foreach ($res as $row) {
 
         $operate = '<a href="view-product-variants.php?id=' . $row['id'] . '" title="View"><i class="fa fa-folder-open"></i></a>';
+        $operate .= ' <a href="edit-subject.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
         $tempRow['id'] = $row['id'];
         $tempRow['department'] = $row['department'];
         $tempRow['subject_name'] = $row['subject_name'];
@@ -123,6 +127,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'companies') {
     foreach ($res as $row) {
 
         $operate = '<a href="view-product-variants.php?id=' . $row['id'] . '" title="View"><i class="fa fa-folder-open"></i></a>';
+        $operate .= ' <a href="edit-company.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
         $tempRow['id'] = $row['id'];
         $tempRow['company_name'] = $row['company_name'];
         $tempRow['job_role'] = $row['job_role'];
@@ -132,6 +137,29 @@ if (isset($_GET['table']) && $_GET['table'] == 'companies') {
         $tempRow['cgpa'] = $row['cgpa'];
         $tempRow['salary'] = $row['salary'];
         $tempRow['registration_link'] = $row['registration_link'];
+        $tempRow['operate'] = $operate;
+        $rows[] = $tempRow;
+    }
+$bulkData['rows'] = $rows;
+print_r(json_encode($bulkData));
+}
+if (isset($_GET['table']) && $_GET['table'] == 'notifications') {
+    $where = '';
+    
+    $sql = "SELECT * FROM notifications ";
+    $db->sql($sql);
+    $res = $db->getResult();
+    $rows = array();
+    $tempRow = array();
+    foreach ($res as $row) {
+
+        $operate = '<a href="view-product-variants.php?id=' . $row['id'] . '" title="View"><i class="fa fa-folder-open"></i></a>';
+        $tempRow['id'] = $row['id'];
+        $tempRow['title'] = $row['title'];
+        $tempRow['description'] = $row['description'];
+        $tempRow['department'] = $row['department'];
+        $tempRow['year'] = $row['year'];
+        $tempRow['category'] = $row['category'];
         $tempRow['operate'] = $operate;
         $rows[] = $tempRow;
     }
