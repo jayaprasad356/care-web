@@ -228,6 +228,28 @@ $res_logo = $db->getResult();
                         <li><a href="notifications.php"><i class="fa fa-sliders"></i> Manage Notifications</a></li>
                     </ul>
                 </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-bullseye"></i>
+                        <span>University_results</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="add-universityresult.php"><i class="fa fa-sliders"></i> Add University Result</a></li>
+                        <li><a href="universityresults.php"><i class="fa fa-sliders"></i>View University Results</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-bullseye"></i>
+                        <span>Timetable</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="add-timetable.php"><i class="fa fa-sliders"></i> Add Timetable</a></li>
+                        <li><a href="timetables.php"><i class="fa fa-sliders"></i>View Timetable</a></li>
+                    </ul>
+                </li>
             </ul>
             </section>
             <!-- /.sidebar -->

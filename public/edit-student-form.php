@@ -18,6 +18,15 @@ if (isset($_POST['btnUpdate'])){
     $name = $db->escapeString($fn->xss_clean($_POST['name']));
     $roll_no = $db->escapeString($fn->xss_clean($_POST['roll_no']));
     $email = $db->escapeString($fn->xss_clean($_POST['email']));
+    $dob = $db->escapeString($fn->xss_clean($_POST['dob']));
+    $father_name = $db->escapeString($fn->xss_clean($_POST['father_name']));
+    $mother_name= $db->escapeString($fn->xss_clean($_POST['mother_name']));
+    $doorno = $db->escapeString($fn->xss_clean($_POST['doorno']));
+    $street_name = $db->escapeString($fn->xss_clean($_POST['street_name']));
+    $city_name = $db->escapeString($fn->xss_clean($_POST['city_name']));
+    $district = $db->escapeString($fn->xss_clean($_POST['district']));
+    $pin_code= $db->escapeString($fn->xss_clean($_POST['pin_code']));
+    $aadhaar_number = $db->escapeString($fn->xss_clean($_POST['aadhaar_number']));
     $mobile = $db->escapeString($fn->xss_clean($_POST['mobile']));
     $password = $db->escapeString($fn->xss_clean($_POST['password']));
     $department = $db->escapeString($fn->xss_clean($_POST['department']));
@@ -33,6 +42,33 @@ if (isset($_POST['btnUpdate'])){
         $error['roll_no'] = " <span class='label label-danger'>Required!</span>";
     }
     if (empty($email)) {
+        $error['email'] = " <span class='label label-danger'>Required!</span>";
+    }
+    if (empty($dob)) {
+        $error['name'] = " <span class='label label-danger'>Required!</span>";
+    }
+    if (empty($father_name)) {
+        $error['roll_no'] = " <span class='label label-danger'>Required!</span>";
+    }
+    if (empty($mother_name)) {
+        $error['email'] = " <span class='label label-danger'>Required!</span>";
+    }
+    if (empty($doorno)) {
+        $error['name'] = " <span class='label label-danger'>Required!</span>";
+    }
+    if (empty($street_name)) {
+        $error['roll_no'] = " <span class='label label-danger'>Required!</span>";
+    }
+    if (empty($city_name)) {
+        $error['email'] = " <span class='label label-danger'>Required!</span>";
+    }
+    if (empty($district)) {
+        $error['name'] = " <span class='label label-danger'>Required!</span>";
+    }
+    if (empty($pin_code)) {
+        $error['roll_no'] = " <span class='label label-danger'>Required!</span>";
+    }
+    if (empty($aadhaar_number)) {
         $error['email'] = " <span class='label label-danger'>Required!</span>";
     }
 
@@ -55,9 +91,9 @@ if (isset($_POST['btnUpdate'])){
         $error['caste'] = " <span class='label label-danger'>Required!</span>";
     }
 
-    if (!empty($name) && !empty($roll_no) && !empty($mobile) && !empty($password) && !empty($department) && !empty($gender) && !empty($community) && !empty($caste))
+    if (!empty($name)&& !empty($roll_no) && !empty($email) && !empty($dob) && !empty($father_name) && !empty($mother_name) && !empty($doorno) && !empty($street_name) && !empty($city_name) && !empty($district) && !empty($pin_code) && !empty($aadhaar_number) && !empty($department) && !empty($mobile) && !empty($password)  && !empty($gender) && !empty($caste)  && !empty($community))
     {
-        $sql = "UPDATE students SET name='$name',roll_no='$roll_no',mobile='$mobile',password='$password',department='$department',gender='$gender',community='$community',caste='$caste',email='$email' WHERE id=$ID";
+        $sql = "UPDATE students SET name='$name',roll_no='$roll_no',email='$email',dob='$dob',father_name='$father_name',mother_name='$mother_name',doorno='$doorno',street_name='$street_name',city_name='$city_name',district='$district',pin_code='$pin_code',aadhaar_number='$aadhaar_number', mobile='$mobile',password='$password',department='$department',gender='$gender',community='$community',caste='$caste',email='$email' WHERE id=$ID";
         $db->sql($sql);
         $student_result = $db->getResult();
         if (!empty($student_result)) {
@@ -105,7 +141,7 @@ foreach ($res as $row)
 
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form id='add_student_form' method="post" enctype="multipart/form-data">
+                <form id='edit_student_form' method="post" enctype="multipart/form-data">
                     <div class="box-body">
                         <div class="row">
                             <div class="form-group">
@@ -125,6 +161,62 @@ foreach ($res as $row)
 
                         </div>
                         <hr>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">DOB</label> <i class="text-danger asterik">*</i><?php echo isset($error['DOB']) ? $error['dob'] : ''; ?>
+                                    <input type="text" class="form-control" name="dob" value="<?php echo $data['dob']?>" required>
+                                </div>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Father's Name</label> <i class="text-danger asterik">*</i><?php echo isset($error['father_name']) ? $error['father_name'] : ''; ?>
+                                    <input type="text" class="form-control" name="father_name" value="<?php echo $data['father_name']?>" required>
+                                </div>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Mother's Name</label> <i class="text-danger asterik">*</i><?php echo isset($error['mother_name']) ? $error['mother_name'] : ''; ?>
+                                    <input type="text" class="form-control" name="mother_name"value="<?php echo $data['mother_name']?>" required>
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Door.NO</label> <i class="text-danger asterik">*</i><?php echo isset($error['doorno']) ? $error['doorno'] : ''; ?>
+                                    <input type="text" class="form-control" name="doorno" value="<?php echo $data['doorno']?>" required>
+                                </div>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Street Name</label> <i class="text-danger asterik">*</i><?php echo isset($error['street_name']) ? $error['street_name'] : ''; ?>
+                                    <input type="text" class="form-control" name="street_name" value="<?php echo $data['street_name']?>" required>
+                                </div>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Village/ City Name</label> <i class="text-danger asterik">*</i><?php echo isset($error['city_name']) ? $error['city_name'] : ''; ?>
+                                    <input type="text" class="form-control" name="city_name"value="<?php echo $data['city_name']?>" required>
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="form-group">
+                            <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">District</label> <i class="text-danger asterik">*</i><?php echo isset($error['district']) ? $error['district'] : ''; ?>
+                                    <input type="text" class="form-control" name="district" value="<?php echo $data['district']?>" required>
+                                </div>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1"> PIN CODE</label> <i class="text-danger asterik">*</i><?php echo isset($error['pin_code']) ? $error['pin_code'] : ''; ?>
+                                    <input type="text" class="form-control" name="pin_code" value="<?php echo $data['pin_code']?>" required>
+                                </div>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Aadhaar Number</label> <i class="text-danger asterik">*</i><?php echo isset($error['aadhaar_number']) ? $error['aadhaar_number'] : ''; ?>
+                                    <input type="text" class="form-control" name="aadhaar_number"value="<?php echo $data['aadhaar_number']?>" required>
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr>
+                        
+
                         <div class="row">
                             <div class="form-group">
                                 <div class='col-md-4'>

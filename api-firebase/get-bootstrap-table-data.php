@@ -167,5 +167,57 @@ $bulkData['rows'] = $rows;
 print_r(json_encode($bulkData));
 }
 
+if (isset($_GET['table']) && $_GET['table'] == 'universityresults') {
+    $where = '';
+    if ((isset($_GET['roll_no']) && $_GET['roll_no'] != '') && (isset($_GET['semester']) && $_GET['semester'] != '')) {
+        $roll_no = $db->escapeString($fn->xss_clean($_GET['roll_no']));
+        $semester = $db->escapeString($fn->xss_clean($_GET['semester']));
+        $where .= " WHERE roll_no = '$roll_no'&& semester='$semester' " ;
+    }
+    $sql = "SELECT * FROM universityresults ".$where;
+    $db->sql($sql);
+    $res = $db->getResult();
+    $rows = array();
+    $tempRow = array();
+    foreach ($res as $row) {
+
+        $operate = '<a href="view-product-variants.php?id=' . $row['id'] . '" title="View"><i class="fa fa-folder-open"></i></a>';
+        $operate .= ' <a href="edit-universityresult.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
+        $tempRow['id'] = $row['id'];
+        $tempRow['roll_no'] = $row['roll_no'];
+        $tempRow['semester'] = $row['semester'];
+        $tempRow['department'] = $row['department'];
+        $tempRow['subject_code'] = $row['subject_code'];
+        $tempRow['regulation'] = $row['regulation'];
+        $tempRow['grade'] = $row['grade'];
+        $tempRow['operate'] = $operate;
+        $rows[] = $tempRow;
+    }
+    $bulkData['rows'] = $rows;
+    print_r(json_encode($bulkData));
+}
+
+if (isset($_GET['table']) && $_GET['table'] == 'timetable') {
+    $where = '';
+    
+    $sql = "SELECT * FROM timetable";
+    $db->sql($sql);
+    $res = $db->getResult();
+    $rows = array();
+    $tempRow = array();
+    foreach ($res as $row) {
+
+        $operate = '<a href="view-product-variants.php?id=' . $row['id'] . '" title="View"><i class="fa fa-folder-open"></i></a>';
+        $tempRow['id'] = $row['id'];
+        $tempRow['subject_name'] = $row['subject_name'];
+        $tempRow['day'] = $row['day'];
+        $tempRow['duration'] = $row['duration'];
+        $tempRow['operate'] = $operate;
+        $rows[] = $tempRow;
+    }
+    $bulkData['rows'] = $rows;
+    print_r(json_encode($bulkData));
+}
+
 
 $db->disconnect();

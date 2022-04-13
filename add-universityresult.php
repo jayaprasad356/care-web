@@ -1,9 +1,5 @@
 <?php
-	ob_start();
-	// start session
-	
 	session_start();
-	
 	// set time for session timeout
 	$currentTime = time() + 25200;
 	$expired = 3600;
@@ -22,13 +18,11 @@
 	// destroy previous session timeout and create new one
 	unset($_SESSION['timeout']);
 	$_SESSION['timeout'] = $currentTime + $expired;
-	
 ?>
-
 <?php include"header.php";?>
 <html>
 <head>
-<title>Edit Student | <?=$settings['app_name']?> - Dashboard</title>
+<title>Add University Result | <?=$settings['app_name']?> - Dashboard</title>
 <style>
     .asterik {
     font-size: 20px;
@@ -40,7 +34,7 @@
 </body>
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-        <?php include('public/edit-student-form.php'); ?>
+        <?php include('public/add-universityresults-form.php'); ?>
       </div><!-- /.content-wrapper -->
   </body>
 </html>

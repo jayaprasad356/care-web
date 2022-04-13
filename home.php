@@ -47,7 +47,7 @@ include "header.php";
                     <div class="small-box bg-aqua">
                         <div class="inner">
                             <h3>34</h3>
-                            <p>Orders</p>
+                            <p>Students</p>
                         </div>
                         <div class="icon"><i class="fa fa-shopping-cart"></i></div>
                         <a href="orders.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
@@ -57,7 +57,7 @@ include "header.php";
                     <div class="small-box bg-yellow">
                         <div class="inner">
                             <h3>34</h3>
-                            <p>Products</p>
+                            <p>Staffs</p>
                         </div>
                         <div class="icon"><i class="fa fa-cubes"></i></div>
                         <a href="products.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
@@ -67,7 +67,7 @@ include "header.php";
                     <div class="small-box bg-red">
                         <div class="inner">
                             <h3>34</h3>
-                            <p>Customers</p>
+                            <p>Exams</p>
                         </div>
                         <div class="icon"><i class="fa fa-users"></i></div>
                         <a href="customers.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
