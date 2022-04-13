@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2022 at 09:55 AM
+-- Generation Time: Apr 13, 2022 at 06:00 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -20,6 +20,53 @@ SET time_zone = "+00:00";
 --
 -- Database: `care`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `companies`
+--
+
+CREATE TABLE `companies` (
+  `id` int(100) NOT NULL,
+  `company_name` text DEFAULT NULL,
+  `job_role` text DEFAULT NULL,
+  `location` text DEFAULT NULL,
+  `sslc_mark` int(11) DEFAULT NULL,
+  `hsc_mark` int(11) DEFAULT NULL,
+  `cgpa` int(11) DEFAULT NULL,
+  `salary` int(11) DEFAULT NULL,
+  `registration_link` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `companies`
+--
+
+INSERT INTO `companies` (`id`, `company_name`, `job_role`, `location`, `sslc_mark`, `hsc_mark`, `cgpa`, `salary`, `registration_link`) VALUES
+(1, 'Jandroid  Tech Solutions', 'Web Design/ Mobile app Development', 'Trichy', 449, 926, 77, 3, 'https://sbsbshvs/csojfsij');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(25) NOT NULL,
+  `title` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `department` text DEFAULT NULL,
+  `year` text DEFAULT NULL,
+  `category` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `title`, `description`, `department`, `year`, `category`) VALUES
+(1, 'parents meeting', 'we are invited you to share the academic performance of your son/daughter', 'ECE', '4-year', 'DayScholar');
 
 -- --------------------------------------------------------
 
@@ -80,7 +127,8 @@ CREATE TABLE `staffs` (
 --
 
 INSERT INTO `staffs` (`id`, `name`, `email`, `mobile`, `password`, `department`, `role`, `last_updated`, `date_created`) VALUES
-(1, 'Deepalakshimi', 'deepa@care.ac.in', '8907654321', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', 'CC', '2022-03-24 14:59:42', '2022-03-24 14:51:35');
+(1, 'Deepalakshimi', 'deepa@care.ac.in', '8907654321', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', 'Subject Staff', '2022-03-31 22:28:46', '2022-03-24 14:51:35'),
+(2, 'jeyarani', 'jeyarani@care.ac.in', '9866543457', '12345678', 'ECE', 'HOD', NULL, '2022-03-28 10:08:01');
 
 -- --------------------------------------------------------
 
@@ -93,17 +141,21 @@ CREATE TABLE `students` (
   `roll_no` bigint(25) DEFAULT NULL,
   `name` text DEFAULT NULL,
   `email` text DEFAULT NULL,
+  `dob` text DEFAULT NULL,
+  `father_name` text DEFAULT NULL,
+  `mother_name` text DEFAULT NULL,
+  `doorno` text DEFAULT NULL,
+  `street_name` text DEFAULT NULL,
+  `city_name` text DEFAULT NULL,
+  `district` text DEFAULT NULL,
+  `pin_code` text DEFAULT NULL,
+  `aadhaar_number` text DEFAULT NULL,
   `mobile` text DEFAULT NULL,
   `password` text DEFAULT NULL,
   `department` text DEFAULT NULL,
-  `batch` int(10) DEFAULT NULL,
-  `course` text DEFAULT NULL,
-  `profile` text DEFAULT NULL,
   `gender` text DEFAULT NULL,
   `community` text DEFAULT NULL,
   `caste` text DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `place` text DEFAULT NULL,
   `last_updated` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -112,15 +164,95 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `roll_no`, `name`, `email`, `mobile`, `password`, `department`, `batch`, `course`, `profile`, `gender`, `community`, `caste`, `address`, `place`, `last_updated`, `date_created`) VALUES
-(1, 810718106005, 'Prasad', 'prasad@gmail.com', '8778624681', '12345678', 'ECE', 2018, 'BE', NULL, 'M', 'BC', 'Kammalar', NULL, NULL, '2022-03-25 04:33:11', '2022-03-25 04:20:57'),
-(2, 810718106009, 'surya', 'surya@gmail.com', 'surya@gmail.com', 'surya@gmail.com', 'surya@gmail.com', 0, 'surya@gmail.com', 'surya@gmail.com', 'surya@gmail.com', 'MBC', 'surya@gmail.com', 'surya@gmail.com', 'surya@gmail.com', '2022-03-26 07:33:30', '2022-03-25 06:19:16'),
-(3, 810718106009, 'surya', 'surya@gmail.com', '8778634567', '12345678', 'cse', 2018, 'BE', 'logo.jpg', 'M', 'BC', '', 'sholapuram', 'kumbakonam', NULL, '2022-03-25 06:21:32'),
-(4, 810718106005, 'Nagarajan', NULL, '9876543210', '1234567890', 'ECE', NULL, NULL, NULL, 'M', 'MBC', NULL, NULL, NULL, NULL, '2022-03-26 02:15:51');
+INSERT INTO `students` (`id`, `roll_no`, `name`, `email`, `dob`, `father_name`, `mother_name`, `doorno`, `street_name`, `city_name`, `district`, `pin_code`, `aadhaar_number`, `mobile`, `password`, `department`, `gender`, `community`, `caste`, `last_updated`, `date_created`) VALUES
+(1, 810718106005, 'Jandroid', 'prasad@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '8778624681', '12345678', 'ECE', 'M', 'BC', 'Kammalar', '2022-03-30 22:09:19', '2022-03-25 04:20:57'),
+(2, 810718106009, 'surya', 'surya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'surya@gmail.com', 'surya@gmail.com', 'surya@gmail.com', 'surya@gmail.com', 'MBC', 'surya@gmail.com', '2022-03-26 07:33:30', '2022-03-25 06:19:16'),
+(3, 810718106009, 'surya', 'surya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '8778634567', '12345678', 'cse', 'M', 'BC', '', NULL, '2022-03-25 06:21:32'),
+(4, 810718106005, 'Nagarajan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '9876543210', '1234567890', 'ECE', 'M', 'MBC', NULL, NULL, '2022-03-26 02:15:51'),
+(5, 810718106003, 'jeya', 'divagar.a@care.ac.in', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '8080808080', '12345678', 'ECE', 'M', 'MBC', 'urali gounder', '2022-03-30 22:19:49', '2022-03-28 08:04:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `id` int(11) NOT NULL,
+  `department` text DEFAULT NULL,
+  `subject_name` text DEFAULT NULL,
+  `subject_code` text DEFAULT NULL,
+  `regulation` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `subjects`
+--
+
+INSERT INTO `subjects` (`id`, `department`, `subject_name`, `subject_code`, `regulation`) VALUES
+(1, 'ECE', 'CARE website', 'EC8701', '2017'),
+(2, 'ECE', 'WIRELESS', 'EC8901', '2013');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `timetable`
+--
+
+CREATE TABLE `timetable` (
+  `id` int(11) NOT NULL,
+  `subject_name` text DEFAULT NULL,
+  `day` text DEFAULT NULL,
+  `duration` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `timetable`
+--
+
+INSERT INTO `timetable` (`id`, `subject_name`, `day`, `duration`) VALUES
+(1, 'Wireless Communication', 'Monday', '9.00-9.45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `universityresults`
+--
+
+CREATE TABLE `universityresults` (
+  `id` int(11) NOT NULL,
+  `roll_no` text DEFAULT NULL,
+  `department` text DEFAULT NULL,
+  `semester` text DEFAULT NULL,
+  `subject_code` text DEFAULT NULL,
+  `regulation` text DEFAULT NULL,
+  `grade` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `universityresults`
+--
+
+INSERT INTO `universityresults` (`id`, `roll_no`, `department`, `semester`, `subject_code`, `regulation`, `grade`) VALUES
+(1, '810718106003', 'CSE', '2', 'CS8067', 'R2013', 'O'),
+(2, '810718106002', 'CSE', '2', 'ME7654', 'R2013', 'O'),
+(3, '810718106003', 'ECE', '1', 'CS8067', 'R2013', 'B+');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `companies`
+--
+ALTER TABLE `companies`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `settings`
@@ -141,8 +273,38 @@ ALTER TABLE `students`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `timetable`
+--
+ALTER TABLE `timetable`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `universityresults`
+--
+ALTER TABLE `universityresults`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `companies`
+--
+ALTER TABLE `companies`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -154,13 +316,31 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `staffs`
 --
 ALTER TABLE `staffs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `timetable`
+--
+ALTER TABLE `timetable`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `universityresults`
+--
+ALTER TABLE `universityresults`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
