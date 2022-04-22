@@ -22,6 +22,8 @@ if (isset($_POST['btnAdd'])) {
         $password = $db->escapeString($fn->xss_clean($_POST['password']));
         $department = $db->escapeString($fn->xss_clean($_POST['department']));
         $role = $db->escapeString($fn->xss_clean($_POST['role']));
+        $batch = $fn->xss_clean_array($_POST['batch']);
+        $batchs = implode(",", $batch);
         
         if (empty($name)) {
             $error['name'] = " <span class='label label-danger'>Required!</span>";
@@ -45,22 +47,34 @@ if (isset($_POST['btnAdd'])) {
 
         if ( !empty($name) && !empty($email)&& !empty($mobile) && !empty($password) && !empty($department) && !empty($role))
         {
-            $sql = "INSERT INTO staffs (name,email,mobile,password,department,role) VALUES('$name','$email','$mobile','$password','$department','$role')";
+            $password = md5($password);
+            $sql = "SELECT * FROM staffs WHERE email = '" . $email . "'";
             $db->sql($sql);
-            $staffs_result = $db->getResult();
-            if (!empty($staffs_result)) {
-                $staffs_result = 0;
-            } else {
-                $staffs_result = 1;
+            $res = $db->getResult();
+            $num = $db->numRows($res);
+            if($num < 1){
+                $sql = "INSERT INTO staffs (name,email,mobile,password,department,role,batch) VALUES('$name','$email','$mobile','$password','$department','$role','$batchs')";
+                $db->sql($sql);
+                $staffs_result = $db->getResult();
+                if (!empty($staffs_result)) {
+                    $staffs_result = 0;
+                } else {
+                    $staffs_result = 1;
+                }
+                if ($staffs_result == 1) {
+                    $error['add_menu'] = "<section class='content-header'>
+                                                    <span class='label label-success'>Staff Added Successfully</span>
+                                                    <h4><small><a  href='staffs.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Staffs</a></small></h4>
+                                                     </section>";
+                } else {
+                    $error['add_menu'] = " <span class='label label-danger'>Failed</span>";
+                }
+
+            }else{
+                $error['add_menu'] = " <span class='label label-danger'>Staff Already Exists</span>";
+
             }
-            if ($staffs_result == 1) {
-                $error['add_menu'] = "<section class='content-header'>
-                                                <span class='label label-success'>Staff Added Successfully</span>
-                                                <h4><small><a  href='products.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Products</a></small></h4>
-                                                 </section>";
-            } else {
-                $error['add_menu'] = " <span class='label label-danger'>Failed</span>";
-            }
+
 
         }
     }
@@ -130,9 +144,28 @@ if (isset($_POST['btnAdd'])) {
                                     <label for="">Select Role</label> <i class="text-danger asterik">*</i> <?php echo isset($error['role']) ? $error['role'] : ''; ?><br>
                                     <select id="role" name="role" class="form-control">
                                         <option value="">Select</option>
-                                        <option value="Subject Staff">Subject Staff</option>
+                                        <option value="Faculty">Faculty</option>
                                         <option value="CC">CC</option>
                                         <option value="HOD">HOD</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="form-group col-md-8">
+                                <div class="form-group">
+                                    <label for='batch'>Select Batch</label><i class="text-danger asterik">*</i>
+                                    <select name='batch[]' id='batch' class='form-control' placeholder='Enter the Batch you want to assign Seller' required multiple="multiple">
+                                        <?php $sql = 'select year from `batch`  order by year';
+                                        $db->sql($sql);
+
+                                        $result = $db->getResult();
+                                        foreach ($result as $value) {
+                                        ?>
+                                            <option value='<?= $value['year'] ?>'><?= $value['year'] ?></option>
+                                        <?php } ?>
+
                                     </select>
                                 </div>
                             </div>
@@ -140,8 +173,8 @@ if (isset($_POST['btnAdd'])) {
 
                     <!-- /.box-body -->
                     <div class="box-footer">
-                        <input type="submit" class="btn-primary btn" value="Add" name="btnAdd" />&nbsp;
-                        <input type="reset" class="btn-danger btn" value="Clear" id="btnClear" />
+                        <input type="submit" class="btn-primary btn" value="Add Staff" name="btnAdd" />&nbsp;
+                        <!-- <input type="reset" class="btn-danger btn" value="Clear" id="btnClear" /> -->
                         <!--<div  id="res"></div>-->
                     </div>
                 </form>
@@ -171,5 +204,10 @@ if (isset($_POST['btnAdd'])) {
         for (instance in CKEDITOR.instances) {
             CKEDITOR.instances[instance].setData('');
         }
+    });
+    $('#batch').select2({
+        width: 'element',
+        placeholder: 'type in batch to search',
+
     });
 </script>

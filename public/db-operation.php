@@ -5,25 +5,11 @@ include('../includes/crud.php');
 $db = new Database();
 $db->connect();
 $db->sql("SET NAMES 'utf8'");
-$auth_username = $db->escapeString($_SESSION["user"]);
 
 include_once('../includes/custom-functions.php');
 $fn = new custom_functions;
 include_once('../includes/functions.php');
 $function = new functions;
-function checkadmin($auth_username)
-{
-    $db = new Database();
-    $db->connect();
-    $db->sql("SELECT `username` FROM `admin` WHERE `username`='$auth_username' LIMIT 1");
-    $res = $db->getResult();
-    if (!empty($res)) {
-
-        return true;
-    } else {
-        return false;
-    }
-}
 
 
 // upload bulk product - upload products in bulk using  a CSV file
@@ -42,35 +28,50 @@ if (isset($_POST['bulk_upload']) && $_POST['bulk_upload'] == 1) {
         while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE) {
             // print_r($emapData);
             if ($count1 != 0) {
-                $emapData[0] = trim($db->escapeString($emapData[0])); // roll_no
-                $emapData[1] = trim($db->escapeString($emapData[1])); // name                
-                $emapData[2] = trim($db->escapeString($emapData[2])); // email
-                $emapData[3] = trim($db->escapeString($emapData[3])); // mobile
-                $emapData[4] = trim($db->escapeString($emapData[4])); // password
-                $emapData[5] = trim($db->escapeString($emapData[5])); // department
-                $emapData[6] = trim($db->escapeString($emapData[6])); // batch
-                $emapData[7] = trim($db->escapeString($emapData[7])); // course
-                $emapData[8] = trim($db->escapeString($emapData[8])); // profile
-                $emapData[9] = trim($db->escapeString($emapData[9])); // gender
-                $emapData[10] = trim($db->escapeString($emapData[10])); // community
-                $emapData[11] = trim($db->escapeString($emapData[11])); // caste
-                $emapData[12] = trim($db->escapeString($emapData[12])); // address
-                $emapData[13] = trim($db->escapeString($emapData[13])); // place
+                $emapData[0] = trim($db->escapeString($emapData[0]));
+                $emapData[1] = trim($db->escapeString($emapData[1]));          
+                $emapData[2] = trim($db->escapeString($emapData[2]));
+                $emapData[3] = trim($db->escapeString($emapData[3]));
+                
+                $emapData[4] = trim($db->escapeString($emapData[4]));
+                $emapData[5] = trim($db->escapeString($emapData[5]));
+                $emapData[6] = trim($db->escapeString($emapData[6]));
+                $emapData[7] = trim($db->escapeString($emapData[7]));
+                $emapData[8] = trim($db->escapeString($emapData[8]));
+                $emapData[9] = trim($db->escapeString($emapData[9]));
+                $emapData[10] = trim($db->escapeString($emapData[10]));
+                $emapData[11] = trim($db->escapeString($emapData[11]));
+                $emapData[12] = trim($db->escapeString($emapData[12]));
+                $emapData[13] = trim($db->escapeString($emapData[13]));
+                $emapData[14] = trim($db->escapeString($emapData[14]));
+                $emapData[15] = trim($db->escapeString($emapData[15]));
+                $emapData[16] = trim($db->escapeString($emapData[16]));
+                $emapData[17] = trim($db->escapeString($emapData[17]));
+                $emapData[18] = trim($db->escapeString($emapData[18]));
+                $emapData[19] = trim($db->escapeString($emapData[19]));
+                $emapData[20] = trim($db->escapeString($emapData[20]));
                 $data = array(
                     'roll_no' => $emapData[0],
                     'name' => $emapData[1],
                     'email' => $emapData[2],
-                    'mobile' => $emapData[3],
-                    'password' => $emapData[4],
-                    'department' => $emapData[5],
-                    'batch' => $emapData[6],
-                    'course' => $emapData[7],
-                    'profile' => $emapData[8],
-                    'gender' => $emapData[9],
-                    'community' => $emapData[10],
-                    'caste' => $emapData[11],
-                    'address' => $emapData[12],
-                    'place' => $emapData[13],
+                    'dob' => $emapData[3],
+                    'father_name' => $emapData[4],
+                    'mother_name' => $emapData[5],
+                    'doorno' => $emapData[6],
+                    'street_name' => $emapData[7],
+                    'city_name' => $emapData[8],
+                    'district' => $emapData[9],
+                    'pin_code' => $emapData[10],
+                    'aadhaar_number' => $emapData[11],
+                    'mobile' => $emapData[12],
+                    'password' => $emapData[13],
+                    'department' => $emapData[14],
+                    'batch' => $emapData[15],
+                    'gender' => $emapData[16],
+                    'community' => $emapData[17],
+                    'caste' => $emapData[18],
+                    'internship' => $emapData[19],
+                    'activities' => $emapData[20],
                 );
                 $db->insert('students', $data);
 

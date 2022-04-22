@@ -23,10 +23,7 @@ if (isset($_POST['btnAdd'])) {
         $password = $db->escapeString($fn->xss_clean($_POST['password']));
         $department = $db->escapeString($fn->xss_clean($_POST['department']));
         $gender = $db->escapeString($fn->xss_clean($_POST['gender']));
-        $community = $db->escapeString($fn->xss_clean($_POST['community']));
-        $caste = $db->escapeString($fn->xss_clean($_POST['caste']));
-        
-       
+        $course = $db->escapeString($fn->xss_clean($_POST['course']));
         if (empty($name)) {
             $error['name'] = " <span class='label label-danger'>Required!</span>";
         }
@@ -49,30 +46,37 @@ if (isset($_POST['btnAdd'])) {
         if (empty($gender)) {
             $error['gender'] = " <span class='label label-danger'>Required!</span>";
         }
-        if (empty($community)) {
-            $error['community'] = " <span class='label label-danger'>Required!</span>";
+        if (empty($course)) {
+            $error['course'] = " <span class='label label-danger'>Required!</span>";
         }
-        if (empty($caste)) {
-            $error['caste'] = " <span class='label label-danger'>Required!</span>";
-        }
-
-        if (!empty($name) && !empty($roll_no) && !empty($mobile) && !empty($password) && !empty($department) && !empty($gender) && !empty($community) && !empty($caste))
+        if (!empty($name) && !empty($roll_no) && !empty($mobile) && !empty($password) && !empty($department) && !empty($gender) && !empty($course))
         {
-            $sql = "INSERT INTO students (name,roll_no,mobile,password,department,gender,community) VALUES('$name','$roll_no','$mobile','$password','$department','$gender','$community')";
+            $sql = "SELECT * FROM students WHERE roll_no = '" . $roll_no . "'";
             $db->sql($sql);
-            $student_result = $db->getResult();
-            if (!empty($student_result)) {
-                $student_result = 0;
-            } else {
-                $student_result = 1;
+            $res = $db->getResult();
+            $num = $db->numRows($res);
+            if($num < 1){
+                $sql = "INSERT INTO students (name,roll_no,mobile,password,department,gender,course) VALUES('$name','$roll_no','$mobile','$password','$department','$gender','$course')";
+                $db->sql($sql);
+                $student_result = $db->getResult();
+                if (!empty($student_result)) {
+                    $student_result = 0;
+                } else {
+                    $student_result = 1;
+                }
+                if ($student_result == 1) {
+                    $error['add_menu'] = "<section class='content-header'>
+                                                    <span class='label label-success'>Student Added Successfully</span>
+                                                    <h4><small><a  href='products.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Products</a></small></h4>
+                                                     </section>";
+                } else {
+                    $error['add_menu'] = " <span class='label label-danger'>Failed</span>";
+                }
+    
+
             }
-            if ($student_result == 1) {
-                $error['add_menu'] = "<section class='content-header'>
-                                                <span class='label label-success'>Student Added Successfully</span>
-                                                <h4><small><a  href='products.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Products</a></small></h4>
-                                                 </section>";
-            } else {
-                $error['add_menu'] = " <span class='label label-danger'>Failed</span>";
+            else{
+                $error['add_menu'] = " <span class='label label-danger'>Student Already Exists</span>";
             }
 
         }
@@ -117,7 +121,6 @@ if (isset($_POST['btnAdd'])) {
                                     <input type="email" class="form-control" name="email" required>
                                 </div>
                             </div>
-
                         </div>
                         <hr>
                         <div class="row">
@@ -130,13 +133,7 @@ if (isset($_POST['btnAdd'])) {
                                     <label for="exampleInputEmail1">Password</label> <i class="text-danger asterik">*</i><?php echo isset($error['password']) ? $error['password'] : ''; ?>
                                     <input type="text" class="form-control" name="password" required>
                                 </div>
-                                <div class='col-md-4'>
-                                    <label for="">Select Department</label> <i class="text-danger asterik">*</i> <?php echo isset($error['department']) ? $error['department'] : ''; ?><br>
-                                    <select id="department" name="department" class="form-control">
-                                        <option value="">Select</option>
-                                        <option value="ECE">ECE</option>
-                                    </select>
-                                </div>
+
                             </div>
 
                         </div>
@@ -144,45 +141,41 @@ if (isset($_POST['btnAdd'])) {
 
                         <hr>
                         <div class="row">
+                            <div class='form-group col-md-4'>
+                                <label for="">Select Course</label> <i class="text-danger asterik">*</i> <?php echo isset($error['course']) ? $error['course'] : ''; ?><br>
+                                <select id="course" name="course" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="BE">BE</option>
+                                </select>
+                            </div>
+
+                            <div class='form-group col-md-4'>
+                                <label for="">Select Department</label> <i class="text-danger asterik">*</i> <?php echo isset($error['department']) ? $error['department'] : ''; ?><br>
+                                <select id="department" name="department" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="ECE">ECE</option>
+                                </select>
+                            </div>
                             <div class="form-group col-md-4">
-                            <label class="control-label">Gender</label>
+                                <label class="control-label">Gender</label>
                                 <div class="form-group">
-                                    
                                     <div id="status" class="btn-group">
                                         <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="M"> Male
+                                            <input type="radio" name="gender" value="Male" checked> Male
                                         </label>
                                         <label class="btn btn-danger" data-toggle-class="btn-danger" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="F"> Female
+                                            <input type="radio" name="gender" value="Female"> Female
                                         </label>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="form-group">
-                                <div class='col-md-4'>
-                                    <label for="">Select Community</label> <i class="text-danger asterik">*</i> <?php echo isset($error['community']) ? $error['community'] : ''; ?><br>
-                                    <select id="community" name="community" class="form-control">
-                                        <option value="MBC">MBC</option>
-                                        <option value="BC">BC</option>
-                                        <option value="SC">SC</option>
-                                        <option value="OC">OC</option>
-                                    </select>
-                                </div>
-                                <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">Caste</label> <i class="text-danger asterik">*</i><?php echo isset($error['caste']) ? $error['caste'] : ''; ?>
-                                    <input type="text" class="form-control" name="caste" required>
+
                                 </div>
 
                             </div>
-
                         </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                        <input type="submit" class="btn-primary btn" value="Add" name="btnAdd" />&nbsp;
-                        <input type="reset" class="btn-danger btn" value="Clear" id="btnClear" />
+                        <input type="submit" class="btn-primary btn" value="Add Student" name="btnAdd" />&nbsp;
+
                         <!--<div  id="res"></div>-->
                     </div>
                 </form>

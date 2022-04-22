@@ -16,6 +16,8 @@ $settings['currency'] = $currency;
 $sql_logo = "select value from `settings` where variable='Logo' OR variable='logo'";
 $db->sql($sql_logo);
 $res_logo = $db->getResult();
+$role = $_SESSION['role'];
+$ID = $_SESSION['id'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -173,17 +175,33 @@ $res_logo = $db->getResult();
                         <i class="fa fa-home" class="active"></i> <span>Home</span>
                     </a>
                 </li>
-                <li class="treeview">
+                <?php if($_SESSION['role'] == 'Admin'){?>
+                    <li class="treeview">
                     <a href="#">
                         <i class="fa fa-bullseye"></i>
                         <span>Students</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
+                        
                         <li><a href="bulk-student-upload.php"><i class="fa fa-sliders"></i> Bulk Student Upload</a></li>
                         <li><a href="students.php"><i class="fa fa-sliders"></i> Manage Students</a></li>
                     </ul>
-                </li>
+                    </li>
+                <?php }?>
+                <?php if($_SESSION['role'] == 'CC' || $_SESSION['role'] == 'HOD'){?>
+                    <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-bullseye"></i>
+                        <span>Students</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="students.php"><i class="fa fa-sliders"></i> Manage Students</a></li>
+                    </ul>
+                    </li>
+                <?php }?>
+                <?php if($_SESSION['role'] == 'Admin'){?>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-bullseye"></i>
@@ -195,6 +213,32 @@ $res_logo = $db->getResult();
                         <li><a href="staffs.php"><i class="fa fa-sliders"></i> Manage Staffs</a></li>
                     </ul>
                 </li>
+                <?php }?>
+                <?php if($_SESSION['role'] == 'Placement Officer'){?>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-bullseye"></i>
+                        <span>Companies</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="add-company.php"><i class="fa fa-sliders"></i> Add Company</a></li>
+                        <li><a href="companies.php"><i class="fa fa-sliders"></i> Manage Companies</a></li>
+                    </ul>
+                </li>
+                <?php }?>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-bullseye"></i>
+                        <span>Notifications</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="add-notification.php"><i class="fa fa-sliders"></i> Add Notification</a></li>
+                        <li><a href="notifications.php"><i class="fa fa-sliders"></i> Manage Notifications</a></li>
+                    </ul>
+                </li>
+                
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-bullseye"></i>
@@ -209,12 +253,26 @@ $res_logo = $db->getResult();
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-bullseye"></i>
-                        <span>Companies</span>
+                        <span>University Results</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="add-company.php"><i class="fa fa-sliders"></i> Add Company</a></li>
-                        <li><a href="companies.php"><i class="fa fa-sliders"></i> Manage Companies</a></li>
+                        <?php if($_SESSION['role'] == 'Exam Cell'){?>
+                        <li><a href="add-universityresult.php"><i class="fa fa-sliders"></i> Add University Result</a></li>
+                        <?php }?>
+                        <li><a href="universityresults.php"><i class="fa fa-sliders"></i>View University Results</a></li>
+                    </ul>
+                </li>
+                
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-bullseye"></i>
+                        <span>Timetable</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="add-timetable.php"><i class="fa fa-sliders"></i> Add Timetable</a></li>
+                        <li><a href="timetables.php"><i class="fa fa-sliders"></i>View Timetable</a></li>
                     </ul>
                 </li>
             </ul>

@@ -49,7 +49,7 @@ if (isset($_POST['btnAdd'])) {
             if ($subject_result == 1) {
                 $error['add_menu'] = "<section class='content-header'>
                                                 <span class='label label-success'>Subject Added Successfully</span>
-                                                <h4><small><a  href='products.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Products</a></small></h4>
+                                                <h4><small><a  href='subjects.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Subjects</a></small></h4>
                                                  </section>";
             } else {
                 $error['add_menu'] = " <span class='label label-danger'>Failed</span>";

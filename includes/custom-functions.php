@@ -74,6 +74,16 @@ class custom_functions
             return false;
         }
     }
+    function rows_count($table, $field = '*', $where = '')
+    { 
+        // Total count
+        if (!empty($where)) $where = "Where " . $where;
+        $sql = "SELECT COUNT(" . $field . ") as total FROM " . $table . " " . $where;
+        $this->db->sql($sql);
+        $res = $this->db->getResult();
+        foreach ($res as $row)
+            return ($row['total'] != "") ? $row['total'] : 0;
+    }
     public function validate_image($file, $is_image = true)
     {
         if (function_exists('finfo_file')) {

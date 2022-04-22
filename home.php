@@ -34,7 +34,7 @@ include "header.php";
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Home</h1>
+            <h1>Bio-Data</h1>
             <ol class="breadcrumb">
                 <li>
                     <a href="home.php"> <i class="fa fa-home"></i> Home</a>
@@ -44,33 +44,17 @@ include "header.php";
         <section class="content">
             <div class="row">
                 <div class="col-lg-3 col-xs-6">
-                    <div class="small-box bg-aqua">
-                        <div class="inner">
-                            <h3>34</h3>
-                            <p>Orders</p>
-                        </div>
-                        <div class="icon"><i class="fa fa-shopping-cart"></i></div>
-                        <a href="orders.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-xs-6">
-                    <div class="small-box bg-yellow">
-                        <div class="inner">
-                            <h3>34</h3>
-                            <p>Products</p>
-                        </div>
-                        <div class="icon"><i class="fa fa-cubes"></i></div>
-                        <a href="products.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-xs-6">
-                    <div class="small-box bg-red">
-                        <div class="inner">
-                            <h3>34</h3>
-                            <p>Customers</p>
-                        </div>
-                        <div class="icon"><i class="fa fa-users"></i></div>
-                        <a href="customers.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <div class="inner">
+                        <?php
+                        $sql = "SELECT * FROM staffs WHERE id = $ID";
+                        $db->sql($sql);
+                        $res = $db->getResult();
+                        ?>
+                        <h4>Name : <small><?php echo $res[0]['name'] ?></small></h4>
+                        <h4>Department : <small><?php echo $res[0]['department'] ?></small></h4>
+                        <h4>Email ID : <small><?php echo $res[0]['email'] ?></small></h4>
+                        <h4>Mobile No. : <small><?php echo $res[0]['mobile'] ?></small></h4>
+
                     </div>
                 </div>
             </div>

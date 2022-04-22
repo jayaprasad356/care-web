@@ -21,7 +21,7 @@
                             <h4 class="box-title">Filter by Role </h4>
                             <select id='role' name="role" class='form-control'>
                                 <option value="">ALL</option>
-                                <option value="Subject Staff">Subject Staff</option>
+                                <option value="Faculty">Faculty</option>
                                 <option value="CC">CC</option>
                                 <option value="HOD">HOD</option>
                             </select>
@@ -37,7 +37,7 @@
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
                                     <th data-field="name" data-sortable="true">Name</th>
-                                    <th data-field="department" data-sortable="true" data-visible="false">Department</th>
+                                    <th data-field="department" data-sortable="true" >Department</th>
                                     <th data-field="role" data-sortable="true">Role</th>
                                     <th data-field="operate" data-events="actionEvents">Action</th>
                                 </tr>

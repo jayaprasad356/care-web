@@ -13,7 +13,7 @@ $config = $fn->get_configurations();
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
 <section class="content-header">
-    <h1>Bulk Upload /<small><a href="products.php"><i class="fa fa-cubes"></i> Products</a></small></h1>
+    <h1>Bulk Upload<small></small></h1>
 
 </section>
 <!-- Main content -->
@@ -56,7 +56,7 @@ $config = $fn->get_configurations();
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary" id="submit_btn" name="btnAdd">Upload</button>
-                        <input type="reset" class="btn-warning btn" value="Clear" />
+                        <!-- <input type="reset" class="btn-warning btn" value="Clear" /> -->
 
                         <a class='btn btn-info' id='sample' href='#' download> <em class='fa fa-download'></em> Download Sample File</a>
                     
@@ -85,7 +85,7 @@ $config = $fn->get_configurations();
         //   alert('Please select type.');
         // }
         // if (type1 == 'products') {
-        window.location.href = 'library/students.csv';
+        window.location.href = 'library/stuform.csv';
         // } 
 
     });
