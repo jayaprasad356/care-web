@@ -34,7 +34,8 @@
                             <select id='roll_no' name="roll_no[]" class='form-control'>
                                         <?php
                                         $department = $_SESSION['department'];
-                                        $sql = "SELECT roll_no FROM `students` WHERE department IN ('$department') ";
+                                        $batch = $_SESSION['batch'];
+                                        $sql = "SELECT roll_no FROM `students` WHERE department IN ('$department') AND batch IN ('$batch') ";
                                         $db->sql($sql);
 
                                         $result = $db->getResult();

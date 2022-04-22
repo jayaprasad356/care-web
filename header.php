@@ -227,6 +227,7 @@ $ID = $_SESSION['id'];
                     </ul>
                 </li>
                 <?php }?>
+                <?php if($_SESSION['role'] == 'HOD' || $_SESSION['role'] == 'CC' || $_SESSION['role'] == 'Faculty'){?>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-bullseye"></i>
@@ -238,7 +239,7 @@ $ID = $_SESSION['id'];
                         <li><a href="notifications.php"><i class="fa fa-sliders"></i> Manage Notifications</a></li>
                     </ul>
                 </li>
-                
+                <?php }?>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-bullseye"></i>
@@ -258,12 +259,13 @@ $ID = $_SESSION['id'];
                     </a>
                     <ul class="treeview-menu">
                         <?php if($_SESSION['role'] == 'Exam Cell'){?>
-                        <li><a href="add-universityresult.php"><i class="fa fa-sliders"></i> Add University Result</a></li>
+                        <li><a href="upload-univresult.php"><i class="fa fa-sliders"></i> Upload University Result</a></li>
+                        <!-- <li><a href="add-universityresult.php"><i class="fa fa-sliders"></i> Add University Result</a></li> -->
                         <?php }?>
                         <li><a href="universityresults.php"><i class="fa fa-sliders"></i>View University Results</a></li>
                     </ul>
                 </li>
-                
+                <?php if($_SESSION['role'] == 'HOD' || $_SESSION['role'] == 'CC' || $_SESSION['role'] == 'Faculty'){?>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-bullseye"></i>
@@ -275,6 +277,7 @@ $ID = $_SESSION['id'];
                         <li><a href="timetables.php"><i class="fa fa-sliders"></i>View Timetable</a></li>
                     </ul>
                 </li>
+                <?php }?>
             </ul>
             </section>
             <!-- /.sidebar -->

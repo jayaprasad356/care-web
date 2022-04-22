@@ -85,5 +85,47 @@ if (isset($_POST['bulk_upload']) && $_POST['bulk_upload'] == 1) {
         echo "<p class='alert alert-danger'>Invalid file format! Please upload data in CSV file!</p><br>";
     }
 }
+
+if (isset($_POST['upload_univexam']) && $_POST['upload_univexam'] == 1) {
+    $count = 0;
+    $count1 = 0;
+    $error = false;
+    $filename = $_FILES["upload_file"]["tmp_name"];
+    $result = $fn->validate_image($_FILES["upload_file"], false);
+    if (!$result) {
+        $error = true;
+    }
+    if ($_FILES["upload_file"]["size"] > 0  && $error == false) {
+        $file = fopen($filename, "r");
+        while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE) {
+            // print_r($emapData);
+            if ($count1 != 0) {
+                $emapData[0] = trim($db->escapeString($emapData[0]));
+                $emapData[1] = trim($db->escapeString($emapData[1]));          
+                $emapData[2] = trim($db->escapeString($emapData[2]));
+                $emapData[3] = trim($db->escapeString($emapData[3]));
+                $emapData[4] = trim($db->escapeString($emapData[4]));
+                $emapData[5] = trim($db->escapeString($emapData[5]));
+                
+                $data = array(
+                    'roll_no' => $emapData[0],
+                    'department' => $emapData[1],
+                    'semester' => $emapData[2],
+                    'subject_code' => $emapData[3],
+                    'regulation' => $emapData[4],
+                    'grade' => $emapData[5],
+                );
+                $db->insert('universityresults', $data);
+
+            }
+
+            $count1++;
+        }
+        fclose($file);
+        echo "<p class='alert alert-success'>CSV file is successfully imported!</p><br>";
+    } else {
+        echo "<p class='alert alert-danger'>Invalid file format! Please upload data in CSV file!</p><br>";
+    }
+}
 ?>
 

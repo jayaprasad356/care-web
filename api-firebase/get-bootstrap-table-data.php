@@ -115,7 +115,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'students') {
     $bulkData['rows'] = $rows;
     print_r(json_encode($bulkData));
 }
-    if (isset($_GET['table']) && $_GET['table'] == 'staffs') {
+if (isset($_GET['table']) && $_GET['table'] == 'staffs') {
         $where = '';
         
         $sql = "SELECT * FROM staffs";
@@ -225,8 +225,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'universityresults') {
     $tempRow = array();
     foreach ($res as $row) {
 
-        $operate = '<a href="view-product-variants.php?id=' . $row['id'] . '" title="View"><i class="fa fa-folder-open"></i></a>';
-        $operate .= ' <a href="edit-universityresult.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
+        $operate = ' <a href="edit-universityresult.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
         $tempRow['id'] = $row['id'];
         $tempRow['roll_no'] = $row['roll_no'];
         $tempRow['semester'] = $row['semester'];

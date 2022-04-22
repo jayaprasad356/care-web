@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2022 at 10:30 AM
+-- Generation Time: Apr 22, 2022 at 12:09 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -172,8 +172,8 @@ CREATE TABLE `staffs` (
 --
 
 INSERT INTO `staffs` (`id`, `name`, `email`, `mobile`, `password`, `department`, `batch`, `role`, `last_updated`, `date_created`) VALUES
-(1, 'Deepalakshimi', 'deepa@care.ac.in', '8907654321', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '', 'Exam Cell', '2022-04-22 08:22:03', '2022-03-24 14:51:35'),
-(2, 'jeyarani', 'jeyarani@care.ac.in', '9866543457', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '', 'HOD', '2022-04-22 08:21:24', '2022-03-28 10:08:01'),
+(1, 'Deepalakshimi', 'deepa@care.ac.in', '8907654321', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'Exam Cell', '2022-04-22 08:53:03', '2022-03-24 14:51:35'),
+(2, 'jeyarani', 'jeyarani@care.ac.in', '9866543457', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'HOD', '2022-04-22 08:52:57', '2022-03-28 10:08:01'),
 (3, 'Sriram', 'sriram@gmail.com', '9876543210', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018,2019,2020,2021', 'HOD', NULL, '2022-04-21 11:05:24');
 
 -- --------------------------------------------------------
@@ -232,6 +232,7 @@ CREATE TABLE `subjects` (
   `department` text DEFAULT NULL,
   `subject_name` text DEFAULT NULL,
   `subject_code` text DEFAULT NULL,
+  `semester` int(11) DEFAULT NULL,
   `regulation` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -239,11 +240,11 @@ CREATE TABLE `subjects` (
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`id`, `department`, `subject_name`, `subject_code`, `regulation`) VALUES
-(1, 'ECE', 'CARE website', 'EC8701', '2017'),
-(2, 'ECE', 'WIRELESS', 'EC8901', '2013'),
-(3, 'ECE', 'Circuit Analysis', 'CE93390', '2017'),
-(4, 'ECE', 'DSP', '339430', '2017');
+INSERT INTO `subjects` (`id`, `department`, `subject_name`, `subject_code`, `semester`, `regulation`) VALUES
+(1, 'ECE', 'CARE website', 'EC8701', 1, '2017'),
+(2, 'ECE', 'WIRELESS', 'EC8901', 1, '2013'),
+(3, 'ECE', 'Circuit Analysis', 'CE93390', 1, '2017'),
+(4, 'ECE', 'DSP', '339430', 1, '2017');
 
 -- --------------------------------------------------------
 
@@ -288,7 +289,13 @@ CREATE TABLE `universityresults` (
 INSERT INTO `universityresults` (`id`, `roll_no`, `department`, `semester`, `subject_code`, `regulation`, `grade`) VALUES
 (1, '810718106003', 'CSE', '2', 'CS8067', '2013', 'O'),
 (2, '810718106002', 'CSE', '2', 'ME7654', '2013', 'O'),
-(3, '810718106003', 'ECE', '1', 'CS8067', '2013', 'B+');
+(3, '810718106005', 'ECE', '1', 'CS8067', '2013', 'B+'),
+(4, '810718106005', 'ECE', '2', 'CS8067', '2018', 'O'),
+(5, '810718106003', 'ECE', '2', 'CS8067', '2018', 'O'),
+(6, '810718106003', 'ECE', '2', 'CS8067', '2018', 'O'),
+(7, '810718106003', 'ECE', '2', 'CS8067', '2018', 'O'),
+(8, '810718106003', 'ECE', '2', 'CS8067', '2018', 'O'),
+(9, '810718106003', 'ECE', '2', 'CS8067', '2018', 'O');
 
 --
 -- Indexes for dumped tables
@@ -416,7 +423,7 @@ ALTER TABLE `timetables`
 -- AUTO_INCREMENT for table `universityresults`
 --
 ALTER TABLE `universityresults`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
