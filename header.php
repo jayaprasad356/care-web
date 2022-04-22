@@ -150,9 +150,9 @@ $ID = $_SESSION['id'];
                                         </p>
                                     </li>
                                     <li class="user-footer">
-                                        <div class="pull-left">
+                                        <!-- <div class="pull-left">
                                             <a href="admin-profile.php" class="btn btn-default btn-flat"> Edit Profile</a>
-                                        </div>
+                                        </div> -->
                                         <div class="pull-right">
                                             <a href="logout.php" class="btn btn-default btn-flat">Log out</a>
                                         </div>
@@ -240,6 +240,7 @@ $ID = $_SESSION['id'];
                     </ul>
                 </li>
                 <?php }?>
+                <?php if($_SESSION['role'] == 'HOD' || $_SESSION['role'] == 'CC') { ?>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-bullseye"></i>
@@ -251,6 +252,8 @@ $ID = $_SESSION['id'];
                         <li><a href="subjects.php"><i class="fa fa-sliders"></i> Manage Subjects</a></li>
                     </ul>
                 </li>
+                <?php }?>
+                <?php if($_SESSION['role'] == 'HOD' || $_SESSION['role'] == 'CC') { ?>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-bullseye"></i>
@@ -265,7 +268,8 @@ $ID = $_SESSION['id'];
                         <li><a href="universityresults.php"><i class="fa fa-sliders"></i>View University Results</a></li>
                     </ul>
                 </li>
-                <?php if($_SESSION['role'] == 'HOD' || $_SESSION['role'] == 'CC' || $_SESSION['role'] == 'Faculty'){?>
+                <?php }?>
+                <?php if($_SESSION['role'] == 'HOD' || $_SESSION['role'] == 'CC'){?>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-bullseye"></i>

@@ -34,7 +34,7 @@ include "header.php";
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Bio-Data</h1>
+            <h1>Profile</h1>
             <ol class="breadcrumb">
                 <li>
                     <a href="home.php"> <i class="fa fa-home"></i> Home</a>
@@ -54,6 +54,7 @@ include "header.php";
                         <h4>Department : <small><?php echo $res[0]['department'] ?></small></h4>
                         <h4>Email ID : <small><?php echo $res[0]['email'] ?></small></h4>
                         <h4>Mobile No. : <small><?php echo $res[0]['mobile'] ?></small></h4>
+                        <h4>Role : <small><?php echo $res[0]['role'] ?></small></h4>
 
                     </div>
                 </div>

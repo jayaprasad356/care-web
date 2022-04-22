@@ -171,17 +171,19 @@ if (isset($_GET['table']) && $_GET['table'] == 'companies') {
     $tempRow = array();
     foreach ($res as $row) {
 
-        $operate = '<a href="view-product-variants.php?id=' . $row['id'] . '" title="View"><i class="fa fa-folder-open"></i></a>';
-        $operate .= ' <a href="edit-company.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
+        $operate = ' <a href="edit-company.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
+        $reg_link = '<a target="_blank" href="' . $row['registration_link'] . '" title="Register Link"><i class="fa fa-eye"></i></a>';
+        
         $tempRow['id'] = $row['id'];
         $tempRow['company_name'] = $row['company_name'];
         $tempRow['job_role'] = $row['job_role'];
         $tempRow['location'] = $row['location'];
-        $tempRow['sslc_mark'] = $row['sslc_mark'];
-        $tempRow['hsc_mark'] = $row['hsc_mark'];
-        $tempRow['cgpa'] = $row['cgpa'];
-        $tempRow['salary'] = $row['salary'];
-        $tempRow['registration_link'] = $row['registration_link'];
+        $tempRow['sslc_percentage'] = $row['sslc_percentage'].' %';
+        $tempRow['hsc_percentage'] = $row['hsc_percentage'].' %';
+        $tempRow['ug_percentage'] = $row['ug_percentage'].' %';
+        $tempRow['lpa'] = $row['lpa'];
+        $tempRow['last_date'] = $row['last_date'];
+        $tempRow['registration_link'] = $reg_link;
         $tempRow['operate'] = $operate;
         $rows[] = $tempRow;
     }

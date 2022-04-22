@@ -17,15 +17,6 @@
                 <div class="box">
                     <!-- <div class="col-xs-6"> -->
                     <div class="box-header">
-                        <div class="form-group col-md-3">
-                            <h4 class="box-title">Filter by Location </h4>
-                            <select id='location' name="location" class='form-control'>
-                                <option value="">ALL</option>
-                                <option value="chennai">Chennai</option>
-                                <option value="Bangalore">Bangalore</option>
-                                <option value="Coimbatore">Coimbatore</option>
-                            </select>
-                        </div>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive">
@@ -39,12 +30,12 @@
                                     <th data-field="company_name" data-sortable="true">Company Name</th>
                                     <th data-field="job_role" data-sortable="true">Job Role</th>
                                     <th data-field="location" data-sortable="true" >Location</th>
-                                    <th data-field="sslc_mark" data-sortable="true">SSLC Mark</th>
-                                    <th data-field="hsc_mark" data-sortable="true">HSC Mark</th>
-                                    <th data-field="cgpa" data-sortable="true" >CGPA</th>
-                                    <th data-field="salary" data-sortable="true">Salary</th>
+                                    <th data-field="sslc_percentage" data-sortable="true">SSLC Percentage</th>
+                                    <th data-field="hsc_percentage" data-sortable="true">HSC Percentage</th>
+                                    <th data-field="ug_percentage" data-sortable="true" >UG Percentage</th>
+                                    <th data-field="lpa" data-sortable="true">LPA</th>
                                     <th data-field="registration_link" data-sortable="true">Registration Link</th>
-                                    <th data-field="operate" data-events="actionEvents">Action</th>
+                                    <!-- <th data-field="operate" data-events="actionEvents">Action</th> -->
                                 </tr>
                             </thead>
                         </table>
