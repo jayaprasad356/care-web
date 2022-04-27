@@ -81,13 +81,31 @@ if (isset($_GET['table']) && $_GET['table'] == 'students') {
     if (isset($_GET['order'])){
         $order = $db->escapeString($_GET['order']);
     }
-    $sql = "SELECT COUNT(`id`) as total FROM `students` WHERE id IS NOT NULL  AND department = '$department'  AND batch IN ($batch) " . $where;
+    if($_SESSION['role'] == 'Admin'){
+        $sql = "SELECT COUNT(`id`) as total FROM `students` WHERE id IS NOT NULL " . $where;
+    
+
+    }
+    else{
+        $sql = "SELECT COUNT(`id`) as total FROM `students` WHERE id IS NOT NULL  AND department = '$department'  AND batch IN ($batch) " . $where;
+    
+
+    }
     $db->sql($sql);
     $res = $db->getResult();
     foreach ($res as $row)
         $total = $row['total'];
 
-    $sql = "SELECT * FROM students WHERE id IS NOT NULL AND department = '$department'  AND batch IN ($batch) " . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;;
+    if($_SESSION['role'] == 'Admin'){
+        $sql = "SELECT * FROM students WHERE id IS NOT NULL " . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
+    
+
+    }
+    else{
+        $sql = "SELECT * FROM students WHERE id IS NOT NULL AND department = '$department'  AND batch IN ($batch) " . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;;
+    
+
+    }
     $db->sql($sql);
     $res = $db->getResult();
 
@@ -107,7 +125,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'students') {
         $tempRow['dob'] = $row['dob'];
         $tempRow['mobile'] = $row['mobile'];
         $tempRow['department'] = $row['department'];
-        $tempRow['city_name'] = $row['city_name'];
+        $tempRow['batch'] = $row['batch'];
         $tempRow['community'] = $row['community'];
         $tempRow['operate'] = $operate;
         $rows[] = $tempRow;
@@ -116,16 +134,33 @@ if (isset($_GET['table']) && $_GET['table'] == 'students') {
     print_r(json_encode($bulkData));
 }
 if (isset($_GET['table']) && $_GET['table'] == 'staffs') {
+        $offset = 0;
+        $limit = 10;
         $where = '';
-        
-        $sql = "SELECT * FROM staffs";
+        $sort = 'id';
+        $order = 'DESC';
+        if (isset($_GET['role']) && $_GET['role'] != '') {
+            $role = $db->escapeString($fn->xss_clean($_GET['role']));
+            $where .= " AND role = '$role' ";
+        }
+
+        $sql = "SELECT COUNT(`id`) as total FROM `staffs` WHERE id IS NOT NULL " . $where;
         $db->sql($sql);
         $res = $db->getResult();
+        foreach ($res as $row)
+            $total = $row['total'];
+    
+    
+        
+        $sql = "SELECT * FROM staffs WHERE id IS NOT NULL " . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
+        $db->sql($sql);
+        $res = $db->getResult();
+    
+        $bulkData = array();
+        $bulkData['total'] = $total;
         $rows = array();
         $tempRow = array();
         foreach ($res as $row) {
-    
-            //$operate = '<a href="view-product-variants.php?id=' . $row['id'] . '" title="View"><i class="fa fa-folder-open"></i></a>';
             $operate = ' <a href="edit-staff.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
             $tempRow['id'] = $row['id'];
             $tempRow['name'] = $row['name'];

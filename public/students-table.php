@@ -26,7 +26,6 @@
                                         $department = $_SESSION['department'];
                                         $sql = "SELECT department FROM `department` WHERE department IN ('$department') ";
                                         $db->sql($sql);
-
                                         $result = $db->getResult();
                                         foreach ($result as $value) {
                                         ?>
@@ -48,6 +47,7 @@
                         <div class="form-group col-md-3">
                             <h4 class="box-title">Filter by Batch</h4>
                             <select name='batch[]' id='batch' class='form-control' placeholder='Enter the Batch'>
+                                <option value="">ALL</option>
                                         <?php
                                         $batch = $_SESSION['batch'];
                                         $sql = "SELECT year FROM `batch` WHERE  year IN ($batch) ";
@@ -76,7 +76,7 @@
                                     <th data-field="email" data-sortable="true">Email</th>
                                     <th data-field="mobile" data-sortable="true">Mobile</th>
                                     <th data-field="dob" data-sortable="true">DOB</th>
-                                    <th data-field="city_name" data-sortable="true">City Name</th>
+                                    <th data-field="batch" data-sortable="true">Batch</th>
                                     <th data-field="department" data-sortable="true">Department</th>
                                     <th data-field="community" data-sortable="true">Community</th>
                                     <th data-field="operate" data-events="actionEvents">Action</th>
@@ -95,6 +95,14 @@
 <script>
     $('#community').on('change', function() {
         id = $('#community').val();
+        $('#students_table').bootstrapTable('refresh');
+    });
+    $('#department').on('change', function() {
+        id = $('#department').val();
+        $('#students_table').bootstrapTable('refresh');
+    });
+    $('#batch').on('change', function() {
+        id = $('#batch').val();
         $('#students_table').bootstrapTable('refresh');
     });
     function queryParams(p) {

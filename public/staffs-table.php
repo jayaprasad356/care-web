@@ -20,10 +20,15 @@
                         <div class="form-group col-md-3">
                             <h4 class="box-title">Filter by Role </h4>
                             <select id='role' name="role" class='form-control'>
-                                <option value="">ALL</option>
-                                <option value="Faculty">Faculty</option>
-                                <option value="CC">CC</option>
-                                <option value="HOD">HOD</option>
+                                    <option value="">ALL</option>
+                                    <?php
+                                    $sql = "SELECT name FROM `role` ";
+                                    $db->sql($sql);
+                                    $result = $db->getResult();
+                                    foreach ($result as $value) {
+                                    ?>
+                                        <option value='<?= $value['name'] ?>'><?= $value['name'] ?></option>
+                                    <?php } ?>
                             </select>
                         </div>
                     </div>
@@ -54,17 +59,12 @@
     </section>
 
 <script>
-    $('#seller_id').on('change', function() {
-        $('#products_table').bootstrapTable('refresh');
-    });
-    $('#community').on('change', function() {
-        $('#students_table').bootstrapTable('refresh');
+    $('#role').on('change', function() {
+        $('#staffs_table').bootstrapTable('refresh');
     });
 
     function queryParams(p) {
         return {
-            "category_id": $('#category_id').val(),
-            "seller_id": $('#seller_id').val(),
             "role": $('#role').val(),
             limit: p.limit,
             sort: p.sort,
@@ -73,44 +73,4 @@
             search: p.search
         };
     }
-</script>
-<script>
-    $('#category_id').on('change', function() {
-        id = $('#category_id').val();
-        $('#products_table').bootstrapTable('refresh');
-    });
-
-    window.actionEvents = {
-        'click .set-product-deactive': function(e, value, rows, index) {
-            var p_id = $(this).data("id");
-            $.ajax({
-                url: 'public/db-operation.php',
-                type: "get",
-                data: 'id=' + p_id + '&product_status=1&type=deactive',
-                success: function(result) {
-                    if (result == 1)
-                        $('#products_table').bootstrapTable('refresh');
-                    else
-                        alert('Error! Product could not be deactivated.');
-                }
-            });
-
-        },
-        'click .set-product-active': function(e, value, rows, index) {
-            var p_id = $(this).data("id");
-            $.ajax({
-                url: 'public/db-operation.php',
-                type: "get",
-                data: 'id=' + p_id + '&product_status=1&type=active',
-                success: function(result) {
-                    if (result == 1)
-                        $('#products_table').bootstrapTable('refresh');
-                    else
-                        alert('Error! Product could not be deactivated.');
-                }
-            });
-        }
-
-
-    };
 </script>

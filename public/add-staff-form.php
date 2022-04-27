@@ -133,11 +133,18 @@ if (isset($_POST['btnAdd'])) {
                         <hr>
                         <div class="row">
                             <div class="form-group">
-                                <div class='col-md-4'>
+                                <div class='form-group col-md-4'>
                                     <label for="">Select Department</label> <i class="text-danger asterik">*</i> <?php echo isset($error['department']) ? $error['department'] : ''; ?><br>
-                                    <select id="department" name="department" class="form-control">
-                                        <option value="">Select</option>
-                                        <option value="ECE">ECE</option>
+                                    <select name='department[]' id='department' class='form-control' placeholder='Enter the Department you want to assign Seller' required multiple="multiple">
+                                        <?php $sql = 'select department from `department`  order by department';
+                                        $db->sql($sql);
+
+                                        $result = $db->getResult();
+                                        foreach ($result as $value) {
+                                        ?>
+                                            <option value='<?= $value['department'] ?>'><?= $value['department'] ?></option>
+                                        <?php } ?>
+
                                     </select>
                                 </div>
                                 <div class='col-md-4'>
@@ -147,6 +154,8 @@ if (isset($_POST['btnAdd'])) {
                                         <option value="Faculty">Faculty</option>
                                         <option value="CC">CC</option>
                                         <option value="HOD">HOD</option>
+                                        <option value="Placement Officer">Placement Officer</option>
+                                        <option value="Exam Cell">Exam Cell</option>
                                     </select>
                                 </div>
                             </div>
@@ -208,6 +217,11 @@ if (isset($_POST['btnAdd'])) {
     $('#batch').select2({
         width: 'element',
         placeholder: 'type in batch to search',
+
+    });
+    $('#department').select2({
+        width: 'element',
+        placeholder: 'type in department to search',
 
     });
 </script>
