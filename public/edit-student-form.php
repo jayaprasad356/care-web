@@ -35,6 +35,9 @@ if (isset($_POST['btnUpdate'])){
     $caste = $db->escapeString($fn->xss_clean($_POST['caste']));
     $internship = $db->escapeString($fn->xss_clean($_POST['internship']));
     $activities = $db->escapeString($fn->xss_clean($_POST['activities']));
+    $sslc_percentage = $db->escapeString($fn->xss_clean($_POST['sslc_percentage']));
+    $hsc_percentage = $db->escapeString($fn->xss_clean($_POST['hsc_percentage']));
+    $ug_percentage = $db->escapeString($fn->xss_clean($_POST['ug_percentage']));
     
    
     if (empty($name)) {
@@ -50,7 +53,7 @@ if (isset($_POST['btnUpdate'])){
 
     if (!empty($name)&& !empty($roll_no) && !empty($email))
     {
-        $sql = "UPDATE students SET name='$name',roll_no='$roll_no',email='$email',dob='$dob',father_name='$father_name',mother_name='$mother_name',doorno='$doorno',street_name='$street_name',city_name='$city_name',district='$district',pin_code='$pin_code',aadhaar_number='$aadhaar_number', mobile='$mobile',password='$password',department='$department',gender='$gender',community='$community',caste='$caste',email='$email',internship='$internship',activities='$activities' WHERE id=$ID";
+        $sql = "UPDATE students SET name='$name',roll_no='$roll_no',email='$email',dob='$dob',father_name='$father_name',mother_name='$mother_name',doorno='$doorno',street_name='$street_name',city_name='$city_name',district='$district',pin_code='$pin_code',aadhaar_number='$aadhaar_number', mobile='$mobile',password='$password',department='$department',gender='$gender',community='$community',caste='$caste',email='$email',internship='$internship',activities='$activities',sslc_percentage='$sslc_percentage',hsc_percentage='$hsc_percentage',ug_percentage='$ug_percentage' WHERE id=$ID";
         $db->sql($sql);
         $student_result = $db->getResult();
         if (!empty($student_result)) {
@@ -189,6 +192,24 @@ foreach ($res as $row)
                                 <div class='col-md-4'>
                                     <label for="exampleInputEmail1">Aadhaar Number</label>
                                     <input type="text" class="form-control" name="aadhaar_number"value="<?php echo $data['aadhaar_number']?>">
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="form-group">
+                            <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">SSLC %</label>
+                                    <input type="text" class="form-control" name="sslc_percentage" value="<?php echo $data['sslc_percentage']?>">
+                                </div>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">HSC %</label>
+                                    <input type="text" class="form-control" name="hsc_percentage" value="<?php echo $data['hsc_percentage']?>">
+                                </div>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">UG %</label>
+                                    <input type="text" class="form-control" name="ug_percentage"value="<?php echo $data['ug_percentage']?>">
                                 </div>
                             </div>
 

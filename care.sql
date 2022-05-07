@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2022 at 12:09 PM
+-- Generation Time: May 07, 2022 at 05:39 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -54,19 +54,22 @@ CREATE TABLE `companies` (
   `company_name` text DEFAULT NULL,
   `job_role` text DEFAULT NULL,
   `location` text DEFAULT NULL,
-  `sslc_mark` int(11) DEFAULT NULL,
-  `hsc_mark` int(11) DEFAULT NULL,
-  `cgpa` int(11) DEFAULT NULL,
-  `salary` int(11) DEFAULT NULL,
-  `registration_link` text DEFAULT NULL
+  `sslc_percentage` int(11) DEFAULT NULL,
+  `hsc_percentage` int(11) DEFAULT NULL,
+  `ug_percentage` int(11) DEFAULT NULL,
+  `lpa` int(11) DEFAULT NULL,
+  `registration_link` text DEFAULT NULL,
+  `last_date` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `companies`
 --
 
-INSERT INTO `companies` (`id`, `company_name`, `job_role`, `location`, `sslc_mark`, `hsc_mark`, `cgpa`, `salary`, `registration_link`) VALUES
-(1, 'Jandroid  Tech Solutions', 'Web Design/ Mobile app Development', 'Trichy', 449, 926, 77, 3, 'https://sbsbshvs/csojfsij');
+INSERT INTO `companies` (`id`, `company_name`, `job_role`, `location`, `sslc_percentage`, `hsc_percentage`, `ug_percentage`, `lpa`, `registration_link`, `last_date`) VALUES
+(1, 'Jandroid  Tech Solutions', 'Web Design/ Mobile app Development', 'Trichy', 449, 926, 77, 3, 'https://sbsbshvs/csojfsij', NULL),
+(2, 'TATA CONSULTANT SERVICES', 'Engineer', 'Chennai', 60, 70, 80, 5, 'https://www.tcs.com/', NULL),
+(3, 'Grey Matter', 'Android', 'Tiruchirappalli', 60, 60, 60, 5, 'https://www.greymatterworks.in/', '2022-04-29');
 
 -- --------------------------------------------------------
 
@@ -111,6 +114,28 @@ INSERT INTO `notifications` (`id`, `title`, `description`, `department`, `batch`
 (1, 'parents meeting', 'we are invited you to share the academic performance of your son/daughter', 'ECE', '2018'),
 (2, 'SKD', 'md f dsfd', 'ECE', '2018'),
 (3, 'SKD', 'md f dsfd', 'ECE', '2018');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role`
+--
+
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id`, `name`) VALUES
+(1, 'Faculty'),
+(2, 'Placement Officer'),
+(3, 'HOD'),
+(4, 'Exam Cell'),
+(5, 'CC');
 
 -- --------------------------------------------------------
 
@@ -173,8 +198,9 @@ CREATE TABLE `staffs` (
 
 INSERT INTO `staffs` (`id`, `name`, `email`, `mobile`, `password`, `department`, `batch`, `role`, `last_updated`, `date_created`) VALUES
 (1, 'Deepalakshimi', 'deepa@care.ac.in', '8907654321', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'Exam Cell', '2022-04-22 08:53:03', '2022-03-24 14:51:35'),
-(2, 'jeyarani', 'jeyarani@care.ac.in', '9866543457', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'HOD', '2022-04-22 08:52:57', '2022-03-28 10:08:01'),
-(3, 'Sriram', 'sriram@gmail.com', '9876543210', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018,2019,2020,2021', 'HOD', NULL, '2022-04-21 11:05:24');
+(2, 'jeyarani', 'jeyarani@care.ac.in', '9866543457', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'HOD', '2022-04-26 08:40:37', '2022-03-28 10:08:01'),
+(3, 'Sriram', 'sriram@gmail.com', '9876543210', 'e807f1fcf82d132f9bb018ca6738a19f', NULL, '2018,2019,2020,2021', 'Admin', '2022-04-26 08:53:54', '2022-04-21 11:05:24'),
+(4, 'Gopinath', 'gopinath@gmail.com', '9876543210', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018,2019,2020,2021', 'Faculty', '2022-04-26 08:53:58', '2022-04-21 11:05:24');
 
 -- --------------------------------------------------------
 
@@ -198,6 +224,9 @@ CREATE TABLE `students` (
   `pin_code` text DEFAULT NULL,
   `aadhaar_number` text DEFAULT NULL,
   `mobile` text DEFAULT NULL,
+  `sslc_percentage` int(11) DEFAULT NULL,
+  `hsc_percentage` int(11) DEFAULT NULL,
+  `ug_percentage` int(11) NOT NULL,
   `password` text DEFAULT NULL,
   `department` text DEFAULT NULL,
   `batch` text DEFAULT NULL,
@@ -214,12 +243,12 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `roll_no`, `name`, `email`, `course`, `dob`, `father_name`, `mother_name`, `doorno`, `street_name`, `city_name`, `district`, `pin_code`, `aadhaar_number`, `mobile`, `password`, `department`, `batch`, `gender`, `community`, `caste`, `internship`, `activities`, `last_updated`, `date_created`) VALUES
-(1, 810718106005, 'Jp', 'prasad@gmail.com', NULL, '2022-04-21', 'selvam', '', '', '', '', '', '', '', '8778624681', '12345678', 'ECE', '2018', 'M', 'BC', 'Kammalar', 'Google LLC 3 Months Intern Completed', '1st Price PPT Presentation', '2022-04-21 10:44:50', '2022-03-25 04:20:57'),
-(2, 810720104001, 'aanto', 'aanto@gmail.com', NULL, '', '', '', '', '', '', '', '', '', '9876543210', 'surya@123', 'ECE', '2019', 'M', 'MBC', 'surya@gmail.com', NULL, '', '2022-04-21 12:36:56', '2022-03-25 06:19:16'),
-(3, 810718106009, 'surya', 'surya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '8778634567', '12345678', 'CSE', '2020', 'M', 'BC', '', NULL, '', '2022-04-21 12:37:01', '2022-03-25 06:21:32'),
-(4, 810718106005, 'Nagarajan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '9876543210', '1234567890', 'ECE', '2021', 'M', 'MBC', NULL, NULL, '', '2022-04-21 12:37:05', '2022-03-26 02:15:51'),
-(5, 810718106003, 'jeya', 'divagar.a@care.ac.in', NULL, '2022-04-21', '', '', '', '', '', '', '', '', '8080808080', '12345678', 'ECE', '2023', 'M', 'MBC', 'urali gounder', '', '', '2022-04-21 12:37:10', '2022-03-28 08:04:32');
+INSERT INTO `students` (`id`, `roll_no`, `name`, `email`, `course`, `dob`, `father_name`, `mother_name`, `doorno`, `street_name`, `city_name`, `district`, `pin_code`, `aadhaar_number`, `mobile`, `sslc_percentage`, `hsc_percentage`, `ug_percentage`, `password`, `department`, `batch`, `gender`, `community`, `caste`, `internship`, `activities`, `last_updated`, `date_created`) VALUES
+(1, 810718106005, 'Jp', 'prasad@gmail.com', NULL, '2022-04-21', 'selvam', '', '', '', '', '', '', '', '8778624681', 50, 60, 60, '12345678', 'ECE', '2018', 'M', 'BC', 'Kammalar', 'Google LLC 3 Months Intern Completed', '1st Price PPT Presentation', '2022-05-06 18:19:09', '2022-03-25 04:20:57'),
+(2, 810720104001, 'aanto', 'aanto@gmail.com', NULL, '', '', '', '', '', '', '', '', '', '9876543210', NULL, NULL, 0, 'surya@123', 'ECE', '2019', 'M', 'MBC', 'surya@gmail.com', NULL, '', '2022-04-21 12:36:56', '2022-03-25 06:19:16'),
+(3, 810718106009, 'surya', 'surya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '8778634567', NULL, NULL, 0, '12345678', 'CSE', '2020', 'M', 'BC', '', NULL, '', '2022-04-21 12:37:01', '2022-03-25 06:21:32'),
+(4, 810718106005, 'Nagarajan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '9876543210', NULL, NULL, 0, '1234567890', 'ECE', '2021', 'M', 'MBC', NULL, NULL, '', '2022-04-21 12:37:05', '2022-03-26 02:15:51'),
+(5, 810718106003, 'jeya', 'divagar.a@care.ac.in', NULL, '2022-04-21', '', '', '', '', '', '', '', '', '8080808080', NULL, NULL, 0, '12345678', 'ECE', '2023', 'M', 'MBC', 'urali gounder', '', '', '2022-04-21 12:37:10', '2022-03-28 08:04:32');
 
 -- --------------------------------------------------------
 
@@ -243,7 +272,7 @@ CREATE TABLE `subjects` (
 INSERT INTO `subjects` (`id`, `department`, `subject_name`, `subject_code`, `semester`, `regulation`) VALUES
 (1, 'ECE', 'CARE website', 'EC8701', 1, '2017'),
 (2, 'ECE', 'WIRELESS', 'EC8901', 1, '2013'),
-(3, 'ECE', 'Circuit Analysis', 'CE93390', 1, '2017'),
+(3, 'ECE', 'Communication Theory of Engineering Technology ', 'CE9390', 1, '2017'),
 (4, 'ECE', 'DSP', '339430', 1, '2017');
 
 -- --------------------------------------------------------
@@ -295,7 +324,9 @@ INSERT INTO `universityresults` (`id`, `roll_no`, `department`, `semester`, `sub
 (6, '810718106003', 'ECE', '2', 'CS8067', '2018', 'O'),
 (7, '810718106003', 'ECE', '2', 'CS8067', '2018', 'O'),
 (8, '810718106003', 'ECE', '2', 'CS8067', '2018', 'O'),
-(9, '810718106003', 'ECE', '2', 'CS8067', '2018', 'O');
+(9, '810718106003', 'ECE', '2', 'CS8067', '2018', 'O'),
+(10, '810718106005', 'ECE', '1', 'CE9390', '2013', 'B+'),
+(11, '810718106005', 'ECE', '1', 'CE9390', '2013', 'B+');
 
 --
 -- Indexes for dumped tables
@@ -323,6 +354,12 @@ ALTER TABLE `department`
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `role`
+--
+ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -375,7 +412,7 @@ ALTER TABLE `batch`
 -- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -390,6 +427,12 @@ ALTER TABLE `notifications`
   MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `role`
+--
+ALTER TABLE `role`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
@@ -399,7 +442,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `staffs`
 --
 ALTER TABLE `staffs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -423,7 +466,7 @@ ALTER TABLE `timetables`
 -- AUTO_INCREMENT for table `universityresults`
 --
 ALTER TABLE `universityresults`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

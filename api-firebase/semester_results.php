@@ -29,12 +29,13 @@ $semester = $db->escapeString($_POST['semester']);
 $sql = "SELECT * FROM students WHERE id ='$student_id'";
 $db->sql($sql);
 $res = $db->getResult();
-$num = $db->numRows($res);
 $roll_no = $res[0]['roll_no'];
-if ($num == 1){
-    $sql = "SELECT *,universityresults.id AS id FROM universityresults,subjects WHERE universityresults.roll_no ='$roll_no' AND universityresults.semester = '$semester' AND subjects.subject_code = universityresults.subject_code";
-    $db->sql($sql);
-    $res = $db->getResult();
+$sql = "SELECT *,universityresults.id AS id FROM universityresults,subjects WHERE universityresults.roll_no ='$roll_no' AND universityresults.semester = '$semester' AND subjects.subject_code = universityresults.subject_code";
+$db->sql($sql);
+$res = $db->getResult();
+$num = $db->numRows($res);
+if ($num >= 1){
+
     $response['success'] = true;
     $response['message'] = "Results Retrived Successfully";
     $response['data'] = $res;
@@ -42,7 +43,7 @@ if ($num == 1){
 }
 else{
     $response['success'] = false;
-    $response['message'] = "Student Not Found";
+    $response['message'] = "Result Not Found";
     print_r(json_encode($response));
 
 }
