@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2022 at 05:39 AM
+-- Generation Time: May 07, 2022 at 09:24 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -67,8 +67,8 @@ CREATE TABLE `companies` (
 --
 
 INSERT INTO `companies` (`id`, `company_name`, `job_role`, `location`, `sslc_percentage`, `hsc_percentage`, `ug_percentage`, `lpa`, `registration_link`, `last_date`) VALUES
-(1, 'Jandroid  Tech Solutions', 'Web Design/ Mobile app Development', 'Trichy', 449, 926, 77, 3, 'https://sbsbshvs/csojfsij', NULL),
-(2, 'TATA CONSULTANT SERVICES', 'Engineer', 'Chennai', 60, 70, 80, 5, 'https://www.tcs.com/', NULL),
+(1, 'Jandroid  Tech Solutions', 'Web Design/ Mobile app Development', 'Trichy', 44, 95, 77, 3, 'https://sbsbshvs/csojfsij', NULL),
+(2, 'TATA CONSULTANT SERVICES', 'Engineer', 'Chennai', 50, 40, 50, 5, 'https://www.tcs.com/', NULL),
 (3, 'Grey Matter', 'Android', 'Tiruchirappalli', 60, 60, 60, 5, 'https://www.greymatterworks.in/', '2022-04-29');
 
 -- --------------------------------------------------------
@@ -245,7 +245,7 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`id`, `roll_no`, `name`, `email`, `course`, `dob`, `father_name`, `mother_name`, `doorno`, `street_name`, `city_name`, `district`, `pin_code`, `aadhaar_number`, `mobile`, `sslc_percentage`, `hsc_percentage`, `ug_percentage`, `password`, `department`, `batch`, `gender`, `community`, `caste`, `internship`, `activities`, `last_updated`, `date_created`) VALUES
 (1, 810718106005, 'Jp', 'prasad@gmail.com', NULL, '2022-04-21', 'selvam', '', '', '', '', '', '', '', '8778624681', 50, 60, 60, '12345678', 'ECE', '2018', 'M', 'BC', 'Kammalar', 'Google LLC 3 Months Intern Completed', '1st Price PPT Presentation', '2022-05-06 18:19:09', '2022-03-25 04:20:57'),
-(2, 810720104001, 'aanto', 'aanto@gmail.com', NULL, '', '', '', '', '', '', '', '', '', '9876543210', NULL, NULL, 0, 'surya@123', 'ECE', '2019', 'M', 'MBC', 'surya@gmail.com', NULL, '', '2022-04-21 12:36:56', '2022-03-25 06:19:16'),
+(2, 810720104001, 'aanto', 'aanto@gmail.com', NULL, '', '', '', '', '', '', '', '', '', '9876543210', 80, 90, 80, 'surya@123', 'ECE', '2019', 'M', 'MBC', 'surya@gmail.com', NULL, '', '2022-05-07 05:16:19', '2022-03-25 06:19:16'),
 (3, 810718106009, 'surya', 'surya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '8778634567', NULL, NULL, 0, '12345678', 'CSE', '2020', 'M', 'BC', '', NULL, '', '2022-04-21 12:37:01', '2022-03-25 06:21:32'),
 (4, 810718106005, 'Nagarajan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '9876543210', NULL, NULL, 0, '1234567890', 'ECE', '2021', 'M', 'MBC', NULL, NULL, '', '2022-04-21 12:37:05', '2022-03-26 02:15:51'),
 (5, 810718106003, 'jeya', 'divagar.a@care.ac.in', NULL, '2022-04-21', '', '', '', '', '', '', '', '', '8080808080', NULL, NULL, 0, '12345678', 'ECE', '2023', 'M', 'MBC', 'urali gounder', '', '', '2022-04-21 12:37:10', '2022-03-28 08:04:32');
@@ -284,6 +284,8 @@ INSERT INTO `subjects` (`id`, `department`, `subject_name`, `subject_code`, `sem
 CREATE TABLE `timetables` (
   `id` int(11) NOT NULL,
   `name` text DEFAULT NULL,
+  `department` text DEFAULT NULL,
+  `batch` text DEFAULT NULL,
   `file` text DEFAULT NULL,
   `status` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -292,8 +294,9 @@ CREATE TABLE `timetables` (
 -- Dumping data for table `timetables`
 --
 
-INSERT INTO `timetables` (`id`, `name`, `file`, `status`) VALUES
-(2, 'JCNDCD J', 'upload/timetables/1854-2022-04-22.pdf', 1);
+INSERT INTO `timetables` (`id`, `name`, `department`, `batch`, `file`, `status`) VALUES
+(2, 'JCNDCD J', '0', NULL, 'upload/timetables/1854-2022-04-22.pdf', 1),
+(11, 'hello', 'ECE', '2018', 'upload/timetables/3410-2022-05-07.pdf', 1);
 
 -- --------------------------------------------------------
 
@@ -460,7 +463,7 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `timetables`
 --
 ALTER TABLE `timetables`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `universityresults`

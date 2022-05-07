@@ -16,6 +16,9 @@ $db->sql($sql_query);
 $res_cur = $db->getResult();
 if (isset($_POST['btnAdd'])) {
     $tt_name = $db->escapeString($_POST['tt_name']);
+    $department = $db->escapeString($_POST['department']);
+    $batch = $db->escapeString($_POST['batch']);
+   
    
 
     // get image info
@@ -46,7 +49,7 @@ if (isset($_POST['btnAdd'])) {
 
         // insert new data to menu table
         $upload_image = 'upload/timetables/' . $menu_image;
-        $sql_query = "INSERT INTO timetables (name,file,status)VALUES('$tt_name', '$upload_image',1)";
+        $sql_query = "INSERT INTO timetables (name,department,batch,file,status)VALUES('$tt_name','$department','$batch', '$upload_image',1)";
         $db->sql($sql_query);
         $result = $db->getResult();
         if (!empty($result)) {
@@ -102,6 +105,44 @@ if (isset($_POST['btnAdd'])) {
                             </div>
                         </div>
                         <hr>
+                        <div class="row">
+                          <div class="form-group col-md-3">
+                            <h4 class="box-title">Choose Department</h4>
+                            <select name='department' id='department' class='form-control'  >
+                                <option value="">ALL</option>
+                                        <?php
+                                        $department = $_SESSION['department'];
+                                        $sql = "SELECT department FROM `department` WHERE department IN ('$department') ";
+                                        $db->sql($sql);
+                                        $result = $db->getResult();
+                                        foreach ($result as $value) {
+                                        ?>
+                                            <option value='<?= $value['department'] ?>'><?= $value['department'] ?></option>
+                                        <?php } ?>
+
+                            </select>
+                          </div>
+                        </div>
+                        <div class="row">
+                           <div class="form-group col-md-3">
+                            <h4 class="box-title">Choose Batch</h4>
+                            <select name='batch' id='batch' class='form-control' >
+                                <option value="">ALL</option>
+                                        <?php
+                                        $batch = $_SESSION['batch'];
+                                        $sql = "SELECT year FROM `batch` WHERE  year IN ($batch) ";
+                                        $db->sql($sql);
+                                        $result = $db->getResult();
+                                        foreach ($result as $value) {
+                                        ?>
+                                            <option value='<?= $value['year'] ?>'><?= $value['year'] ?></option>
+                                        <?php } ?>
+
+                                    </select>
+                            </select>
+                           </div>
+                        </div>
+
                         <div class="row">
                             <div class="form-group">
                                 <div class='col-md-4'>
