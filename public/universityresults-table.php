@@ -17,8 +17,16 @@
                             <h4 class="box-title">Filter by Department</h4>
                             <select name='department[]' id='department' class='form-control' placeholder='Enter the department you want to assign Seller' >
                                         <?php
-                                        $department = $_SESSION['department'];
-                                        $sql = "SELECT department FROM `department` WHERE department IN ('$department') ";
+                                        $role = $_SESSION['role'];
+                                        if($role == 'Exam Cell'){
+                                            
+                                            $sql = "SELECT department FROM `department`";
+                                            
+                                        }
+                                        else{
+                                            $department = $_SESSION['department'];
+                                            $sql = "SELECT department FROM `department` WHERE department IN ('$department') ";
+                                        }
                                         $db->sql($sql);
 
                                         $result = $db->getResult();
@@ -33,9 +41,15 @@
                             <h4 class="box-title">Filter by Roll.No</h4>
                             <select id='roll_no' name="roll_no[]" class='form-control'>
                                         <?php
-                                        $department = $_SESSION['department'];
-                                        $batch = $_SESSION['batch'];
-                                        $sql = "SELECT roll_no FROM `students` WHERE department IN ('$department') AND batch IN ('$batch') ";
+                                        $role = $_SESSION['role'];
+                                        if($role == 'Exam Cell'){
+                                            $sql = "SELECT roll_no FROM `students` GROUP BY roll_no";
+                                        }
+                                        else{
+                                            $department = $_SESSION['department'];
+                                            $batch = $_SESSION['batch'];
+                                            $sql = "SELECT roll_no FROM `students` WHERE department IN ('$department') AND batch IN ('$batch') GROUP BY roll_no";
+                                        }
                                         $db->sql($sql);
 
                                         $result = $db->getResult();

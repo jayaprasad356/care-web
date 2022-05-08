@@ -253,7 +253,7 @@ $ID = $_SESSION['id'];
                     </ul>
                 </li>
                 <?php }?>
-                <?php if($_SESSION['role'] == 'HOD' || $_SESSION['role'] == 'CC') { ?>
+                <?php if($_SESSION['role'] == 'HOD' || $_SESSION['role'] == 'CC' || $_SESSION['role'] == 'Exam Cell') { ?>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-bullseye"></i>

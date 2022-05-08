@@ -20,10 +20,11 @@ if (isset($_POST['btnAdd'])) {
         $email = $db->escapeString($fn->xss_clean($_POST['email']));
         $mobile = $db->escapeString($fn->xss_clean($_POST['mobile']));
         $password = $db->escapeString($fn->xss_clean($_POST['password']));
-        $department = $db->escapeString($fn->xss_clean($_POST['department']));
+        $department = $fn->xss_clean_array($_POST['department']);
         $role = $db->escapeString($fn->xss_clean($_POST['role']));
         $batch = $fn->xss_clean_array($_POST['batch']);
         $batchs = implode(",", $batch);
+        $departments = implode(",", $department);
         
         if (empty($name)) {
             $error['name'] = " <span class='label label-danger'>Required!</span>";
@@ -38,14 +39,11 @@ if (isset($_POST['btnAdd'])) {
         if (empty($password)) {
             $error['password'] = " <span class='label label-danger'>Required!</span>";
         }
-        if (empty($department)) {
-            $error['department'] = " <span class='label label-danger'>Required!</span>";
-        }
         if (empty($role)) {
             $error['role'] = " <span class='label label-danger'>Required!</span>";
         }
 
-        if ( !empty($name) && !empty($email)&& !empty($mobile) && !empty($password) && !empty($department) && !empty($role))
+        if ( !empty($name) && !empty($email)&& !empty($mobile) && !empty($password) && !empty($role))
         {
             $password = md5($password);
             $sql = "SELECT * FROM staffs WHERE email = '" . $email . "'";
@@ -53,7 +51,7 @@ if (isset($_POST['btnAdd'])) {
             $res = $db->getResult();
             $num = $db->numRows($res);
             if($num < 1){
-                $sql = "INSERT INTO staffs (name,email,mobile,password,department,role,batch) VALUES('$name','$email','$mobile','$password','$department','$role','$batchs')";
+                $sql = "INSERT INTO staffs (name,email,mobile,password,department,role,batch) VALUES('$name','$email','$mobile','$password','$departments','$role','$batchs')";
                 $db->sql($sql);
                 $staffs_result = $db->getResult();
                 if (!empty($staffs_result)) {
