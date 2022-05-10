@@ -48,7 +48,7 @@
                                         else{
                                             $department = $_SESSION['department'];
                                             $batch = $_SESSION['batch'];
-                                            $sql = "SELECT roll_no FROM `students` WHERE department IN ('$department') AND batch IN ('$batch') GROUP BY roll_no";
+                                            $sql = "SELECT roll_no FROM `students` WHERE department IN ('$department') AND batch IN ($batch) GROUP BY roll_no";
                                         }
                                         $db->sql($sql);
 

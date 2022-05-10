@@ -27,7 +27,7 @@
 <html>
 <head>
     
-<title>Bulk Product Upload | <?=$settings['app_name']?> - Dashboard</title>
+<title>Bulk Student Upload | <?=$settings['app_name']?> - Dashboard</title>
 </head>
 </body>
       <!-- Content Wrapper. Contains page content -->

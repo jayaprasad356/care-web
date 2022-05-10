@@ -27,6 +27,7 @@
                                     <th data-field="title" data-sortable="true">Title</th>
                                     <th data-field="description" data-sortable="true">Description</th>
                                     <th data-field="department" data-sortable="true">Department</th>
+                                    <th data-field="batch" data-sortable="true">Batch</th>
                 
                                 </tr>
                             </thead>

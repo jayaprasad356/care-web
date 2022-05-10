@@ -44,6 +44,7 @@ if ($num >= 1){
 else{
     $response['success'] = false;
     $response['message'] = "Result Not Found";
+    $response['data'] = $res;
     print_r(json_encode($response));
 
 }

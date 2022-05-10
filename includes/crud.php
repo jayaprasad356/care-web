@@ -5,7 +5,7 @@
  * @Package Database
  */
 
-define('DOMAIN_URL', 'http://localhost/care/'); /* chnage to your domain here - don't forget to add forward slash at the end of the URL like this "/" */
+define('DOMAIN_URL', 'http://192.168.43.38/care_web/'); /* chnage to your domain here - don't forget to add forward slash at the end of the URL like this "/" */
 define('ALLOW_MODIFICATION', 1);
 define('JWT_SECRET_KEY', 'care@123'); /* chnage to your secret key here set it to anything you like*/
 

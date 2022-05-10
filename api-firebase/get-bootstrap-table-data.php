@@ -240,6 +240,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'notifications') {
         $tempRow['title'] = $row['title'];
         $tempRow['description'] = $row['description'];
         $tempRow['department'] = $row['department'];
+        $tempRow['batch'] = $row['batch'];
         $tempRow['operate'] = $operate;
         $rows[] = $tempRow;
     }

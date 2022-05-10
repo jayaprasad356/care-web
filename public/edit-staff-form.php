@@ -115,7 +115,7 @@ if (isset($_POST['btnUpdate'])) {
                                     <label for="exampleInputEmail1">Email</label> <i class="text-danger asterik">*</i><?php echo isset($error['email']) ? $error['email'] : ''; ?>
                                     <input type="email" class="form-control" name="email" value="<?php echo $data['email']?>" required>
                                 </div>
-                                <div class='col-md-4'>
+                                <div class='col-md-4 hide'>
                                     <label for="exampleInputEmail1">Password</label> <i class="text-danger asterik">*</i><?php echo isset($error['password']) ? $error['password'] : ''; ?>
                                     <input type="text" class="form-control" name="password" value="<?php echo $data['password']?>" required>
                                 </div>
@@ -125,11 +125,18 @@ if (isset($_POST['btnUpdate'])) {
                         <hr>
                         <div class="row">
                             <div class="form-group">
-                                <div class='col-md-4'>
+                                <div class='form-group col-md-4'>
                                     <label for="">Select Department</label> <i class="text-danger asterik">*</i> <?php echo isset($error['department']) ? $error['department'] : ''; ?><br>
-                                    <select id="department" name="department" class="form-control">
-                                        <option value="">Select</option>
-                                        <option value="ECE" <?=$data['department'] == 'ECE' ? ' selected="selected"' : '';?>>ECE</option>
+                                    <select name='department[]' id='department' class='form-control' placeholder='Enter the Department you want to assign Seller' required multiple="multiple">
+                                        <?php $sql = 'select department from `department`  order by department';
+                                        $db->sql($sql);
+
+                                        $result = $db->getResult();
+                                        foreach ($result as $value) {
+                                        ?>
+                                            <option value='<?= $value['department'] ?>' <?=$data['department'] == $value['department'] ? ' selected="selected"' : '';?>><?= $value['department'] ?></option>
+                                        <?php } ?>
+
                                     </select>
                                 </div>
                                 <div class='col-md-4'>
@@ -139,6 +146,8 @@ if (isset($_POST['btnUpdate'])) {
                                         <option value="Faculty"<?=$data['role'] == 'Faculty' ? ' selected="selected"' : '';?>>Faculty</option>
                                         <option value="CC"<?=$data['role'] == 'CC' ? ' selected="selected"' : '';?> >CC</option>
                                         <option value="HOD" <?=$data['role'] == 'HOD' ? ' selected="selected"' : '';?>>HOD</option>
+                                        <option value="Placement Officer" <?=$data['role'] == 'Placement Officer' ? ' selected="selected"' : '';?>>Placement Officer</option>
+                                        <option value="Exam Cell" <?=$data['role'] == 'Placement Officer' ? ' selected="selected"' : '';?>>Exam Cell</option>
                                     </select>
                                 </div>
                             </div>
@@ -154,10 +163,10 @@ if (isset($_POST['btnUpdate'])) {
 
                                             $result = $db->getResult();
                                             foreach ($result as $value) {
-                                                $batch = explode(',', $res[0]['batch']);
-                                                $selected = in_array($value['id'], $categories) ? 'selected' : '';
+                                                $batch = explode(',', $data['batch']);
+                                                $selected = in_array($value['year'], $batch) ? 'selected' : '';
                                             ?>
-                                                <option value='<?= $value['year'] ?>'><?= $value['year'] ?></option>
+                                                <option value='<?= $value['year'] . $selected ?>'><?= $value['year'] ?></option>
                                             <?php } ?>
 
                                         </select>
@@ -203,6 +212,11 @@ if (isset($_POST['btnUpdate'])) {
     $('#batch').select2({
         width: 'element',
         placeholder: 'type in batch to search',
+
+    });
+    $('#department').select2({
+        width: 'element',
+        placeholder: 'type in department to search',
 
     });
 </script>
