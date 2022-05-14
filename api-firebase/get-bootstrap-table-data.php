@@ -277,6 +277,37 @@ if (isset($_GET['table']) && $_GET['table'] == 'universityresults') {
     $bulkData['rows'] = $rows;
     print_r(json_encode($bulkData));
 }
+if (isset($_GET['table']) && $_GET['table'] == 'internalmarks') {
+    $where = '';
+    if ((isset($_GET['roll_no']) && $_GET['roll_no'] != '') && (isset($_GET['department']) && $_GET['department'] != '')&& (isset($_GET['number']) && $_GET['number'] != '')) {
+        $roll_no = $db->escapeString($fn->xss_clean($_GET['roll_no']));
+        $department = $db->escapeString($fn->xss_clean($_GET['department']));
+        $number = $db->escapeString($fn->xss_clean($_GET['number']));
+        $where .= " WHERE roll_no = '$roll_no' AND department='$department' AND number='$number' " ;
+    }
+    $sql = "SELECT * FROM internalmarks ".$where;
+    $db->sql($sql);
+    $res = $db->getResult();
+    $rows = array();
+    $tempRow = array();
+    foreach ($res as $row) {
+
+        $operate = ' <a href="edit-internalmark.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
+        $tempRow['id'] = $row['id'];
+        $tempRow['roll_no'] = $row['roll_no'];
+        $tempRow['test_type'] = $row['test_type'];
+        $tempRow['number'] = $row['number'];
+        $tempRow['semester'] = $row['semester'];
+        $tempRow['department'] = $row['department'];
+        $tempRow['subject_code'] = $row['subject_code'];
+        $tempRow['regulation'] = $row['regulation'];
+        $tempRow['marks'] = $row['marks'];
+        $tempRow['operate'] = $operate;
+        $rows[] = $tempRow;
+    }
+    $bulkData['rows'] = $rows;
+    print_r(json_encode($bulkData));
+}
 
 if (isset($_GET['table']) && $_GET['table'] == 'timetable') {
     $where = '';

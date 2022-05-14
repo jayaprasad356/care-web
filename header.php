@@ -260,12 +260,25 @@ $ID = $_SESSION['id'];
                         <span>University Results</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
+                    
                     <ul class="treeview-menu">
                         <?php if($_SESSION['role'] == 'Exam Cell'){?>
                         <li><a href="upload-univresult.php"><i class="fa fa-sliders"></i> Upload University Result</a></li>
                         <!-- <li><a href="add-universityresult.php"><i class="fa fa-sliders"></i> Add University Result</a></li> -->
                         <?php }?>
                         <li><a href="universityresults.php"><i class="fa fa-sliders"></i>View University Results</a></li>
+                    </ul>
+                    <a href="#">
+                        <i class="fa fa-bullseye"></i>
+                        <span>Internals</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <?php if($_SESSION['role'] == 'Exam Cell'){?>
+                        <li><a href="upload-internalmark.php"><i class="fa fa-sliders"></i> Upload Internal Marks</a></li>
+                        <!-- <li><a href="add-universityresult.php"><i class="fa fa-sliders"></i> Add University Result</a></li> -->
+                        <?php }?>
+                        <li><a href="internals.php"><i class="fa fa-sliders"></i>View Internal Marks</a></li>
                     </ul>
                 </li>
                 <?php }?>

@@ -131,5 +131,50 @@ if (isset($_POST['upload_univexam']) && $_POST['upload_univexam'] == 1) {
         echo "<p class='alert alert-danger'>Invalid file format! Please upload data in CSV file!</p><br>";
     }
 }
+if (isset($_POST['upload_internalform']) && $_POST['upload_internalform'] == 1) {
+    $count = 0;
+    $count1 = 0;
+    $error = false;
+    $filename = $_FILES["upload_file"]["tmp_name"];
+    $result = $fn->validate_image($_FILES["upload_file"], false);
+    if (!$result) {
+        $error = true;
+    }
+    if ($_FILES["upload_file"]["size"] > 0  && $error == false) {
+        $file = fopen($filename, "r");
+        while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE) {
+            // print_r($emapData);
+            if ($count1 != 0) {
+                $emapData[0] = trim($db->escapeString($emapData[0]));
+                $emapData[1] = trim($db->escapeString($emapData[1]));          
+                $emapData[2] = trim($db->escapeString($emapData[2]));
+                $emapData[3] = trim($db->escapeString($emapData[3]));
+                $emapData[4] = trim($db->escapeString($emapData[4]));
+                $emapData[5] = trim($db->escapeString($emapData[5]));
+                $emapData[6] = trim($db->escapeString($emapData[6]));
+                $emapData[7] = trim($db->escapeString($emapData[7]));
+                
+                $data = array(
+                    'roll_no' => $emapData[0],
+                    'department' => $emapData[1],
+                    'test_type' => $emapData[2],
+                    'number' => $emapData[3],
+                    'semester' => $emapData[4],
+                    'subject_code' => $emapData[5],
+                    'regulation' => $emapData[6],
+                    'marks' => $emapData[7],
+                );
+                $db->insert('internalmarks', $data);
+
+            }
+
+            $count1++;
+        }
+        fclose($file);
+        echo "<p class='alert alert-success'>CSV file is successfully imported!</p><br>";
+    } else {
+        echo "<p class='alert alert-danger'>Invalid file format! Please upload data in CSV file!</p><br>";
+    }
+}
 ?>
 
