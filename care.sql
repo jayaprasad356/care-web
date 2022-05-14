@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2022 at 09:24 AM
+-- Generation Time: May 15, 2022 at 01:35 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -91,6 +91,34 @@ INSERT INTO `department` (`id`, `department`) VALUES
 (2, 'ECE'),
 (3, 'MECH'),
 (4, 'CIVIL');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `internalmarks`
+--
+
+CREATE TABLE `internalmarks` (
+  `id` int(11) NOT NULL,
+  `roll_no` text DEFAULT NULL,
+  `department` text DEFAULT NULL,
+  `test_type` text DEFAULT NULL,
+  `number` text DEFAULT NULL,
+  `semester` text DEFAULT NULL,
+  `subject_code` text DEFAULT NULL,
+  `regulation` text DEFAULT NULL,
+  `marks` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `internalmarks`
+--
+
+INSERT INTO `internalmarks` (`id`, `roll_no`, `department`, `test_type`, `number`, `semester`, `subject_code`, `regulation`, `marks`) VALUES
+(1, '810718106003', 'ECE', 'CYCLE TEST', '1', '1', 'EC8056', '2017', '90'),
+(3, '810718106004', 'CSE', 'Unit test', '1', '1', 'CS8909', '2017', '85'),
+(6, '810718106003', 'ECE', 'CYCLE TEST', '1', '1', 'EC8056', '2017', '70'),
+(7, '810718106004', 'CSE', 'Unit test', '2', '1', 'CS8909', '2017', '50');
 
 -- --------------------------------------------------------
 
@@ -354,6 +382,12 @@ ALTER TABLE `department`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `internalmarks`
+--
+ALTER TABLE `internalmarks`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
@@ -422,6 +456,12 @@ ALTER TABLE `companies`
 --
 ALTER TABLE `department`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `internalmarks`
+--
+ALTER TABLE `internalmarks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `notifications`
