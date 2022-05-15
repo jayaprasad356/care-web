@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2022 at 01:35 AM
+-- Generation Time: May 15, 2022 at 07:24 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -115,9 +115,9 @@ CREATE TABLE `internalmarks` (
 --
 
 INSERT INTO `internalmarks` (`id`, `roll_no`, `department`, `test_type`, `number`, `semester`, `subject_code`, `regulation`, `marks`) VALUES
-(1, '810718106003', 'ECE', 'CYCLE TEST', '1', '1', 'EC8056', '2017', '90'),
+(1, '810718106003', 'ECE', 'Cycle test', '1', '3', 'EC8756', 'R2017', '100'),
 (3, '810718106004', 'CSE', 'Unit test', '1', '1', 'CS8909', '2017', '85'),
-(6, '810718106003', 'ECE', 'CYCLE TEST', '1', '1', 'EC8056', '2017', '70'),
+(6, '810718106003', 'ECE', 'Cycle test', '1', '1', 'EC8056', 'R2017', '70'),
 (7, '810718106004', 'CSE', 'Unit test', '2', '1', 'CS8909', '2017', '50');
 
 -- --------------------------------------------------------
@@ -349,7 +349,7 @@ CREATE TABLE `universityresults` (
 INSERT INTO `universityresults` (`id`, `roll_no`, `department`, `semester`, `subject_code`, `regulation`, `grade`) VALUES
 (1, '810718106003', 'CSE', '2', 'CS8067', '2013', 'O'),
 (2, '810718106002', 'CSE', '2', 'ME7654', '2013', 'O'),
-(3, '810718106005', 'ECE', '1', 'CS8067', '2013', 'B+'),
+(3, '810718106001', 'ECE', '1', 'CS8067', 'R2013', 'B+'),
 (4, '810718106005', 'ECE', '2', 'CS8067', '2018', 'O'),
 (5, '810718106003', 'ECE', '2', 'CS8067', '2018', 'O'),
 (6, '810718106003', 'ECE', '2', 'CS8067', '2018', 'O'),
