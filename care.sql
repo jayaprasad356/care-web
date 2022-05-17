@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2022 at 07:24 PM
+-- Generation Time: May 17, 2022 at 07:44 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -116,9 +116,9 @@ CREATE TABLE `internalmarks` (
 
 INSERT INTO `internalmarks` (`id`, `roll_no`, `department`, `test_type`, `number`, `semester`, `subject_code`, `regulation`, `marks`) VALUES
 (1, '810718106003', 'ECE', 'Cycle test', '1', '3', 'EC8756', 'R2017', '100'),
-(3, '810718106004', 'CSE', 'Unit test', '1', '1', 'CS8909', '2017', '85'),
+(3, '810718106004', 'CSE', 'Unit test', '1', '1', 'CS8909', 'R2017', '85'),
 (6, '810718106003', 'ECE', 'Cycle test', '1', '1', 'EC8056', 'R2017', '70'),
-(7, '810718106004', 'CSE', 'Unit test', '2', '1', 'CS8909', '2017', '50');
+(7, '810718106004', 'CSE', 'Unit test', '2', '1', 'CS8909', 'R2017', '50');
 
 -- --------------------------------------------------------
 
