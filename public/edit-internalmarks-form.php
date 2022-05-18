@@ -127,7 +127,7 @@ foreach ($res as $row)
                             <div class="col-md-4">
                                   <label for="exampleInputEmail1">Test Type</label> <i class="text-danger asterik">*</i> <?php echo isset($error['test_type']) ? $error['test_type'] : ''; ?><br>
                                     <select id="test_type" name="test_type" class="form-control">
-                                        <option value="Unit test"<?=$data['test_type'] == 'Unit test' ? ' selected="selected"' : '';?> >Unit test</option>
+                                        <!-- <option value="Unit test"<?=$data['test_type'] == 'Unit test' ? ' selected="selected"' : '';?> >Unit test</option> -->
                                         <option value="Cycle test"<?=$data['test_type'] == 'Cycle test' ? ' selected="selected"' : '';?> >Cycle test</option>
                                     </select>
                                 </div>
@@ -182,7 +182,7 @@ foreach ($res as $row)
                     <!-- /.box-body -->
                     <div class="box-footer">
                         <input type="submit" class="btn-primary btn" value="Update" name="btnUpdate"/>&nbsp;
-                        <input type="reset" class="btn-danger btn" value="Clear" id="btnClear" />
+                        <!-- <input type="reset" class="btn-danger btn" value="Clear" id="btnClear" /> -->
                         <!--<div  id="res"></div>-->
                     </div>
                 </form>

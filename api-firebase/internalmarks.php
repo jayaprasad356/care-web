@@ -11,16 +11,9 @@ header("Pragma: no-cache");
 include_once('../includes/crud.php');
 $db = new Database();
 $db->connect();
-
-if (empty($_POST['roll_no'])) {
+if (empty($_POST['student_id'])) {
     $response['success'] = false;
-    $response['message'] = "Roll Number is Empty";
-    print_r(json_encode($response));
-    return false;
-}
-if (empty($_POST['department'])) {
-    $response['success'] = false;
-    $response['message'] = "Department is Empty";
+    $response['message'] = "Student ID is Empty";
     print_r(json_encode($response));
     return false;
 }
@@ -42,19 +35,17 @@ if (empty($_POST['semester'])) {
     print_r(json_encode($response));
     return false;
 }
-if (empty($_POST['regulation'])) {
-    $response['success'] = false;
-    $response['message'] = "Regulation is Empty";
-    print_r(json_encode($response));
-    return false;
-}
-$roll_no = $db->escapeString($_POST['roll_no']);
-$department = $db->escapeString($_POST['department']);
+$student_id = $db->escapeString($_POST['student_id']);
 $test_type = $db->escapeString($_POST['test_type']);
 $number = $db->escapeString($_POST['number']);
 $semester = $db->escapeString($_POST['semester']);
-$regulation = $db->escapeString($_POST['regulation']);
-$sql = "SELECT * FROM internalmarks WHERE roll_no ='$roll_no'AND department='$department'AND test_type='$test_type'AND number='$number'AND semester='$semester'AND regulation='$regulation'";
+$sql = "SELECT * FROM students WHERE id ='$student_id'";
+$db->sql($sql);
+$res = $db->getResult();
+$roll_no = $res[0]['roll_no'];
+$department = $res[0]['department'];
+
+$sql = "SELECT * FROM internalmarks WHERE roll_no ='$roll_no'AND department='$department'AND test_type='$test_type' AND number='$number' AND semester='$semester'";
 $db->sql($sql);
 $res = $db->getResult();
 $num = $db->numRows($res);
@@ -66,7 +57,8 @@ if ($num >= 1){
 }
 else{
     $response['success'] = false;
-    $response['message'] = "Student Not Found";
+    $response['message'] = "Marks Not Found";
+    $response['data'] = $res;
     print_r(json_encode($response));
 
 }

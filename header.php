@@ -264,17 +264,21 @@ $ID = $_SESSION['id'];
                     <ul class="treeview-menu">
                         <?php if($_SESSION['role'] == 'Exam Cell'){?>
                         <li><a href="upload-univresult.php"><i class="fa fa-sliders"></i> Upload University Result</a></li>
-                        <!-- <li><a href="add-universityresult.php"><i class="fa fa-sliders"></i> Add University Result</a></li> -->
                         <?php }?>
                         <li><a href="universityresults.php"><i class="fa fa-sliders"></i>View University Results</a></li>
                     </ul>
+
+                </li>
+                <?php }?>
+                <?php if($_SESSION['role'] == 'HOD' || $_SESSION['role'] == 'CC'){?>
+                <li class="treeview">
                     <a href="#">
                         <i class="fa fa-bullseye"></i>
                         <span>Internals</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <?php if($_SESSION['role'] == 'Exam Cell'){?>
+                        <?php if($_SESSION['role'] == 'CC'){?>
                         <li><a href="upload-internalmark.php"><i class="fa fa-sliders"></i> Upload Internal Marks</a></li>
                         <!-- <li><a href="add-universityresult.php"><i class="fa fa-sliders"></i> Add University Result</a></li> -->
                         <?php }?>

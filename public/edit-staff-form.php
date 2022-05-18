@@ -20,8 +20,11 @@ if (isset($_POST['btnUpdate'])) {
         $email = $db->escapeString($fn->xss_clean($_POST['email']));
         $mobile = $db->escapeString($fn->xss_clean($_POST['mobile']));
         $password = $db->escapeString($fn->xss_clean($_POST['password']));
-        $department = $db->escapeString($fn->xss_clean($_POST['department']));
+        $department = $fn->xss_clean_array($_POST['department']);
         $role = $db->escapeString($fn->xss_clean($_POST['role']));
+        $batch = $fn->xss_clean_array($_POST['batch']);
+        $batchs = implode(",", $batch);
+        $departments = implode(",", $department);
         
         if (empty($name)) {
             $error['name'] = " <span class='label label-danger'>Required!</span>";
@@ -45,7 +48,7 @@ if (isset($_POST['btnUpdate'])) {
 
         if ( !empty($name) && !empty($email)&& !empty($mobile) && !empty($password) && !empty($department) && !empty($role))
         {
-            $sql = "UPDATE staffs SET name='$name',email='$email',mobile='$mobile',password='$password',department='$department',role='$role' WHERE id=$ID";
+            $sql = "UPDATE staffs SET name='$name',email='$email',mobile='$mobile',password='$password',department='$departments',batch='$batchs',role='$role' WHERE id=$ID";
             $db->sql($sql);
             $staffs_result = $db->getResult();
             if (!empty($staffs_result)) {
@@ -166,7 +169,8 @@ if (isset($_POST['btnUpdate'])) {
                                                 $batch = explode(',', $data['batch']);
                                                 $selected = in_array($value['year'], $batch) ? 'selected' : '';
                                             ?>
-                                                <option value='<?= $value['year'] . $selected ?>'><?= $value['year'] ?></option>
+                                                <option value='<?= $value['year'] ?>' <?= $selected ?>><?= $value['year'] ?></option>
+                                                
                                             <?php } ?>
 
                                         </select>

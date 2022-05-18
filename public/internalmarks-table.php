@@ -14,7 +14,7 @@
                     <!-- <div class="col-xs-6"> -->
                     <div class="box-header">
                     <div class="form-group col-md-3">
-                            <h4 class="box-title">Filter by Department</h4>
+                            <h4 class="box-title">Choose Department</h4>
                             <select name='department[]' id='department' class='form-control' placeholder='Enter the department you want to assign Seller' >
                                         <?php
                                         $role = $_SESSION['role'];
@@ -39,7 +39,7 @@
                         </div>
                         
                         <div class="form-group col-md-3">
-                            <h4 class="box-title">Filter by Roll.No</h4>
+                            <h4 class="box-title">Choose Roll.No</h4>
                             <select id='roll_no' name="roll_no[]" class='form-control'>
                                         <?php
                                         $role = $_SESSION['role'];
@@ -61,11 +61,11 @@
                             </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <h4 class="box-title">Filter by Number</h4>
+                            <h4 class="box-title">Choose Cycle Test</h4>
                             <select id='number' name="number" class='form-control'>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
+                                <option value="1">Cycle Test 1</option>
+                                <option value="2">Cycle Test 2</option>
+                                <option value="3">Cycle Test 3</option>
                                 
                             </select>
                         </div>
@@ -88,7 +88,7 @@
                                     <th data-field="subject_code" data-sortable="true">Subject code</th>
                                     <th data-field="regulation" data-sortable="true">Regulation</th>
                                     <th data-field="marks" data-sortable="true">Marks</th>
-                                    <?php if($_SESSION['role'] == 'Exam Cell'){?>
+                                    <?php if($_SESSION['role'] == 'CC'){?>
                                     <th data-field="operate" data-events="actionEvents">Action</th>
                                     <?php }?>
                                 </tr>
