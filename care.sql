@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2022 at 06:09 AM
+-- Generation Time: May 28, 2022 at 11:47 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -241,10 +241,12 @@ INSERT INTO `staffs` (`id`, `name`, `email`, `mobile`, `password`, `department`,
 
 CREATE TABLE `students` (
   `id` int(11) NOT NULL,
-  `roll_no` bigint(25) DEFAULT NULL,
+  `department` text DEFAULT NULL,
   `name` text DEFAULT NULL,
+  `roll_no` bigint(25) DEFAULT NULL,
   `register_number` text DEFAULT NULL,
   `quota` text DEFAULT NULL,
+  `regular` text DEFAULT NULL,
   `fg` text DEFAULT NULL,
   `sc_sch` text DEFAULT NULL,
   `nsp` text DEFAULT NULL,
@@ -252,43 +254,66 @@ CREATE TABLE `students` (
   `tnea_no` text DEFAULT NULL,
   `consortium_no` text DEFAULT NULL,
   `consortium_marks` int(11) DEFAULT NULL,
-  `email` text DEFAULT NULL,
-  `course` text DEFAULT NULL,
-  `dob` text DEFAULT NULL,
-  `father_name` text DEFAULT NULL,
-  `mother_name` text DEFAULT NULL,
-  `doorno` text DEFAULT NULL,
-  `street_name` text DEFAULT NULL,
-  `city_name` text DEFAULT NULL,
-  `district` text DEFAULT NULL,
-  `pin_code` text DEFAULT NULL,
-  `aadhaar_number` text DEFAULT NULL,
-  `mobile` text DEFAULT NULL,
-  `sslc_percentage` int(11) DEFAULT NULL,
-  `hsc_percentage` int(11) DEFAULT NULL,
-  `ug_percentage` int(11) NOT NULL,
-  `password` text DEFAULT NULL,
-  `department` text DEFAULT NULL,
-  `batch` text DEFAULT NULL,
   `gender` text DEFAULT NULL,
+  `dob` text DEFAULT NULL,
+  `age` text DEFAULT NULL,
+  `nationality` text DEFAULT NULL,
+  `religion` text DEFAULT NULL,
   `community` text DEFAULT NULL,
-  `caste` text DEFAULT NULL,
-  `internship` text DEFAULT NULL,
-  `activities` text DEFAULT NULL,
-  `last_updated` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+  `sub_caste` text DEFAULT NULL,
+  `blood_group` text DEFAULT NULL,
+  `father_name` text DEFAULT NULL,
+  `occupation` text DEFAULT NULL,
+  `income` text DEFAULT NULL,
+  `mother_name` text DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `district` text DEFAULT NULL,
+  `mobile` text DEFAULT NULL,
+  `alternate_student_mobile` text DEFAULT NULL,
+  `email` text DEFAULT NULL,
+  `sslc_school` text DEFAULT NULL,
+  `sslc_percentage` int(11) DEFAULT NULL,
+  `sslc_medium` text DEFAULT NULL,
+  `sslc_board` text DEFAULT NULL,
+  `sslc_year` text DEFAULT NULL,
+  `hsc_school` text DEFAULT NULL,
+  `hsc_percentage` int(11) DEFAULT NULL,
+  `hsc_medium` text DEFAULT NULL,
+  `hsc_board` text DEFAULT NULL,
+  `hsc_year` text DEFAULT NULL,
+  `year_of_passing` text DEFAULT NULL,
+  `maths` text DEFAULT NULL,
+  `physics` text DEFAULT NULL,
+  `chemistry` text DEFAULT NULL,
+  `average` text DEFAULT NULL,
+  `cut_off` text DEFAULT NULL,
+  `total` text DEFAULT NULL,
+  `type` text DEFAULT NULL,
+  `bus_route_no` text DEFAULT NULL,
+  `boarding_point` text DEFAULT NULL,
+  `date_of_admission` text DEFAULT NULL,
+  `aadhaar_number` text DEFAULT NULL,
+  `section` text DEFAULT NULL,
+  `mother_tongue` text DEFAULT NULL,
+  `reference` text DEFAULT NULL,
+  `type_of_stay` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `roll_no`, `name`, `register_number`, `quota`, `fg`, `sc_sch`, `nsp`, `bc_mbc_sch`, `tnea_no`, `consortium_no`, `consortium_marks`, `email`, `course`, `dob`, `father_name`, `mother_name`, `doorno`, `street_name`, `city_name`, `district`, `pin_code`, `aadhaar_number`, `mobile`, `sslc_percentage`, `hsc_percentage`, `ug_percentage`, `password`, `department`, `batch`, `gender`, `community`, `caste`, `internship`, `activities`, `last_updated`, `date_created`) VALUES
-(1, 810718106005, 'Jp', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'prasad@gmail.com', NULL, '2022-04-21', 'selvam', '', '', '', '', '', '', '', '8778624681', 50, 60, 60, '12345678', 'ECE', '2018', 'M', 'BC', 'Kammalar', 'Google LLC 3 Months Intern Completed', '1st Price PPT Presentation', '2022-05-06 18:19:09', '2022-03-25 04:20:57'),
-(2, 810720104001, 'aanto', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'aanto@gmail.com', NULL, '', '', '', '', '', '', '', '', '', '9876543210', 80, 90, 80, 'surya@123', 'ECE', '2019', 'M', 'MBC', 'surya@gmail.com', NULL, '', '2022-05-07 05:16:19', '2022-03-25 06:19:16'),
-(3, 810718106009, 'surya', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'surya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '8778634567', NULL, NULL, 0, '12345678', 'CSE', '2020', 'M', 'BC', '', NULL, '', '2022-04-21 12:37:01', '2022-03-25 06:21:32'),
-(4, 810718106005, 'Nagarajan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '9876543210', NULL, NULL, 0, '1234567890', 'ECE', '2021', 'M', 'MBC', NULL, NULL, '', '2022-04-21 12:37:05', '2022-03-26 02:15:51'),
-(5, 810718106003, 'jeya', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'divagar.a@care.ac.in', NULL, '2022-04-21', '', '', '', '', '', '', '', '', '8080808080', NULL, NULL, 0, '12345678', 'ECE', '2023', 'M', 'MBC', 'urali gounder', '', '', '2022-04-21 12:37:10', '2022-03-28 08:04:32');
+INSERT INTO `students` (`id`, `department`, `name`, `roll_no`, `register_number`, `quota`, `regular`, `fg`, `sc_sch`, `nsp`, `bc_mbc_sch`, `tnea_no`, `consortium_no`, `consortium_marks`, `gender`, `dob`, `age`, `nationality`, `religion`, `community`, `sub_caste`, `blood_group`, `father_name`, `occupation`, `income`, `mother_name`, `address`, `district`, `mobile`, `alternate_student_mobile`, `email`, `sslc_school`, `sslc_percentage`, `sslc_medium`, `sslc_board`, `sslc_year`, `hsc_school`, `hsc_percentage`, `hsc_medium`, `hsc_board`, `hsc_year`, `year_of_passing`, `maths`, `physics`, `chemistry`, `average`, `cut_off`, `total`, `type`, `bus_route_no`, `boarding_point`, `date_of_admission`, `aadhaar_number`, `section`, `mother_tongue`, `reference`, `type_of_stay`) VALUES
+(1, 'ECE', 'Jp', 810718106005, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'M', '2022-04-21', NULL, NULL, NULL, 'BC', NULL, NULL, 'selvam', NULL, NULL, '', NULL, '', '8778624681', NULL, 'prasad@gmail.com', NULL, 50, NULL, NULL, NULL, NULL, 60, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL),
+(2, 'ECE', 'aanto', 810720104001, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'M', '', NULL, NULL, NULL, 'MBC', NULL, NULL, '', NULL, NULL, '', NULL, '', '9876543210', NULL, 'aanto@gmail.com', NULL, 80, NULL, NULL, NULL, NULL, 90, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL),
+(3, 'CSE', 'surya', 810718106009, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'M', NULL, NULL, NULL, NULL, 'BC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '8778634567', NULL, 'surya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'ECE', 'Nagarajan', 810718106005, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'M', NULL, NULL, NULL, NULL, 'MBC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '9876543210', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'ECE', 'jeya', 810718106003, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'M', '2022-04-21', NULL, NULL, NULL, 'MBC', NULL, NULL, '', NULL, NULL, '', NULL, '', '8080808080', NULL, 'divagar.a@care.ac.in', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL),
+(27, 'ECE', 'Jp', 811000000000, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 0, 'M', '4/21/2022', 'NULL', 'NULL', 'NULL', 'BC', 'NULL', 'NULL', 'selvam', 'NULL', 'NULL', '', 'NULL', '', '8778624681', 'NULL', 'prasad@gmail.com', 'NULL', 50, 'NULL', 'NULL', 'NULL', 'NULL', 60, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '', 'NULL', 'NULL', 'NULL', 'NULL'),
+(28, 'ECE', 'aanto', 811000000000, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 0, 'M', '', 'NULL', 'NULL', 'NULL', 'MBC', 'NULL', 'NULL', '', 'NULL', 'NULL', '', 'NULL', '', '9876543210', 'NULL', 'aanto@gmail.com', 'NULL', 80, 'NULL', 'NULL', 'NULL', 'NULL', 90, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '', 'NULL', 'NULL', 'NULL', 'NULL'),
+(29, 'CSE', 'surya', 811000000000, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 0, 'M', 'NULL', 'NULL', 'NULL', 'NULL', 'BC', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '8778634567', 'NULL', 'surya@gmail.com', 'NULL', 0, 'NULL', 'NULL', 'NULL', 'NULL', 0, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL'),
+(30, 'ECE', 'Nagarajan', 811000000000, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 0, 'M', 'NULL', 'NULL', 'NULL', 'NULL', 'MBC', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '9876543210', 'NULL', 'NULL', 'NULL', 0, 'NULL', 'NULL', 'NULL', 'NULL', 0, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL'),
+(31, 'ECE', 'jeya', 811000000000, '546647', 'government', '2017', 'yes', 'no', 'yes', 'no', '9500545', '78', 789, 'M', '26/08/2001', '21', 'india', 'hindu', 'MBC', 'uralicounder', 'B+', 'karan', 'doctor', '60,000', 'grdd', '2/42,azhagapuri,r,tmalai', 'karur', '8080808080', '8766676', 'divagar.a@care.ac.in', 'GHSS', 76, 'TAMIL', 'state', '2016', 'ghss', 23, 'tamil', 'state', '2018', '2022', '100', '80', '87', '78', '134', '449', 'x', '89', 'trichy', '12/10/2022', '67383782929', 'b', 'tamil', 'selvakumar', 'hostel');
 
 -- --------------------------------------------------------
 
@@ -503,7 +528,7 @@ ALTER TABLE `staffs`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `subjects`
