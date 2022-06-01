@@ -51,18 +51,112 @@ if (isset($_GET['table']) && $_GET['table'] == 'students') {
     $where = '';
     $sort = 'id';
     $order = 'DESC';
-    if (isset($_GET['community']) && $_GET['community'] != '') {
-        $community = $db->escapeString($fn->xss_clean($_GET['community']));
-        $where .= " AND community = '$community' ";
+    if (isset($_GET['batch']) && $_GET['batch'] != '') {
+        $batch = $db->escapeString($fn->xss_clean($_GET['batch']));
+        $where .= " AND batch = '$batch' ";
+    }
+    if (isset($_GET['degree']) && $_GET['degree'] != '') {
+        $degree = $db->escapeString($fn->xss_clean($_GET['degree']));
+        $where .= " AND degree = '$degree' ";
     }
     if (isset($_GET['department']) && $_GET['department'] != '') {
         $department = $db->escapeString($fn->xss_clean($_GET['department']));
         $where .= " AND department = '$department' ";
     }
-    if (isset($_GET['batch']) && $_GET['batch'] != '') {
-        $batch = $db->escapeString($fn->xss_clean($_GET['batch']));
-        $where .= " AND batch = '$batch' ";
+    if (isset($_GET['section']) && $_GET['section'] != '') {
+        $section = $db->escapeString($fn->xss_clean($_GET['section']));
+        $where .= " AND section = '$section' ";
     }
+    if (isset($_GET['quota']) && $_GET['quota'] != '') {
+        $quota = $db->escapeString($fn->xss_clean($_GET['quota']));
+        $where .= " AND quota = '$quota' ";
+    }
+    if (isset($_GET['mode']) && $_GET['mode'] != '') {
+        $mode = $db->escapeString($fn->xss_clean($_GET['mode']));
+        $where .= " AND mode = '$mode' ";
+    }
+    if (isset($_GET['gender']) && $_GET['gender'] != '') {
+        $gender = $db->escapeString($fn->xss_clean($_GET['gender']));
+        $where .= " AND gender = '$gender' ";
+    }
+   
+    if (isset($_GET['religion']) && $_GET['religion'] != '') {
+        $religion = $db->escapeString($fn->xss_clean($_GET['religion']));
+        $where .= " AND religion= '$religion' ";
+    }
+    if (isset($_GET['community']) && $_GET['community'] != '') {
+        $community = $db->escapeString($fn->xss_clean($_GET['community']));
+        $where .= " AND community = '$community' ";
+    }
+    if (isset($_GET['blood_group']) && $_GET['blood_group'] != '') {
+        $blood_group= $db->escapeString($fn->xss_clean($_GET['blood_group']));
+        $where .= " AND blood_group = '$blood_group' ";
+    }
+    if (isset($_GET['mother_tongue']) && $_GET['mother_tongue'] != '') {
+        $mother_tongue = $db->escapeString($fn->xss_clean($_GET['mother_tongue']));
+        $where .= " AND mother_tongue = '$mother_tongue' ";
+    }
+    if (isset($_GET['nationality']) && $_GET['nationality'] != '') {
+        $nationality = $db->escapeString($fn->xss_clean($_GET['nationality']));
+        $where .= " AND nationality = '$nationality' ";
+    }
+    if (isset($_GET['sslc_medium']) && $_GET['sslc_medium'] != '') {
+        $sslc_medium = $db->escapeString($fn->xss_clean($_GET['sslc_medium']));
+        $where .= " AND sslc_medium = '$sslc_medium' ";
+    }
+    if (isset($_GET['sslc_board']) && $_GET['sslc_board'] != '') {
+        $sslc_board = $db->escapeString($fn->xss_clean($_GET['sslc_board']));
+        $where .= " AND sslc_board = '$sslc_board' ";
+    }
+    if (isset($_GET['sslc_year']) && $_GET['sslc_year'] != '') {
+        $sslc_year = $db->escapeString($fn->xss_clean($_GET['sslc_year']));
+        $where .= " AND sslc_year = '$sslc_year' ";
+    }
+    if (isset($_GET['group']) && $_GET['group'] != '') {
+        $group = $db->escapeString($fn->xss_clean($_GET['group']));
+        $where .= " AND group = '$group' ";
+    }
+    if (isset($_GET['hsc_medium']) && $_GET['hsc_medium'] != '') {
+        $hsc_medium= $db->escapeString($fn->xss_clean($_GET['hsc_medium']));
+        $where .= " AND hsc_medium = '$hsc_medium' ";
+    }
+    if (isset($_GET['hsc_board']) && $_GET['hsc_board'] != '') {
+        $hsc_board = $db->escapeString($fn->xss_clean($_GET['hsc_board']));
+        $where .= " AND hsc_board = '$hsc_board' ";
+    }
+    if (isset($_GET['hsc_year']) && $_GET['hsc_year'] != '') {
+        $hsc_year = $db->escapeString($fn->xss_clean($_GET['hsc_year']));
+        $where .= " AND hsc_year = '$hsc_year' ";
+    }
+    if (isset($_GET['type_of_stay']) && $_GET['type_of_stay'] != '') {
+        $type_of_stay= $db->escapeString($fn->xss_clean($_GET['type_of_stay']));
+        $where .= " AND type_of_stay = '$type_of_stay' ";
+    }
+    if (isset($_GET['bus_route_no']) && $_GET['bus_route_no'] != '') {
+        $bus_route_no = $db->escapeString($fn->xss_clean($_GET['bus_route_no']));
+        $where .= " AND bus_route_no = '$bus_route_no' ";
+    }
+    if (isset($_GET['boarding_point']) && $_GET['boarding_point'] != '') {
+        $boarding_point = $db->escapeString($fn->xss_clean($_GET['boarding_point']));
+        $where .= " AND boarding_point = '$boarding_point' ";
+    }
+    if (isset($_GET['fg']) && $_GET['fg'] != '') {
+        $fg = $db->escapeString($fn->xss_clean($_GET['fg']));
+        $where .= " AND fg = '$fg' ";
+    }
+    if (isset($_GET['pstm_sch']) && $_GET['pstm_sch'] != '') {
+        $pstm_sch = $db->escapeString($fn->xss_clean($_GET['pstm_sch']));
+        $where .= " AND pstm_sch = '$pstm_sch' ";
+    }
+    if (isset($_GET['nsp']) && $_GET['nsp'] != '') {
+        $nsp = $db->escapeString($fn->xss_clean($_GET['nsp']));
+        $where .= " AND nsp = '$nsp' ";
+    }
+    if (isset($_GET['bc_mbc_sch']) && $_GET['bc_mbc_sch'] != '') {
+        $bc_mbc_sch = $db->escapeString($fn->xss_clean($_GET['bc_mbc_sch']));
+        $where .= " AND bc_mbc_sch = '$bc_mbc_sch' ";
+    }
+  
     if (isset($_GET['offset']))
         $offset = $db->escapeString($_GET['offset']);
     if (isset($_GET['limit']))
@@ -118,63 +212,62 @@ if (isset($_GET['table']) && $_GET['table'] == 'students') {
         $operate = '<a href="edit-student.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
         
         $tempRow['id'] = $row['id'];
+        $tempRow['batch'] = $row['batch'];
+        $tempRow['degree'] = $row['degree'];
         $tempRow['department'] = $row['department'];
-        $tempRow['name'] = $row['name'];
+        $tempRow['section'] = $row['section'];
         $tempRow['roll_no'] = $row['roll_no'];
-         $tempRow['register_number'] = $row['register_number'];
+        $tempRow['register_number'] = $row['register_number'];
+        $tempRow['name'] = $row['name'];
         $tempRow['quota'] = $row['quota'];
-        $tempRow['regular'] = $row['regular'];
-        $tempRow['fg'] = $row['fg'];
-        $tempRow['sc_sch'] = $row['sc_sch'];
-        $tempRow['nsp'] = $row['nsp'];
-        $tempRow['bc_mbc_sch'] = $row['bc_mbc_sch'];
-        $tempRow['tnea_no'] = $row['tnea_no'];
-        $tempRow['consortium_no'] = $row['consortium_no'];
-         $tempRow['consortium_marks'] = $row['consortium_marks'];
+        $tempRow['mode'] = $row['mode'];
         $tempRow['gender'] = $row['gender'];
         $tempRow['dob'] = $row['dob'];
-        $tempRow['age'] = $row['age'];
-        $tempRow['nationality'] = $row['nationality'];
         $tempRow['religion'] = $row['religion'];
         $tempRow['community'] = $row['community'];
         $tempRow['sub_caste'] = $row['sub_caste'];
         $tempRow['blood_group'] = $row['blood_group'];
+        $tempRow['mother_tongue'] = $row['mother_tongue'];
+        $tempRow['nationality'] = $row['nationality'];
+        $tempRow['aadhaar_number'] = $row['aadhaar_number'];
         $tempRow['father_name'] = $row['father_name'];
-         $tempRow['occupation'] = $row['occupation'];
-        $tempRow['income'] = $row['income'];
+        $tempRow['father_occupation'] = $row['father_occupation'];
         $tempRow['mother_name'] = $row['mother_name'];
+        $tempRow['mother_occupation'] = $row['mother_occupation'];
+        $tempRow['parent_income'] = $row['parent_income']; 
         $tempRow['address'] = $row['address'];
         $tempRow['district'] = $row['district'];
         $tempRow['mobile'] = $row['mobile'];
-        $tempRow['alternate_student_mobile'] = $row['alternate_student_mobile'];
+        $tempRow['parent_mobile'] = $row['parent_mobile'];
         $tempRow['email'] = $row['email'];
         $tempRow['sslc_school'] = $row['sslc_school'];
-         $tempRow['sslc_percentage'] = $row['sslc_percentage'];
+        $tempRow['sslc_percentage'] = $row['sslc_percentage'];
         $tempRow['sslc_medium'] = $row['sslc_medium'];
         $tempRow['sslc_board'] = $row['sslc_board'];
         $tempRow['sslc_year'] = $row['sslc_year'];
+        $tempRow['group'] = $row['group'];
         $tempRow['hsc_school'] = $row['hsc_school'];
         $tempRow['hsc_percentage'] = $row['hsc_percentage'];
         $tempRow['hsc_medium'] = $row['hsc_medium'];
         $tempRow['hsc_board'] = $row['hsc_board'];
         $tempRow['hsc_year'] = $row['hsc_year'];
-         $tempRow['year_of_passing'] = $row['year_of_passing'];
         $tempRow['maths'] = $row['maths'];
         $tempRow['physics'] = $row['physics'];
         $tempRow['chemistry'] = $row['chemistry'];
         $tempRow['average'] = $row['average'];
         $tempRow['cut_off'] = $row['cut_off'];
         $tempRow['total'] = $row['total'];
-        $tempRow['type'] = $row['type'];
-        $tempRow['bus_route_no'] = $row['bus_route_no'];
-         $tempRow['boarding_point'] = $row['boarding_point'];
-        $tempRow['date_of_admission'] = $row['date_of_admission'];
-        $tempRow['aadhaar_number'] = $row['aadhaar_number'];
-        $tempRow['section'] = $row['section'];
-        $tempRow['mother_tongue'] = $row['mother_tongue'];
-        $tempRow['reference'] = $row['reference'];
         $tempRow['type_of_stay'] = $row['type_of_stay'];
-       
+        $tempRow['bus_route_no'] = $row['bus_route_no'];
+        $tempRow['boarding_point'] = $row['boarding_point'];
+        $tempRow['reference'] = $row['reference'];
+        $tempRow['fg'] = $row['fg'];
+        $tempRow['pstm_sch'] = $row['pstm_sch'];
+        $tempRow['nsp'] = $row['nsp'];
+        $tempRow['bc_mbc_sch'] = $row['bc_mbc_sch'];
+        $tempRow['tnea_no'] = $row['tnea_no'];
+        $tempRow['consortium_no'] = $row['consortium_no'];
+        $tempRow['consortium_marks'] = $row['consortium_marks'];
         $tempRow['operate'] = $operate;
         $rows[] = $tempRow;
     }

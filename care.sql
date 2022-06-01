@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2022 at 05:52 AM
+-- Generation Time: Jun 01, 2022 at 12:03 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -46,6 +46,119 @@ INSERT INTO `batch` (`id`, `year`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `blood_group`
+--
+
+CREATE TABLE `blood_group` (
+  `id` int(11) NOT NULL,
+  `blood_group` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `blood_group`
+--
+
+INSERT INTO `blood_group` (`id`, `blood_group`) VALUES
+(1, 'O'),
+(2, 'A'),
+(3, 'B'),
+(4, 'AB');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `board`
+--
+
+CREATE TABLE `board` (
+  `id` int(11) NOT NULL,
+  `board` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `board`
+--
+
+INSERT INTO `board` (`id`, `board`) VALUES
+(1, 'State'),
+(2, 'CBSE'),
+(3, 'ICSE'),
+(4, 'Others');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boarding_point`
+--
+
+CREATE TABLE `boarding_point` (
+  `id` int(11) NOT NULL,
+  `boarding_point` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `boarding_point`
+--
+
+INSERT INTO `boarding_point` (`id`, `boarding_point`) VALUES
+(1, 'Karumandabam'),
+(2, 'pirattiyur'),
+(3, 'junction'),
+(4, 'ramjinagar'),
+(5, 'Keeranur'),
+(6, 'srirangam');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bus_route_no`
+--
+
+CREATE TABLE `bus_route_no` (
+  `id` int(11) NOT NULL,
+  `bus_route_no` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bus_route_no`
+--
+
+INSERT INTO `bus_route_no` (`id`, `bus_route_no`) VALUES
+(1, '1'),
+(2, '2'),
+(3, '3'),
+(4, '5'),
+(5, '4'),
+(6, '10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `community`
+--
+
+CREATE TABLE `community` (
+  `id` int(11) NOT NULL,
+  `community` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `community`
+--
+
+INSERT INTO `community` (`id`, `community`) VALUES
+(1, 'OC'),
+(2, 'BC'),
+(3, 'BCM'),
+(4, 'MBC'),
+(5, 'DNC'),
+(6, 'SC'),
+(7, 'SCA'),
+(8, 'ST');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `companies`
 --
 
@@ -70,6 +183,25 @@ INSERT INTO `companies` (`id`, `company_name`, `job_role`, `location`, `sslc_per
 (1, 'Jandroid  Tech Solutions', 'Web Design/ Mobile app Development', 'Trichy', 44, 95, 77, 3, 'https://sbsbshvs/csojfsij', NULL),
 (2, 'TATA CONSULTANT SERVICES', 'Engineer', 'Chennai', 50, 40, 50, 5, 'https://www.tcs.com/', NULL),
 (3, 'Grey Matter', 'Android', 'Tiruchirappalli', 60, 60, 60, 5, 'https://www.greymatterworks.in/', '2022-04-29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `degree`
+--
+
+CREATE TABLE `degree` (
+  `id` int(11) NOT NULL,
+  `degree` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `degree`
+--
+
+INSERT INTO `degree` (`id`, `degree`) VALUES
+(1, 'UG'),
+(2, 'PG');
 
 -- --------------------------------------------------------
 
@@ -123,6 +255,26 @@ INSERT INTO `internalmarks` (`id`, `roll_no`, `department`, `test_type`, `number
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `medium`
+--
+
+CREATE TABLE `medium` (
+  `id` int(11) NOT NULL,
+  `medium` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `medium`
+--
+
+INSERT INTO `medium` (`id`, `medium`) VALUES
+(1, 'Tamil'),
+(2, 'English'),
+(3, 'Others');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `notifications`
 --
 
@@ -148,6 +300,27 @@ INSERT INTO `notifications` (`id`, `title`, `description`, `department`, `batch`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `religion`
+--
+
+CREATE TABLE `religion` (
+  `id` int(11) NOT NULL,
+  `religion` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `religion`
+--
+
+INSERT INTO `religion` (`id`, `religion`) VALUES
+(1, 'Hindu'),
+(2, 'Muslim'),
+(3, 'Christian'),
+(4, 'Others');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `role`
 --
 
@@ -166,6 +339,25 @@ INSERT INTO `role` (`id`, `name`) VALUES
 (3, 'HOD'),
 (4, 'Exam Cell'),
 (5, 'CC');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `section`
+--
+
+CREATE TABLE `section` (
+  `id` int(11) NOT NULL,
+  `section` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `section`
+--
+
+INSERT INTO `section` (`id`, `section`) VALUES
+(1, 'A'),
+(2, 'B');
 
 -- --------------------------------------------------------
 
@@ -241,79 +433,76 @@ INSERT INTO `staffs` (`id`, `name`, `email`, `mobile`, `password`, `department`,
 
 CREATE TABLE `students` (
   `id` int(11) NOT NULL,
+  `batch` text DEFAULT NULL,
+  `degree` text DEFAULT NULL,
   `department` text DEFAULT NULL,
-  `name` text DEFAULT NULL,
+  `section` text DEFAULT NULL,
   `roll_no` bigint(25) DEFAULT NULL,
   `register_number` text DEFAULT NULL,
+  `name` text DEFAULT NULL,
   `quota` text DEFAULT NULL,
-  `regular` text DEFAULT NULL,
-  `fg` text DEFAULT NULL,
-  `sc_sch` text DEFAULT NULL,
-  `nsp` text DEFAULT NULL,
-  `bc_mbc_sch` text DEFAULT NULL,
-  `tnea_no` text DEFAULT NULL,
-  `consortium_no` text DEFAULT NULL,
-  `consortium_marks` int(11) DEFAULT NULL,
+  `mode` text DEFAULT NULL,
   `gender` text DEFAULT NULL,
   `dob` text DEFAULT NULL,
-  `age` text DEFAULT NULL,
-  `nationality` text DEFAULT NULL,
   `religion` text DEFAULT NULL,
   `community` text DEFAULT NULL,
   `sub_caste` text DEFAULT NULL,
   `blood_group` text DEFAULT NULL,
+  `mother_tongue` text DEFAULT NULL,
+  `nationality` text DEFAULT NULL,
+  `aadhaar_number` text DEFAULT NULL,
   `father_name` text DEFAULT NULL,
-  `occupation` text DEFAULT NULL,
-  `income` text DEFAULT NULL,
+  `father_occupation` text DEFAULT NULL,
   `mother_name` text DEFAULT NULL,
+  `mother_occupation` text DEFAULT NULL,
+  `parent_income` text DEFAULT NULL,
   `address` text DEFAULT NULL,
   `district` text DEFAULT NULL,
   `mobile` text DEFAULT NULL,
-  `alternate_student_mobile` text DEFAULT NULL,
+  `parent_mobile` text DEFAULT NULL,
   `email` text DEFAULT NULL,
   `sslc_school` text DEFAULT NULL,
   `sslc_percentage` int(11) DEFAULT NULL,
   `sslc_medium` text DEFAULT NULL,
   `sslc_board` text DEFAULT NULL,
   `sslc_year` text DEFAULT NULL,
+  `group` text DEFAULT NULL,
   `hsc_school` text DEFAULT NULL,
   `hsc_percentage` int(11) DEFAULT NULL,
   `hsc_medium` text DEFAULT NULL,
   `hsc_board` text DEFAULT NULL,
   `hsc_year` text DEFAULT NULL,
-  `year_of_passing` text DEFAULT NULL,
   `maths` text DEFAULT NULL,
   `physics` text DEFAULT NULL,
   `chemistry` text DEFAULT NULL,
   `average` text DEFAULT NULL,
   `cut_off` text DEFAULT NULL,
   `total` text DEFAULT NULL,
-  `type` text DEFAULT NULL,
+  `type_of_stay` text DEFAULT NULL,
   `bus_route_no` text DEFAULT NULL,
   `boarding_point` text DEFAULT NULL,
-  `date_of_admission` text DEFAULT NULL,
-  `aadhaar_number` text DEFAULT NULL,
-  `section` text DEFAULT NULL,
-  `mother_tongue` text DEFAULT NULL,
   `reference` text DEFAULT NULL,
-  `type_of_stay` text DEFAULT NULL
+  `fg` text DEFAULT NULL,
+  `pstm_sch` text DEFAULT NULL,
+  `nsp` text DEFAULT NULL,
+  `bc_mbc_sch` text DEFAULT NULL,
+  `tnea_no` text DEFAULT NULL,
+  `consortium_no` text DEFAULT NULL,
+  `consortium_marks` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `department`, `name`, `roll_no`, `register_number`, `quota`, `regular`, `fg`, `sc_sch`, `nsp`, `bc_mbc_sch`, `tnea_no`, `consortium_no`, `consortium_marks`, `gender`, `dob`, `age`, `nationality`, `religion`, `community`, `sub_caste`, `blood_group`, `father_name`, `occupation`, `income`, `mother_name`, `address`, `district`, `mobile`, `alternate_student_mobile`, `email`, `sslc_school`, `sslc_percentage`, `sslc_medium`, `sslc_board`, `sslc_year`, `hsc_school`, `hsc_percentage`, `hsc_medium`, `hsc_board`, `hsc_year`, `year_of_passing`, `maths`, `physics`, `chemistry`, `average`, `cut_off`, `total`, `type`, `bus_route_no`, `boarding_point`, `date_of_admission`, `aadhaar_number`, `section`, `mother_tongue`, `reference`, `type_of_stay`) VALUES
-(1, 'ECE', 'Jp', 810718106005, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'M', '2022-04-21', NULL, NULL, NULL, 'BC', NULL, NULL, 'selvam', NULL, NULL, '', NULL, '', '8778624681', NULL, 'prasad@gmail.com', NULL, 50, NULL, NULL, NULL, NULL, 60, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL),
-(2, 'ECE', 'aanto', 810720104001, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'M', '', NULL, NULL, NULL, 'MBC', NULL, NULL, '', NULL, NULL, '', NULL, '', '9876543210', NULL, 'aanto@gmail.com', NULL, 80, NULL, NULL, NULL, NULL, 90, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL),
-(3, 'CSE', 'surya', 810718106009, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'M', NULL, NULL, NULL, NULL, 'BC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '8778634567', NULL, 'surya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'ECE', 'Nagarajan', 810718106005, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'M', NULL, NULL, NULL, NULL, 'MBC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '9876543210', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'ECE', 'jeya', 810718106003, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'M', '2022-04-21', NULL, NULL, NULL, 'MBC', NULL, NULL, '', NULL, NULL, '', NULL, '', '8080808080', NULL, 'divagar.a@care.ac.in', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL),
-(27, 'ECE', 'Jp', 811000000000, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 0, 'M', '4/21/2022', 'NULL', 'NULL', 'NULL', 'BC', 'NULL', 'NULL', 'selvam', 'NULL', 'NULL', '', 'NULL', '', '8778624681', 'NULL', 'prasad@gmail.com', 'NULL', 50, 'NULL', 'NULL', 'NULL', 'NULL', 60, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '', 'NULL', 'NULL', 'NULL', 'NULL'),
-(28, 'ECE', 'aanto', 811000000000, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 0, 'M', '', 'NULL', 'NULL', 'NULL', 'MBC', 'NULL', 'NULL', '', 'NULL', 'NULL', '', 'NULL', '', '9876543210', 'NULL', 'aanto@gmail.com', 'NULL', 80, 'NULL', 'NULL', 'NULL', 'NULL', 90, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '', 'NULL', 'NULL', 'NULL', 'NULL'),
-(29, 'CSE', 'surya', 811000000000, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 0, 'M', 'NULL', 'NULL', 'NULL', 'NULL', 'BC', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '8778634567', 'NULL', 'surya@gmail.com', 'NULL', 0, 'NULL', 'NULL', 'NULL', 'NULL', 0, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL'),
-(30, 'ECE', 'Nagarajan', 811000000000, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 0, 'M', 'NULL', 'NULL', 'NULL', 'NULL', 'MBC', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '9876543210', 'NULL', 'NULL', 'NULL', 0, 'NULL', 'NULL', 'NULL', 'NULL', 0, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL'),
-(31, 'ECE', 'jeya', 811000000000, '546647', 'government', '2017', 'yes', 'no', 'yes', 'no', '9500545', '78', 789, 'M', '26/08/2001', '21', 'india', 'hindu', 'MBC', 'uralicounder', 'B+', 'karan', 'doctor', '60,000', 'grdd', '2/42,azhagapuri,r,tmalai', 'karur', '8080808080', '8766676', 'divagar.a@care.ac.in', 'GHSS', 76, 'TAMIL', 'state', '2016', 'ghss', 23, 'tamil', 'state', '2018', '2022', '100', '80', '87', '78', '134', '449', 'x', '89', 'trichy', '12/10/2022', '67383782929', 'b', 'tamil', 'selvakumar', 'hostel');
+INSERT INTO `students` (`id`, `batch`, `degree`, `department`, `section`, `roll_no`, `register_number`, `name`, `quota`, `mode`, `gender`, `dob`, `religion`, `community`, `sub_caste`, `blood_group`, `mother_tongue`, `nationality`, `aadhaar_number`, `father_name`, `father_occupation`, `mother_name`, `mother_occupation`, `parent_income`, `address`, `district`, `mobile`, `parent_mobile`, `email`, `sslc_school`, `sslc_percentage`, `sslc_medium`, `sslc_board`, `sslc_year`, `group`, `hsc_school`, `hsc_percentage`, `hsc_medium`, `hsc_board`, `hsc_year`, `maths`, `physics`, `chemistry`, `average`, `cut_off`, `total`, `type_of_stay`, `bus_route_no`, `boarding_point`, `reference`, `fg`, `pstm_sch`, `nsp`, `bc_mbc_sch`, `tnea_no`, `consortium_no`, `consortium_marks`) VALUES
+(1, NULL, 'UG', 'ECE', NULL, 810718106005, NULL, 'Jp', NULL, NULL, 'M', '2022-04-21', NULL, 'BC', NULL, NULL, NULL, NULL, '', 'selvam', NULL, '', '0', NULL, NULL, '', '8778624681', NULL, 'prasad@gmail.com', NULL, 50, NULL, NULL, NULL, NULL, NULL, 60, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
+(2, NULL, 'UG', 'ECE', NULL, 810720104001, NULL, 'aanto', NULL, NULL, 'M', '', NULL, 'MBC', NULL, NULL, NULL, NULL, '', '', NULL, '', '0', NULL, NULL, '', '9876543210', NULL, 'aanto@gmail.com', NULL, 80, NULL, NULL, NULL, NULL, NULL, 90, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
+(3, NULL, 'UG', 'CSE', NULL, 810718106009, NULL, 'surya', NULL, NULL, 'M', NULL, NULL, 'BC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, '8778634567', NULL, 'surya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
+(4, NULL, 'UG', 'ECE', NULL, 810718106005, NULL, 'Nagarajan', NULL, NULL, 'M', NULL, NULL, 'MBC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, '9876543210', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
+(5, NULL, 'UG', 'ECE', NULL, 810718106003, NULL, 'jeya', NULL, NULL, 'M', '2022-04-21', NULL, 'MBC', NULL, NULL, NULL, NULL, '', '', NULL, '', '0', NULL, NULL, '', '8080808080', NULL, 'divagar.a@care.ac.in', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
+(41, '2018', 'UG', 'ECE', 'b', 811000000000, '546647', 'DIVAKkar', 'government', 'regular', 'M', '26/08/2001', 'hindu', 'MBC', 'uralicounder', 'B+', 'tamil', 'india', '67383782929', 'karan', 'doctor', 'gency', 'housewife', '60,000', '2/42,azhagapuri,r,tmalai', 'karur', '8080808080', '8766676', 'divkarvan03@gmail.com', 'GHSS', 100, 'english', 'central', '2010', 'academic', 'ghss', 100, 'english', 'central', '2022', '100', '100', '100', '100', '100', '100', 'DayScholar', '100', 'karur', 'deepalakshmi', 'no', 'yes', 'no', 'no', '9500545', '100', 100),
+(42, '2022', 'UG', 'CSE', 'D', 8456387387823782, '47664747', 'HELLEN', 'government', 'lateral', 'M', '6/02/2003', 'HINDU', 'uraligounder', 'gdd', 'O+', 'tamil', 'indian', '45657678', 'gejjx', 'sjbbcbc', 'xacxsuicgus', 'house wife', '70,000', '2/42,trichy', 'trichy', '5356489909', '8756342134', 'divakarpay@gamil.com', 'ghss', 34, 'tamil', 'state', '2016', 'academic', 'ghss', 45, 'tamil', 'state', '2018', '34', '67', '45', '34', '45', '456', 'hostel', '23', 'trichy', 'selvakumar', 'yes', 'no', 'yes', 'no', '63633832', '999999', 67);
 
 -- --------------------------------------------------------
 
@@ -396,6 +585,28 @@ INSERT INTO `universityresults` (`id`, `roll_no`, `department`, `semester`, `sub
 (10, '810718106005', 'ECE', '1', 'CE9390', '2013', 'B+'),
 (11, '810718106005', 'ECE', '1', 'CE9390', '2013', 'B+');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `year`
+--
+
+CREATE TABLE `year` (
+  `id` int(11) NOT NULL,
+  `year` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `year`
+--
+
+INSERT INTO `year` (`id`, `year`) VALUES
+(1, '2016'),
+(2, '2017'),
+(3, '2018'),
+(4, '2019'),
+(5, '2022');
+
 --
 -- Indexes for dumped tables
 --
@@ -407,9 +618,45 @@ ALTER TABLE `batch`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `blood_group`
+--
+ALTER TABLE `blood_group`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `board`
+--
+ALTER TABLE `board`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `boarding_point`
+--
+ALTER TABLE `boarding_point`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bus_route_no`
+--
+ALTER TABLE `bus_route_no`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `community`
+--
+ALTER TABLE `community`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `companies`
 --
 ALTER TABLE `companies`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `degree`
+--
+ALTER TABLE `degree`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -425,15 +672,33 @@ ALTER TABLE `internalmarks`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `medium`
+--
+ALTER TABLE `medium`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `religion`
+--
+ALTER TABLE `religion`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `section`
+--
+ALTER TABLE `section`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -473,6 +738,12 @@ ALTER TABLE `universityresults`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `year`
+--
+ALTER TABLE `year`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -483,10 +754,46 @@ ALTER TABLE `batch`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `blood_group`
+--
+ALTER TABLE `blood_group`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `board`
+--
+ALTER TABLE `board`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `boarding_point`
+--
+ALTER TABLE `boarding_point`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `bus_route_no`
+--
+ALTER TABLE `bus_route_no`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `community`
+--
+ALTER TABLE `community`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `degree`
+--
+ALTER TABLE `degree`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -501,16 +808,34 @@ ALTER TABLE `internalmarks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `medium`
+--
+ALTER TABLE `medium`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
   MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `religion`
+--
+ALTER TABLE `religion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `section`
+--
+ALTER TABLE `section`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -528,7 +853,7 @@ ALTER TABLE `staffs`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `subjects`
@@ -547,6 +872,12 @@ ALTER TABLE `timetables`
 --
 ALTER TABLE `universityresults`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `year`
+--
+ALTER TABLE `year`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
