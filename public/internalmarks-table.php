@@ -1,3 +1,20 @@
+<?php
+if (isset($_POST['btnView'])) {
+    $batchspin = $_POST['batch'];
+    $departmentspin = $_POST['department'];
+    $semesterselect = $_POST['semester'];
+    $testtypeselect = $_POST['testtype'];
+
+}
+$batchspin = isset($batchspin) ? $batchspin : '';
+$departmentspin = isset($departmentspin) ? $departmentspin : '';
+$semesterselect = isset($semesterselect) ? $semesterselect : '';
+$testtypeselect = isset($testtypeselect) ? $testtypeselect : '';
+$sql = "SELECT * FROM `internalmarks` WHERE batch = '$batchspin' AND department = '$departmentspin' AND semester = '$semesterselect' AND test_type = '$testtypeselect' GROUP BY subject_code";
+$db->sql($sql);
+$result = $db->getResult();
+$num = isset($batchspin) ? $db->numRows($result) : 0;
+?>
 <section class="content-header">
     <h1>
         Internal Marks /
@@ -11,11 +28,30 @@
             <!-- Left col -->
             <div class="col-xs-12">
                 <div class="box">
-                    <!-- <div class="col-xs-6"> -->
+                    <form method="post" enctype="multipart/form-data">
+                                            <!-- <div class="col-xs-6"> -->
                     <div class="box-header">
+
+                    <div class="form-group col-md-2">
+                                        <h4 class="box-title"> Batch</h4>
+                                        <select name='batch' id='batch' class='form-control' placeholder='Enter the Batch'>
+                                            <option value="">ALL</option>
+                                                    <?php
+                                                    $batch = $_SESSION['batch'];
+                                                    $sql = "SELECT year FROM `batch` WHERE  year IN ($batch) ";
+                                                    $db->sql($sql);
+                                                    $result = $db->getResult();
+                                                    foreach ($result as $value) {
+                                                    ?>
+                                                        <option value='<?= $value['year'] ?>' <?=$batchspin == $value['year'] ? ' selected="selected"' : '';?>><?= $value['year'] ?></option>
+                                                    <?php } ?>
+
+                                                </select>
+                                        </select>
+                                </div>
                     <div class="form-group col-md-3">
                             <h4 class="box-title">Choose Department</h4>
-                            <select name='department[]' id='department' class='form-control' placeholder='Enter the department you want to assign Seller' >
+                            <select name='department' id='department' class='form-control' placeholder='Enter the department you want to assign Seller' >
                                         <?php
                                         $role = $_SESSION['role'];
                                         if($role == 'Exam Cell'){
@@ -32,45 +68,54 @@
                                         $result = $db->getResult();
                                         foreach ($result as $value) {
                                         ?>
-                                            <option value='<?= $value['department'] ?>'><?= $value['department'] ?></option>
+                                            <option value='<?= $value['department'] ?>' <?=$departmentspin == $value['department'] ? ' selected="selected"' : '';?>><?= $value['department'] ?></option>
                                         <?php } ?>
 
                             </select>
                         </div>
                         
-                        <div class="form-group col-md-3">
-                            <h4 class="box-title">Choose Roll.No</h4>
-                            <select id='roll_no' name="roll_no[]" class='form-control'>
+                        <div class="form-group col-md-2">
+                                    <h4 class="box-title"> Semester</h4>
+                                    <select id='semester' name="semester" class='form-control'>
                                         <?php
-                                        $role = $_SESSION['role'];
-                                        if($role == 'Exam Cell'){
-                                            $sql = "SELECT roll_no FROM `students` GROUP BY roll_no";
-                                        }
-                                        else{
-                                            $department = $_SESSION['department'];
-                                            $batch = $_SESSION['batch'];
-                                            $sql = "SELECT roll_no FROM `students` WHERE department IN ('$department') AND batch IN ($batch) GROUP BY roll_no";
-                                        }
+                                        $sql = "SELECT semester FROM `semester`";
                                         $db->sql($sql);
-
                                         $result = $db->getResult();
                                         foreach ($result as $value) {
                                         ?>
-                                            <option value='<?= $value['roll_no'] ?>'><?= $value['roll_no'] ?></option>
+                                            <option value='<?= $value['semester'] ?>' <?=$semesterselect == $value['semester'] ? ' selected="selected"' : '';?>><?= $value['semester'] ?></option>
                                         <?php } ?>
-                            </select>
-                        </div>
+                                    </select>
+                            </div>
                         <div class="form-group col-md-3">
-                            <h4 class="box-title">Choose Cycle Test</h4>
-                            <select id='number' name="number" class='form-control'>
-                                <option value="1">Cycle Test 1</option>
-                                <option value="2">Cycle Test 2</option>
-                                <option value="3">Cycle Test 3</option>
+                            <h4 class="box-title">Choose Test</h4>
+                            <select id='testtype' name="testtype" class='form-control'>
+                            
+                                        <?php
+                                        $sql = "SELECT test_type FROM `test_type`";
+                                        $db->sql($sql);
+                                        $result = $db->getResult();
+                                        foreach ($result as $value) {
+                                        ?>
+                                            <option value='<?= $value['test_type'] ?>' <?=$testtypeselect == $value['test_type'] ? ' selected="selected"' : '';?>><?= $value['test_type'] ?></option>
+                                        <?php } ?>
                                 
                             </select>
                         </div>
+                        <div class="form-group col-md-3">
+                            <input type="submit" class="btn-primary btn" value="View" name="btnView" />
+                        
+
+                        </div>
                         
                     </div>
+                            
+                    </form>
+                    <?php
+                    
+                    if($num > 0){
+                    ?>
+
                     <!-- /.box-header -->
                     <div class="box-body table-responsive">
                         <table id='internalmarks_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=internalmarks" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-sort-name="id" data-sort-order="desc" data-show-export="true" data-export-types='["txt","excel"]' data-export-options='{
@@ -81,13 +126,16 @@
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
                                     <th data-field="roll_no" data-sortable="true">Roll.No</th>
-                                    <th data-field="semester" data-sortable="true">Semester</th>
-                                    <th data-field="test_type" data-sortable="true">Test Type</th>
-                                    <th data-field="number" data-sortable="true">Number</th>
-                                    <th data-field="department" data-sortable="true">Department</th>
-                                    <th data-field="subject_code" data-sortable="true">Subject code</th>
-                                    <th data-field="regulation" data-sortable="true">Regulation</th>
-                                    <th data-field="marks" data-sortable="true">Marks</th>
+                                    <?php
+                                    $sql = "SELECT * FROM `internalmarks` WHERE batch = '$batchspin' AND department = '$departmentspin' AND semester = '$semesterselect' AND test_type = '$testtypeselect' GROUP BY subject_code";
+                                    $db->sql($sql);
+                                    $result = $db->getResult();
+                                    
+
+                                    foreach ($result as $value) {?>
+                                        <th data-field="<?= $value['subject_code'] ?>" data-sortable="true"><?= $value['subject_code'] ?></th> 
+                                         <?php   } ?>
+                                
                                     <?php if($_SESSION['role'] == 'CC'){?>
                                     <th data-field="operate" data-events="actionEvents">Action</th>
                                     <?php }?>
@@ -96,6 +144,39 @@
                         </table>
                     </div>
                     <!-- /.box-body -->
+                    <?php }else{
+                        echo "<h3 class='text-center'>No Data Found</h3>";
+                    } ?>
+                                        <?php
+                    
+                    if($num > 0){
+                    ?>
+
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table id='analysis_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=internalanalysis" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-sort-name="id" data-sort-order="desc" data-show-export="true" data-export-types='["txt","excel"]' data-export-options='{
+                            "fileName": "students-list-<?= date('d-m-Y') ?>",
+                            "ignoreColumn": ["operate"] 
+                        }'>
+                            <thead>
+                                <tr>
+                                    <th data-field="title">Title</th>
+                                    <?php
+                                    $sql = "SELECT * FROM `internalmarks` WHERE batch = '$batchspin' AND department = '$departmentspin' AND semester = '$semesterselect' AND test_type = '$testtypeselect' GROUP BY subject_code";
+                                    $db->sql($sql);
+                                    $result = $db->getResult();
+                                    
+
+                                    foreach ($result as $value) {?>
+                                        <th data-field="<?= $value['subject_code'] ?>" data-sortable="true"><?= $value['subject_code'] ?></th> 
+                                         <?php   } ?>
+                                
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                    <?php }?>
                 </div>
                 <!-- /.box -->
             </div>

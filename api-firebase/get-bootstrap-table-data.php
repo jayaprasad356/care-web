@@ -420,32 +420,214 @@ if (isset($_GET['table']) && $_GET['table'] == 'universityresults') {
 }
 if (isset($_GET['table']) && $_GET['table'] == 'internalmarks') {
     $where = '';
-    if ((isset($_GET['roll_no']) && $_GET['roll_no'] != '') && (isset($_GET['department']) && $_GET['department'] != '')&& (isset($_GET['number']) && $_GET['number'] != '')) {
-        $roll_no = $db->escapeString($fn->xss_clean($_GET['roll_no']));
-        $department = $db->escapeString($fn->xss_clean($_GET['department']));
-        $number = $db->escapeString($fn->xss_clean($_GET['number']));
-        $where .= " WHERE roll_no = '$roll_no' AND department='$department' AND number='$number' " ;
-    }
-    $sql = "SELECT * FROM internalmarks ".$where;
+    // if ((isset($_GET['roll_no']) && $_GET['roll_no'] != '') && (isset($_GET['department']) && $_GET['department'] != '')&& (isset($_GET['number']) && $_GET['number'] != '')) {
+    //     $roll_no = $db->escapeString($fn->xss_clean($_GET['roll_no']));
+    //     $department = $db->escapeString($fn->xss_clean($_GET['department']));
+    //     $number = $db->escapeString($fn->xss_clean($_GET['number']));
+    //     $where .= " WHERE roll_no = '$roll_no' AND department='$department' AND number='$number' " ;
+    // }
+    $sql = "SELECT * FROM internalmarks GROUP BY roll_no";
     $db->sql($sql);
     $res = $db->getResult();
     $rows = array();
     $tempRow = array();
     foreach ($res as $row) {
+        $roll_no = $row['roll_no'];
+        $sql1 = "SELECT * FROM internalmarks WHERE roll_no = '$roll_no'";
+        $db->sql($sql1);
+        $res1 = $db->getResult();
+        foreach ($res1 as $row1) {
+            $subjectname = $row1['subject_code'];
+            $marks = $row1['marks'];
+            $tempRow[$subjectname] = $marks;
 
-        $operate = ' <a href="edit-internalmark.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
+        }
+
+        //$operate = ' <a href="edit-internalmark.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
         $tempRow['id'] = $row['id'];
         $tempRow['roll_no'] = $row['roll_no'];
-        $tempRow['test_type'] = $row['test_type'];
-        $tempRow['number'] = $row['number'];
-        $tempRow['semester'] = $row['semester'];
-        $tempRow['department'] = $row['department'];
-        $tempRow['subject_code'] = $row['subject_code'];
-        $tempRow['regulation'] = $row['regulation'];
-        $tempRow['marks'] = $row['marks'];
-        $tempRow['operate'] = $operate;
+
         $rows[] = $tempRow;
     }
+    $bulkData['rows'] = $rows;
+    print_r(json_encode($bulkData));
+}
+if (isset($_GET['table']) && $_GET['table'] == 'internalanalysis') {
+    $where = '';
+    $sql = "SELECT * FROM internalmarks GROUP BY roll_no";
+    $db->sql($sql);
+    $res = $db->getResult();
+    $num = $db->numRows($res);
+    $rows = array();
+    $tempRow = array();
+    
+
+
+
+
+
+    for ($i = 0; $i < 7; $i++) {
+        
+        if($i == 0){
+            $tempRow['title'] = 'Total No. of Students';
+            
+            $sql = "SELECT * FROM internalmarks GROUP BY roll_no";
+            $db->sql($sql);
+            $res = $db->getResult();
+            $num = $db->numRows($res);
+            foreach ($res as $row) {
+                $roll_no = $row['roll_no'];
+                $sql1 = "SELECT * FROM internalmarks WHERE roll_no = '$roll_no'";
+                $db->sql($sql1);
+                $res1 = $db->getResult();
+                foreach ($res1 as $row1) {
+                    $subjectname = $row1['subject_code'];
+                    $tempRow[$subjectname] = $num;
+                }
+
+            }
+            
+
+        }
+        elseif($i == 1){
+            $tempRow['title'] = 'Total No. of Pass for 50';
+
+            $sql = "SELECT * FROM internalmarks GROUP BY roll_no";
+            $db->sql($sql);
+            $res = $db->getResult();
+            $num = $db->numRows($res);
+            foreach ($res as $row) {
+                $roll_no = $row['roll_no'];
+                $sql1 = "SELECT * FROM internalmarks WHERE roll_no = '$roll_no'";
+                $db->sql($sql1);
+                $res1 = $db->getResult();
+                foreach ($res1 as $row1) {
+                    $subjectname = $row1['subject_code'];
+                    $sql = "SELECT * FROM internalmarks WHERE subject_code = '$subjectname' AND marks >= 50 GROUP BY roll_no";
+                    $db->sql($sql);
+                    $res = $db->getResult();
+                    $passfnum = $db->numRows($res);
+                    $tempRow[$subjectname] = $passfnum;
+                }
+            }
+            
+        
+            
+
+        }elseif($i == 2){
+            $tempRow['title'] = 'Total Absentees';
+            $sql = "SELECT * FROM internalmarks GROUP BY roll_no";
+            $db->sql($sql);
+            $res = $db->getResult();
+            $num = $db->numRows($res);
+            foreach ($res as $row) {
+                $roll_no = $row['roll_no'];
+                $sql1 = "SELECT * FROM internalmarks WHERE roll_no = '$roll_no'";
+                $db->sql($sql1);
+                $res1 = $db->getResult();
+                foreach ($res1 as $row1) {
+                    $subjectname = $row1['subject_code'];
+                    $sql = "SELECT * FROM internalmarks WHERE subject_code = '$subjectname' AND marks = 'AB' GROUP BY roll_no";
+                    $db->sql($sql);
+                    $res = $db->getResult();
+                    $abnum = $db->numRows($res);
+                    $tempRow[$subjectname] = $abnum;
+                }
+            }
+            
+        }elseif($i == 3){
+            $tempRow['title'] = 'Pass Percentage % for 50';
+            $sql = "SELECT * FROM internalmarks GROUP BY roll_no";
+            $db->sql($sql);
+            $res = $db->getResult();
+            $num = $db->numRows($res);
+            foreach ($res as $row) {
+                $roll_no = $row['roll_no'];
+                $sql1 = "SELECT * FROM internalmarks WHERE roll_no = '$roll_no'";
+                $db->sql($sql1);
+                $res1 = $db->getResult();
+                foreach ($res1 as $row1) {
+                    $subjectname = $row1['subject_code'];
+                    $sql = "SELECT * FROM internalmarks WHERE subject_code = '$subjectname' AND marks >= 50 GROUP BY roll_no";
+                    $db->sql($sql);
+                    $res = $db->getResult();
+                    $passfnum = $db->numRows($res);
+                    $passpercentf = $passfnum / $num * 100;
+                    $tempRow[$subjectname] = round($passpercentf, 2);
+                }
+            }
+
+        }elseif($i == 4){
+            $tempRow['title'] = 'Mean of Marks';
+            $sql = "SELECT * FROM internalmarks GROUP BY roll_no";
+            $db->sql($sql);
+            $res = $db->getResult();
+            $num = $db->numRows($res);
+            foreach ($res as $row) {
+                $roll_no = $row['roll_no'];
+                $sql1 = "SELECT * FROM internalmarks WHERE roll_no = '$roll_no'";
+                $db->sql($sql1);
+                $res1 = $db->getResult();
+                foreach ($res1 as $row1) {
+                    $subjectname = $row1['subject_code'];
+                    $sql = "SELECT AVG(marks) AS mean FROM internalmarks WHERE subject_code = '$subjectname'";
+                    $db->sql($sql);
+                    $meanres = $db->getResult();
+                    $tempRow[$subjectname] = round($meanres[0]['mean'], 2);
+                }
+            }
+
+            
+        }elseif($i == 5){
+            $tempRow['title'] = 'Total No. of Pass for 70';
+            $sql = "SELECT * FROM internalmarks GROUP BY roll_no";
+            $db->sql($sql);
+            $res = $db->getResult();
+            $num = $db->numRows($res);
+            foreach ($res as $row) {
+                $roll_no = $row['roll_no'];
+                $sql1 = "SELECT * FROM internalmarks WHERE roll_no = '$roll_no'";
+                $db->sql($sql1);
+                $res1 = $db->getResult();
+                foreach ($res1 as $row1) {
+                    $subjectname = $row1['subject_code'];
+                    $sql = "SELECT * FROM internalmarks WHERE subject_code = '$subjectname' AND marks >= 70 GROUP BY roll_no";
+                    $db->sql($sql);
+                    $res = $db->getResult();
+                    $passsenum = $db->numRows($res);
+                    $tempRow[$subjectname] = $passsenum;
+                }
+            }
+           
+        }elseif($i == 6){
+            $tempRow['title'] = 'Pass Percentage % for 70';
+            $sql = "SELECT * FROM internalmarks GROUP BY roll_no";
+            $db->sql($sql);
+            $res = $db->getResult();
+            $num = $db->numRows($res);
+            foreach ($res as $row) {
+                $roll_no = $row['roll_no'];
+                $sql1 = "SELECT * FROM internalmarks WHERE roll_no = '$roll_no'";
+                $db->sql($sql1);
+                $res1 = $db->getResult();
+                foreach ($res1 as $row1) {
+                    $subjectname = $row1['subject_code'];
+                    $sql = "SELECT * FROM internalmarks WHERE subject_code = '$subjectname' AND marks >= 70 GROUP BY roll_no";
+                    $db->sql($sql);
+                    $res = $db->getResult();
+                    $passsenum = $db->numRows($res);
+                    $passpercents = $passsenum / $num * 100;
+                    $tempRow[$subjectname] = round($passpercents, 2);
+                }
+            }
+            
+        }
+        
+        $rows[] = $tempRow;
+
+    }
+    
+
     $bulkData['rows'] = $rows;
     print_r(json_encode($bulkData));
 }

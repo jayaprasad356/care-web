@@ -25,6 +25,8 @@ if ($currentTime > $_SESSION['timeout']) {
 // destroy previous session timeout and create new one
 unset($_SESSION['timeout']);
 $_SESSION['timeout'] = $currentTime + $expired;
+include_once('includes/custom-functions.php');
+$fn = new custom_functions;
 
 ?>
 
