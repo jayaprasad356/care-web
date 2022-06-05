@@ -154,7 +154,7 @@ $num = isset($batchspin) ? $db->numRows($result) : 0;
 
                     <!-- /.box-header -->
                     <div class="box-body table-responsive">
-                        <table id='analysis_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=internalanalysis" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-sort-name="id" data-sort-order="desc" data-show-export="true" data-export-types='["txt","excel"]' data-export-options='{
+                        <table id='analysis_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=internalanalysis"  data-show-refresh="true" data-side-pagination="server" data-pagination="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-sort-name="id" data-sort-order="desc" data-show-export="true" data-export-types='["txt","excel"]' data-export-options='{
                             "fileName": "students-list-<?= date('d-m-Y') ?>",
                             "ignoreColumn": ["operate"] 
                         }'>
@@ -203,9 +203,10 @@ $num = isset($batchspin) ? $db->numRows($result) : 0;
 
     function queryParams(p) {
         return {
+            "batch": $('#batch').val(),
             "department": $('#department').val(),
-            "roll_no": $('#roll_no').val(),
-            "number": $('#number').val(),
+            "semester": $('#semester').val(),
+            "testtype": $('#testtype').val(),
             limit: p.limit,
             sort: p.sort,
             order: p.order,

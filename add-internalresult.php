@@ -22,7 +22,7 @@
 <?php include"header.php";?>
 <html>
 <head>
-<title>Add Internal Result | <?=$settings['app_name']?> - Dashboard</title>
+<title>Add/Update Internal Result | <?=$settings['app_name']?> - Dashboard</title>
 <style>
     .asterik {
     font-size: 20px;

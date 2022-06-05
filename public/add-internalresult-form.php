@@ -15,34 +15,89 @@ $db->sql($sql_query);
 
 $res_cur = $db->getResult();
 if (isset($_POST['btnAdd'])) {
-        $error = array();
-        
-        $marks = $fn->xss_clean_array($_POST['marks']);
-        $roll_no = $fn->xss_clean_array($_POST['roll_no']);
-        for ($i = 0; $i < count($roll_no); $i++) {
-            $sql = "INSERT INTO internalmarks (roll_no, marks) VALUES ('" . $roll_no[$i] . "', '" . $marks[$i] . "')";
-            $db->sql($sql);
-            $result = $db->getResult();
-            if (!empty($result)) {
-                $result = 0;
-            } else {
-                $result = 1;
-            }
-            if ($result == 1) {
-                $error['add_menu'] = "<section class='content-header'>
-                                                <span class='label label-success'>Internals Added Successfully</span>
-                                                
-                                                </section>";
-            } else {
-                $error['add_menu'] = " <span class='label label-danger'>Failed</span>";
-            }
-
+    $batchspin = $_POST['batch'];
+    $departmentspin = $_POST['department'];
+    $semesterselect = $_POST['semester'];
+    $testtypeselect = $_POST['testtype'];
+    $subselect = $_POST['subject_code'];
+    $error = array();
+    
+    $marks = $fn->xss_clean_array($_POST['marks']);
+    $roll_no = $fn->xss_clean_array($_POST['roll_no']);
+    for ($i = 0; $i < count($roll_no); $i++) {
+        $sql = "INSERT INTO internalmarks (roll_no,department,batch,test_type,semester,subject_code,marks) VALUES ('" . $roll_no[$i] . "','$departmentspin','$batchspin','$testtypeselect','$semesterselect','$subselect', '" . $marks[$i] . "')";
+        $db->sql($sql);
+        $result = $db->getResult();
+        if (!empty($result)) {
+            $result = 0;
+        } else {
+            $result = 1;
         }
-        
+        if ($result == 1) {
+            $error['add_menu'] = "<section class='content-header'>
+                                            <span class='label label-success'>Internals Added Successfully</span>
+                                            
+                                            </section>";
+        } else {
+            $error['add_menu'] = " <span class='label label-danger'>Failed</span>";
+        }
+
     }
+        
+}
+if (isset($_POST['btnUpdate'])) {
+    $batchspin = $_POST['batch'];
+    $departmentspin = $_POST['department'];
+    $semesterselect = $_POST['semester'];
+    $testtypeselect = $_POST['testtype'];
+    $subselect = $_POST['subject_code'];
+    $error = array();
+    
+    $marks = $fn->xss_clean_array($_POST['marks']);
+    $roll_no = $fn->xss_clean_array($_POST['roll_no']);
+    for ($i = 0; $i < count($roll_no); $i++) {
+        $sql = "UPDATE internalmarks SET marks = '" . $marks[$i] . "' WHERE roll_no = '" . $roll_no[$i] . "' AND department = '$departmentspin' AND batch = '$batchspin' AND test_type = '$testtypeselect' AND semester = '$semesterselect' AND subject_code = '$subselect'";
+        $db->sql($sql);
+        $result = $db->getResult();
+        if (!empty($result)) {
+            $result = 0;
+        } else {
+            $result = 1;
+        }
+        if ($result == 1) {
+            $error['add_menu'] = "<section class='content-header'>
+                                            <span class='label label-success'>Internals Updated Successfully</span>
+                                            
+                                            </section>";
+        } else {
+            $error['add_menu'] = " <span class='label label-danger'>Failed</span>";
+        }
+
+    }
+        
+}
+if (isset($_POST['btnView'])) {
+    $batchspin = $_POST['batch'];
+    $departmentspin = $_POST['department'];
+    $semesterselect = $_POST['semester'];
+    $testtypeselect = $_POST['testtype'];
+    $subselect = $_POST['subject_code'];
+
+}
+$batchspin = isset($batchspin) ? $batchspin : '';
+$departmentspin = isset($departmentspin) ? $departmentspin : '';
+$semesterselect = isset($semesterselect) ? $semesterselect : '';
+$testtypeselect = isset($testtypeselect) ? $testtypeselect : '';
+$subselect = isset($subselect) ? $subselect : '';
 ?>
+<style>
+    .form-control {
+  margin:0 5px; 
+  margin:5px 0; 
+ }
+</style>
 <section class="content-header">
-    <h1>Add Internal Result</h1>
+    <h1>Add/Update Internal Result</h1>
     <?php echo isset($error['add_menu']) ? $error['add_menu'] : ''; ?>
     <ol class="breadcrumb">
         <li><a href="home.php"><i class="fa fa-home"></i> Home</a></li>
@@ -55,7 +110,7 @@ if (isset($_POST['btnAdd'])) {
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Add University Result</h3>
+                    <h3 class="box-title">Add/Update Internal Result</h3>
                 </div>
                 <div class="box-header">
                     <?php echo isset($error['cancelable']) ? '<span class="label label-danger">Till status is required.</span>' : ''; ?>
@@ -78,7 +133,7 @@ if (isset($_POST['btnAdd'])) {
                                                     $result = $db->getResult();
                                                     foreach ($result as $value) {
                                                     ?>
-                                                        <option value='<?= $value['year'] ?>'><?= $value['year'] ?></option>
+                                                        <option value='<?= $value['year'] ?>' <?=$batchspin == $value['year'] ? ' selected="selected"' : '';?>><?= $value['year'] ?></option>
                                                     <?php } ?>
 
                                                 </select>
@@ -92,7 +147,7 @@ if (isset($_POST['btnAdd'])) {
                                         $result = $db->getResult();
                                         foreach ($result as $value) {
                                         ?>
-                                            <option value='<?= $value['semester'] ?>' ><?= $value['semester'] ?></option>
+                                            <option value='<?= $value['semester'] ?>' <?=$semesterselect == $value['semester'] ? ' selected="selected"' : '';?> ><?= $value['semester'] ?></option>
                                         <?php } ?>
                                     </select>
                             </div>
@@ -115,7 +170,7 @@ if (isset($_POST['btnAdd'])) {
                                         $result = $db->getResult();
                                         foreach ($result as $value) {
                                         ?>
-                                            <option value='<?= $value['department'] ?>'><?= $value['department'] ?></option>
+                                            <option value='<?= $value['department'] ?>' <?=$departmentspin == $value['department'] ? ' selected="selected"' : '';?>><?= $value['department'] ?></option>
                                         <?php } ?>
 
                             </select>
@@ -130,7 +185,7 @@ if (isset($_POST['btnAdd'])) {
                                         $result = $db->getResult();
                                         foreach ($result as $value) {
                                         ?>
-                                            <option value='<?= $value['test_type'] ?>'><?= $value['test_type'] ?></option>
+                                            <option value='<?= $value['test_type'] ?>' <?=$testtypeselect == $value['test_type'] ? ' selected="selected"' : '';?>><?= $value['test_type'] ?></option>
                                         <?php } ?>
                                 
                             </select>
@@ -138,7 +193,7 @@ if (isset($_POST['btnAdd'])) {
                         <div class="form-group col-md-2">
                             <label for="">Subject</label>
                             
-                            <select id='subject' name="subject[]" class='form-control'>
+                            <select id='subject_code' name="subject_code" class='form-control'>
                                         <?php
                                         $sql = "SELECT * FROM `subjects`";
                                         $db->sql($sql);
@@ -146,7 +201,7 @@ if (isset($_POST['btnAdd'])) {
                                         $result = $db->getResult();
                                         foreach ($result as $value) {
                                         ?>
-                                            <option value='<?= $value['subject_code'] ?>'><?= $value['subject_code'] ?></option>
+                                            <option value='<?= $value['subject_code'] ?>' <?=$subselect == $value['subject_code'] ? ' selected="selected"' : '';?>><?= $value['subject_code'] ?></option>
                                         <?php } ?>
                             </select>
                         </div>
@@ -158,38 +213,78 @@ if (isset($_POST['btnAdd'])) {
                         </div>
 
                         </div>
-                        <?php
-                                $sql = "SELECT * FROM `students`";
+                        
+                                <?php
+                                $sql = "SELECT * FROM `students` WHERE batch = '$batchspin' AND department = '$departmentspin'";
                                 $db->sql($sql);
 
                                 $result = $db->getResult();
-                                foreach ($result as $value) {
-                                ?>
-                                <div class="row">
-                                    <div class="form-group">
+                                $num = isset($batchspin) ? $db->numRows($result) : 0;
+                                if($num != 0){
+                                    $sql = "SELECT * FROM `internalmarks` WHERE batch = '$batchspin' AND department = '$departmentspin' AND semester = '$semesterselect' AND test_type = '$testtypeselect' AND subject_code = '$subselect'";
+                                    $db->sql($sql);
+                                    $result2 = $db->getResult();
+                                    $num2 = $db->numRows($result2);
+                                    ?>
+                                    <div class="row">
+                                        <div class="form-group">
                                         <div class='col-md-4'>
                                             <label for="exampleInputEmail1">Student Roll No</label>
-                                            <input type="text" class="form-control" name="roll_no[]" value="<?php echo $value['roll_no'] ?>" readonly >
+                                            
                                         </div>
                                         <div class='col-md-4'>
                                             <label for="exampleInputEmail1">Marks</label>
-                                            <input type="number" class="form-control" name="marks[]" value="">
+                                            
                                         </div>
 
                                     </div>
 
 
                                 </div>
-                                <hr>
-                                <?php } ?>
+                                <?php
+                                foreach ($result as $value) {
+                                    $marks = '';
+                                    foreach ($result2 as $val) {
+                                        if($value['roll_no'] == $val['roll_no']){
+                                            $marks = $val['marks'];
+                                            break;
+                                        }
+                                        else{
+                                            $marks = '';
+                                        }
+                                    }
+                                    
+                                ?>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class='col-md-4'>
+                                           
+                                            <input type="text" class="form-control" name="roll_no[]" value="<?php echo $value['roll_no'] ?>" readonly >
+                                        </div>
+                                        <div class='col-md-4'>
+                                            <input type="text" class="form-control" name="marks[]" value="<?php echo $marks ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                             
+                                <?php }
+                                if($num2 == 0){
+                                    ?>
+                                    <div class="box-footer">
+                                        <input type="submit" class="btn-primary btn" value="Add" name="btnAdd" />&nbsp;
+                                    </div>
+                                    <?php }
+                                    else{
+                                        ?>
+                                        <div class="box-footer">
+                                            <input type="submit" class="btn-primary btn" value="Update" name="btnUpdate" />&nbsp;
+                                        </div>
+                                        <?php
+                                    }
+                                ?>
 
-
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        <input type="submit" class="btn-primary btn" value="Add" name="btnAdd" />&nbsp;
-                        
-                        <!--<div  id="res"></div>-->
-                    </div>
+                    <?php } ?>
+                    
                 </form>
             </div>
             <!-- /.box -->
@@ -218,7 +313,7 @@ if (isset($_POST['btnAdd'])) {
             CKEDITOR.instances[instance].setData('');
         }
     });
-    $('#subject').select2({
+    $('#subject_code').select2({
         width: 'element',
         placeholder: 'Type in subject to search',
 

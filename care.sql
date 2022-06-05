@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2022 at 12:03 PM
+-- Generation Time: Jun 05, 2022 at 10:55 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -234,11 +234,10 @@ CREATE TABLE `internalmarks` (
   `id` int(11) NOT NULL,
   `roll_no` text DEFAULT NULL,
   `department` text DEFAULT NULL,
+  `batch` int(11) DEFAULT NULL,
   `test_type` text DEFAULT NULL,
-  `number` text DEFAULT NULL,
   `semester` text DEFAULT NULL,
   `subject_code` text DEFAULT NULL,
-  `regulation` text DEFAULT NULL,
   `marks` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -246,11 +245,11 @@ CREATE TABLE `internalmarks` (
 -- Dumping data for table `internalmarks`
 --
 
-INSERT INTO `internalmarks` (`id`, `roll_no`, `department`, `test_type`, `number`, `semester`, `subject_code`, `regulation`, `marks`) VALUES
-(1, '810720104001', 'ECE', 'Cycle test', '1', '3', 'EC8756', 'R2017', '100'),
-(3, '810718106005', 'ECE', 'Cycle test', '1', '1', 'CS8909', 'R2017', '85'),
-(6, '810718106003', 'ECE', 'Cycle test', '1', '1', 'EC8056', 'R2017', '70'),
-(7, '810718106004', 'CSE', 'Unit test', '2', '1', 'CS8909', 'R2017', '50');
+INSERT INTO `internalmarks` (`id`, `roll_no`, `department`, `batch`, `test_type`, `semester`, `subject_code`, `marks`) VALUES
+(12, '810718106005', 'ECE', 2018, 'Unit Test 1', '1', 'EC8701', '70'),
+(13, '811000000000', 'ECE', 2018, 'Unit Test 1', '1', 'EC8701', '45'),
+(14, '810718106005', 'ECE', 2018, 'Cycle Test 1', '1', 'EC8701', '30'),
+(15, '811000000000', 'ECE', 2018, 'Cycle Test 1', '1', 'EC8701', '40');
 
 -- --------------------------------------------------------
 
@@ -358,6 +357,31 @@ CREATE TABLE `section` (
 INSERT INTO `section` (`id`, `section`) VALUES
 (1, 'A'),
 (2, 'B');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `semester`
+--
+
+CREATE TABLE `semester` (
+  `id` int(11) NOT NULL,
+  `semester` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `semester`
+--
+
+INSERT INTO `semester` (`id`, `semester`) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8);
 
 -- --------------------------------------------------------
 
@@ -496,9 +520,9 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `batch`, `degree`, `department`, `section`, `roll_no`, `register_number`, `name`, `quota`, `mode`, `gender`, `dob`, `religion`, `community`, `sub_caste`, `blood_group`, `mother_tongue`, `nationality`, `aadhaar_number`, `father_name`, `father_occupation`, `mother_name`, `mother_occupation`, `parent_income`, `address`, `district`, `mobile`, `parent_mobile`, `email`, `sslc_school`, `sslc_percentage`, `sslc_medium`, `sslc_board`, `sslc_year`, `group`, `hsc_school`, `hsc_percentage`, `hsc_medium`, `hsc_board`, `hsc_year`, `maths`, `physics`, `chemistry`, `average`, `cut_off`, `total`, `type_of_stay`, `bus_route_no`, `boarding_point`, `reference`, `fg`, `pstm_sch`, `nsp`, `bc_mbc_sch`, `tnea_no`, `consortium_no`, `consortium_marks`) VALUES
-(1, NULL, 'UG', 'ECE', NULL, 810718106005, NULL, 'Jp', NULL, NULL, 'M', '2022-04-21', NULL, 'BC', NULL, NULL, NULL, NULL, '', 'selvam', NULL, '', '0', NULL, NULL, '', '8778624681', NULL, 'prasad@gmail.com', NULL, 50, NULL, NULL, NULL, NULL, NULL, 60, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
-(2, NULL, 'UG', 'ECE', NULL, 810720104001, NULL, 'aanto', NULL, NULL, 'M', '', NULL, 'MBC', NULL, NULL, NULL, NULL, '', '', NULL, '', '0', NULL, NULL, '', '9876543210', NULL, 'aanto@gmail.com', NULL, 80, NULL, NULL, NULL, NULL, NULL, 90, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
-(3, NULL, 'UG', 'CSE', NULL, 810718106009, NULL, 'surya', NULL, NULL, 'M', NULL, NULL, 'BC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, '8778634567', NULL, 'surya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
+(1, '2018', 'UG', 'ECE', NULL, 810718106005, NULL, 'Jp', NULL, NULL, 'M', '2022-04-21', NULL, 'BC', NULL, NULL, NULL, NULL, '', 'selvam', NULL, '', '0', NULL, NULL, '', '8778624681', NULL, 'prasad@gmail.com', NULL, 50, NULL, NULL, NULL, NULL, NULL, 60, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
+(2, '2019', 'UG', 'ECE', NULL, 810720104001, NULL, 'aanto', NULL, NULL, 'M', '', NULL, 'MBC', NULL, NULL, NULL, NULL, '', '', NULL, '', '0', NULL, NULL, '', '9876543210', NULL, 'aanto@gmail.com', NULL, 80, NULL, NULL, NULL, NULL, NULL, 90, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
+(3, '2018', 'UG', 'CSE', NULL, 810718106009, NULL, 'surya', NULL, NULL, 'M', NULL, NULL, 'BC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, '8778634567', NULL, 'surya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
 (4, NULL, 'UG', 'ECE', NULL, 810718106005, NULL, 'Nagarajan', NULL, NULL, 'M', NULL, NULL, 'MBC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, '9876543210', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
 (5, NULL, 'UG', 'ECE', NULL, 810718106003, NULL, 'jeya', NULL, NULL, 'M', '2022-04-21', NULL, 'MBC', NULL, NULL, NULL, NULL, '', '', NULL, '', '0', NULL, NULL, '', '8080808080', NULL, 'divagar.a@care.ac.in', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
 (41, '2018', 'UG', 'ECE', 'b', 811000000000, '546647', 'DIVAKkar', 'government', 'regular', 'M', '26/08/2001', 'hindu', 'MBC', 'uralicounder', 'B+', 'tamil', 'india', '67383782929', 'karan', 'doctor', 'gency', 'housewife', '60,000', '2/42,azhagapuri,r,tmalai', 'karur', '8080808080', '8766676', 'divkarvan03@gmail.com', 'GHSS', 100, 'english', 'central', '2010', 'academic', 'ghss', 100, 'english', 'central', '2022', '100', '100', '100', '100', '100', '100', 'DayScholar', '100', 'karur', 'deepalakshmi', 'no', 'yes', 'no', 'no', '9500545', '100', 100),
@@ -528,6 +552,27 @@ INSERT INTO `subjects` (`id`, `department`, `subject_name`, `subject_code`, `sem
 (2, 'ECE', 'WIRELESS', 'EC8901', 1, '2013'),
 (3, 'ECE', 'Communication Theory of Engineering Technology ', 'CE9390', 1, '2017'),
 (4, 'ECE', 'DSP', '339430', 1, '2017');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test_type`
+--
+
+CREATE TABLE `test_type` (
+  `id` int(11) NOT NULL,
+  `test_type` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `test_type`
+--
+
+INSERT INTO `test_type` (`id`, `test_type`) VALUES
+(1, 'Unit Test 1'),
+(2, 'Cycle Test 1'),
+(3, 'Unit Test 2'),
+(4, 'Cycle Test 2');
 
 -- --------------------------------------------------------
 
@@ -702,6 +747,12 @@ ALTER TABLE `section`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `semester`
+--
+ALTER TABLE `semester`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `settings`
 --
 ALTER TABLE `settings`
@@ -723,6 +774,12 @@ ALTER TABLE `students`
 -- Indexes for table `subjects`
 --
 ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `test_type`
+--
+ALTER TABLE `test_type`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -805,7 +862,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `internalmarks`
 --
 ALTER TABLE `internalmarks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `medium`
@@ -838,6 +895,12 @@ ALTER TABLE `section`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `semester`
+--
+ALTER TABLE `semester`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
@@ -859,6 +922,12 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `test_type`
+--
+ALTER TABLE `test_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
