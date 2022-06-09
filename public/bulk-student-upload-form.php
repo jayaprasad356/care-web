@@ -85,7 +85,7 @@ $config = $fn->get_configurations();
         //   alert('Please select type.');
         // }
         // if (type1 == 'products') {
-        window.location.href = 'library/student_sample_form.csv';
+        window.location.href = 'library/stu_form.csv';
         // } 
 
     });

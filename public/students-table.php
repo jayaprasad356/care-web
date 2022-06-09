@@ -20,10 +20,20 @@
                                 <div class="form-group col-md-2">
                                         <h4 class="box-title"> Batch</h4>
                                         <select name='batch[]' id='batch' class='form-control' placeholder='Enter the Batch'>
-                                            <option value="">ALL</option>
+                                            
                                                     <?php
                                                     $batch = $_SESSION['batch'];
-                                                    $sql = "SELECT year FROM `batch` WHERE  year IN ($batch) ";
+                                                    $role = $_SESSION['role'];
+                                                    if ($role == 'Admin') {
+                                                        $sql = "SELECT year FROM `batch`";
+                                                        ?>
+                                                        <option value="">ALL</option>
+                                                        <?php
+
+                                                    }else{
+                                                        $sql = "SELECT year FROM `batch` WHERE  year IN ($batch) ";
+                                                    }
+                                                    
                                                     $db->sql($sql);
                                                     $result = $db->getResult();
                                                     foreach ($result as $value) {
@@ -54,10 +64,18 @@
                                 <div class="form-group col-md-2">
                                     <h4 class="box-title"> Department</h4>
                                     <select name='department[]' id='department' class='form-control' placeholder='Enter the department you want to assign Seller' >
-                                        <option value="">ALL</option>
                                                 <?php
+                                                $department = $_SESSION['department'];
+                                                $role = $_SESSION['role'];
+                                                if ($role == 'Admin') {
+                                                    $sql = "SELECT department FROM `department`";
+                                                    ?>
+                                                    <option value="">ALL</option>
+                                                    <?php
+                                                } else {
+                                                    $sql = "SELECT department FROM `department` WHERE  department IN ('$department') ";
                                                 
-                                                $sql = "SELECT department FROM `department`";
+                                                }
                                                 $db->sql($sql);
                                                 $result = $db->getResult();
                                                 foreach ($result as $value) {
@@ -407,7 +425,7 @@
                                     <th data-field="tnea_no" data-sortable="true">TNEA Allotment No.</th>
                                     <th data-field="consortium_no" data-sortable="true">Consortium No.</th>
                                     <th data-field="consortium_marks" data-sortable="true">Consortium Marks</th>
-                                    <th data-field="operate" data-events="actionEvents">Action</th>
+                                    <!-- <th data-field="operate" data-events="actionEvents">Action</th> -->
                                 </tr>
                             </thead>
                         </table>

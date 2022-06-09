@@ -155,16 +155,8 @@ $subselect = isset($subselect) ? $subselect : '';
                                 <label for="">Department</label>
                                 <select name='department' id='department' class='form-control' placeholder='Enter the department you want to assign Seller' >
                                         <?php
-                                        $role = $_SESSION['role'];
-                                        if($role == 'Exam Cell'){
-                                            
-                                            $sql = "SELECT department FROM `department`";
-                                            
-                                        }
-                                        else{
-                                            $department = $_SESSION['department'];
-                                            $sql = "SELECT department FROM `department` WHERE department IN ('$department') ";
-                                        }
+                                        $department = $_SESSION['department'];
+                                        $sql = "SELECT department FROM `department` WHERE department IN ('$department') ";
                                         $db->sql($sql);
 
                                         $result = $db->getResult();
