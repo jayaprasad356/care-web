@@ -270,7 +270,7 @@ $ID = $_SESSION['id'];
 
                 </li>
                 <?php }?>
-                <?php if($_SESSION['role'] == 'HOD' || $_SESSION['role'] == 'CC'){?>
+                <?php if($_SESSION['role'] == 'HOD' || $_SESSION['role'] == 'CC' || $_SESSION['role'] == 'Faculty'){?>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-bullseye"></i>
@@ -278,10 +278,6 @@ $ID = $_SESSION['id'];
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <?php if($_SESSION['role'] == 'CC'){?>
-                        <li><a href="add-internalresult.php"><i class="fa fa-sliders"></i> Add Internal Marks</a></li>
-                        <!-- <li><a href="add-universityresult.php"><i class="fa fa-sliders"></i> Add University Result</a></li> -->
-                        <?php }?>
                         <li><a href="add-internalresult.php"><i class="fa fa-sliders"></i> Add Internal Marks</a></li>
                         <li><a href="internals.php"><i class="fa fa-sliders"></i>View Internal Marks</a></li>
                     </ul>

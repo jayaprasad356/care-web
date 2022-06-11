@@ -22,6 +22,7 @@ if (isset($_POST['btnAdd'])) {
         $password = $db->escapeString($fn->xss_clean($_POST['password']));
         $department = $fn->xss_clean_array($_POST['department']);
         $role = $db->escapeString($fn->xss_clean($_POST['role']));
+        $subject_code = $db->escapeString($fn->xss_clean($_POST['subject_code']));
         $batch = $fn->xss_clean_array($_POST['batch']);
         $batchs = implode(",", $batch);
         $departments = implode(",", $department);
@@ -51,7 +52,7 @@ if (isset($_POST['btnAdd'])) {
             $res = $db->getResult();
             $num = $db->numRows($res);
             if($num < 1){
-                $sql = "INSERT INTO staffs (name,email,mobile,password,department,role,batch) VALUES('$name','$email','$mobile','$password','$departments','$role','$batchs')";
+                $sql = "INSERT INTO staffs (name,email,mobile,password,department,role,batch,subject_code) VALUES('$name','$email','$mobile','$password','$departments','$role','$batchs','$subject_code')";
                 $db->sql($sql);
                 $staffs_result = $db->getResult();
                 if (!empty($staffs_result)) {
@@ -160,7 +161,7 @@ if (isset($_POST['btnAdd'])) {
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="form-group col-md-8">
+                            <div class="form-group col-md-4">
                                 <div class="form-group">
                                     <label for='batch'>Select Batch</label><i class="text-danger asterik">*</i>
                                     <select name='batch[]' id='batch' class='form-control' placeholder='Enter the Batch you want to assign Seller' required multiple="multiple">
@@ -176,7 +177,24 @@ if (isset($_POST['btnAdd'])) {
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group col-md-4">
+                            <label for="">Subject</label>
+                            
+                            <select id='subject_code' name="subject_code" class='form-control'>
+                            <option value="none">Select</option>
+                                        <?php
+                                        $sql = "SELECT * FROM `subjects`";
+                                        $db->sql($sql);
+
+                                        $result = $db->getResult();
+                                        foreach ($result as $value) {
+                                        ?>
+                                            <option value='<?= $value['subject_code'] ?>'><?= $value['subject_code'] ?></option>
+                                        <?php } ?>
+                            </select>
                         </div>
+                        </div>
+
 
                     <!-- /.box-body -->
                     <div class="box-footer">
@@ -220,6 +238,11 @@ if (isset($_POST['btnAdd'])) {
     $('#department').select2({
         width: 'element',
         placeholder: 'type in department to search',
+
+    });
+    $('#subject_code').select2({
+        width: 'element',
+        placeholder: 'Type in subject to search',
 
     });
 </script>

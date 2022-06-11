@@ -51,6 +51,7 @@ if (isset($_POST['btnLogin'])) {
             $_SESSION['email'] = $email;
             $_SESSION['batch'] = $res[0]['batch'];
             $_SESSION['department'] = $res[0]['department'];
+            $_SESSION['subject_code'] = $res[0]['subject_code'];
             $_SESSION['timeout'] = $currentTime + $expired;
             header("location: home.php");
         } else {

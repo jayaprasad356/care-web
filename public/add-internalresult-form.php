@@ -187,7 +187,17 @@ $subselect = isset($subselect) ? $subselect : '';
                             
                             <select id='subject_code' name="subject_code" class='form-control'>
                                         <?php
-                                        $sql = "SELECT * FROM `subjects`";
+                                        $subject_code = $_SESSION['subject_code'];
+                                        $role = $_SESSION['role'];
+                                        if ($role == 'Faculty') {
+                                            $sql = "SELECT * FROM `subjects` WHERE  subject_code IN ('$subject_code') ";
+
+                                        }
+                                        else{
+                                            $sql = "SELECT * FROM `subjects`";
+
+                                        }
+                                        
                                         $db->sql($sql);
 
                                         $result = $db->getResult();
