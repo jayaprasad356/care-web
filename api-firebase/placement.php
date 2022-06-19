@@ -23,14 +23,13 @@ $db->sql($sql);
 $res = $db->getResult();
 $sslc_percentage=$res[0]['sslc_percentage'];
 $hsc_percentage=$res[0]['hsc_percentage'];
-$ug_percentage=$res[0]['ug_percentage'];
-$sql = "SELECT * FROM companies WHERE sslc_percentage <= '$sslc_percentage' AND hsc_percentage <='$hsc_percentage' AND ug_percentage <='$ug_percentage'";
+$sql = "SELECT * FROM companies WHERE sslc_percentage <= '$sslc_percentage' AND hsc_percentage <='$hsc_percentage'";
 $db->sql($sql);
 $res = $db->getResult();
 
 
 $response['success'] = true;
-$response['message'] = "placements list Retrieved Successfullly";
+$response['message'] = "Placements list Retrieved Successfullly";
 $response['data'] = $res;
 print_r(json_encode($response));
 
