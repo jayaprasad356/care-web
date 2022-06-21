@@ -368,7 +368,9 @@
                         }'>
                             <thead>
                                 <tr>
+                                    
                                     <th data-field="id" data-sortable="true">ID</th>
+                                    <th data-field="action" data-events="actionEvents">File</th>
                                     <th data-field="batch" data-sortable="true">Batch</th>
                                     <th data-field="degree" data-sortable="true">Degree</th>
                                     <th data-field="department" data-sortable="true">Department</th>
@@ -425,7 +427,7 @@
                                     <th data-field="tnea_no" data-sortable="true">TNEA Allotment No.</th>
                                     <th data-field="consortium_no" data-sortable="true">Consortium No.</th>
                                     <th data-field="consortium_marks" data-sortable="true">Consortium Marks</th>
-                                    <!-- <th data-field="operate" data-events="actionEvents">Action</th> -->
+                                 <th data-field="operate" data-events="actionEvents">Action</th>
                                 </tr>
                             </thead>
                         </table>

@@ -210,7 +210,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'students') {
     foreach ($res as $row) {
 
         $operate = '<a href="edit-student.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
-        
+        $operate1= '<a href="view-student.php?id='. $row['id'] . '" class="label label-primary" target="_blank" title="View">View</a>'; 
         $tempRow['id'] = $row['id'];
         $tempRow['batch'] = $row['batch'];
         $tempRow['degree'] = $row['degree'];
@@ -269,6 +269,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'students') {
         $tempRow['consortium_no'] = $row['consortium_no'];
         $tempRow['consortium_marks'] = $row['consortium_marks'];
         $tempRow['operate'] = $operate;
+        $tempRow['action'] = $operate1;
         $rows[] = $tempRow;
     }
     $bulkData['rows'] = $rows;
