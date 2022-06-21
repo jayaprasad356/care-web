@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2022 at 10:55 PM
+-- Generation Time: Jun 18, 2022 at 06:13 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -434,6 +434,7 @@ CREATE TABLE `staffs` (
   `department` text DEFAULT NULL,
   `batch` text DEFAULT NULL,
   `role` text DEFAULT NULL,
+  `subject_code` text DEFAULT NULL,
   `last_updated` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -442,12 +443,14 @@ CREATE TABLE `staffs` (
 -- Dumping data for table `staffs`
 --
 
-INSERT INTO `staffs` (`id`, `name`, `email`, `mobile`, `password`, `department`, `batch`, `role`, `last_updated`, `date_created`) VALUES
-(1, 'Deepalakshimi', 'deepa@care.ac.in', '8907654321', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'Exam Cell', '2022-04-22 08:53:03', '2022-03-24 14:51:35'),
-(2, 'jeyarani', 'jeyarani@care.ac.in', '9866543457', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'HOD', '2022-04-26 08:40:37', '2022-03-28 10:08:01'),
-(3, 'Sriram', 'sriram@gmail.com', '9876543210', 'e807f1fcf82d132f9bb018ca6738a19f', NULL, '2018,2019,2020,2021', 'Admin', '2022-04-26 08:53:54', '2022-04-21 11:05:24'),
-(4, 'Gopinath', 'gopinath@gmail.com', '9876543210', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018,2019,2020,2021', 'CC', '2022-05-18 15:15:10', '2022-04-21 11:05:24'),
-(5, 'Suresh', 'suresh@gmail.com', '9090909090', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'Placement Officer', '2022-05-26 11:05:41', '2022-05-26 10:10:05');
+INSERT INTO `staffs` (`id`, `name`, `email`, `mobile`, `password`, `department`, `batch`, `role`, `subject_code`, `last_updated`, `date_created`) VALUES
+(1, 'Deepalakshimi', 'deepa@care.ac.in', '8907654321', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'Exam Cell', NULL, '2022-04-22 08:53:03', '2022-03-24 14:51:35'),
+(2, 'jeyarani', 'jeyarani@care.ac.in', '9866543457', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'HOD', NULL, '2022-04-26 08:40:37', '2022-03-28 10:08:01'),
+(3, 'Sriram', 'sriram@gmail.com', '9876543210', 'e807f1fcf82d132f9bb018ca6738a19f', NULL, '2018,2019,2020,2021', 'Admin', NULL, '2022-04-26 08:53:54', '2022-04-21 11:05:24'),
+(4, 'Gopinath', 'gopinath@gmail.com', '9876543210', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'CC', NULL, '2022-06-08 17:14:28', '2022-04-21 11:05:24'),
+(5, 'Suresh', 'suresh@gmail.com', '9090909090', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'Placement Officer', NULL, '2022-05-26 11:05:41', '2022-05-26 10:10:05'),
+(6, 'Kumar', 'jp@gmail.com', '9876556565', 'e807f1fcf82d132f9bb018ca6738a19f', 'CIVIL,CSE,MECH', '2019', 'CC', NULL, NULL, '2022-06-08 16:47:34'),
+(7, 'Prasad', 'prasad@gmail.com', '9878787877', 'e807f1fcf82d132f9bb018ca6738a19f', 'CIVIL', '2018', 'Faculty', 'EC8701', NULL, '2022-06-10 15:39:50');
 
 -- --------------------------------------------------------
 
@@ -520,13 +523,13 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `batch`, `degree`, `department`, `section`, `roll_no`, `register_number`, `name`, `quota`, `mode`, `gender`, `dob`, `religion`, `community`, `sub_caste`, `blood_group`, `mother_tongue`, `nationality`, `aadhaar_number`, `father_name`, `father_occupation`, `mother_name`, `mother_occupation`, `parent_income`, `address`, `district`, `mobile`, `parent_mobile`, `email`, `sslc_school`, `sslc_percentage`, `sslc_medium`, `sslc_board`, `sslc_year`, `group`, `hsc_school`, `hsc_percentage`, `hsc_medium`, `hsc_board`, `hsc_year`, `maths`, `physics`, `chemistry`, `average`, `cut_off`, `total`, `type_of_stay`, `bus_route_no`, `boarding_point`, `reference`, `fg`, `pstm_sch`, `nsp`, `bc_mbc_sch`, `tnea_no`, `consortium_no`, `consortium_marks`) VALUES
-(1, '2018', 'UG', 'ECE', NULL, 810718106005, NULL, 'Jp', NULL, NULL, 'M', '2022-04-21', NULL, 'BC', NULL, NULL, NULL, NULL, '', 'selvam', NULL, '', '0', NULL, NULL, '', '8778624681', NULL, 'prasad@gmail.com', NULL, 50, NULL, NULL, NULL, NULL, NULL, 60, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
 (2, '2019', 'UG', 'ECE', NULL, 810720104001, NULL, 'aanto', NULL, NULL, 'M', '', NULL, 'MBC', NULL, NULL, NULL, NULL, '', '', NULL, '', '0', NULL, NULL, '', '9876543210', NULL, 'aanto@gmail.com', NULL, 80, NULL, NULL, NULL, NULL, NULL, 90, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
 (3, '2018', 'UG', 'CSE', NULL, 810718106009, NULL, 'surya', NULL, NULL, 'M', NULL, NULL, 'BC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, '8778634567', NULL, 'surya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
 (4, NULL, 'UG', 'ECE', NULL, 810718106005, NULL, 'Nagarajan', NULL, NULL, 'M', NULL, NULL, 'MBC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, '9876543210', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
 (5, NULL, 'UG', 'ECE', NULL, 810718106003, NULL, 'jeya', NULL, NULL, 'M', '2022-04-21', NULL, 'MBC', NULL, NULL, NULL, NULL, '', '', NULL, '', '0', NULL, NULL, '', '8080808080', NULL, 'divagar.a@care.ac.in', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, 0),
 (41, '2018', 'UG', 'ECE', 'b', 811000000000, '546647', 'DIVAKkar', 'government', 'regular', 'M', '26/08/2001', 'hindu', 'MBC', 'uralicounder', 'B+', 'tamil', 'india', '67383782929', 'karan', 'doctor', 'gency', 'housewife', '60,000', '2/42,azhagapuri,r,tmalai', 'karur', '8080808080', '8766676', 'divkarvan03@gmail.com', 'GHSS', 100, 'english', 'central', '2010', 'academic', 'ghss', 100, 'english', 'central', '2022', '100', '100', '100', '100', '100', '100', 'DayScholar', '100', 'karur', 'deepalakshmi', 'no', 'yes', 'no', 'no', '9500545', '100', 100),
-(42, '2022', 'UG', 'CSE', 'D', 8456387387823782, '47664747', 'HELLEN', 'government', 'lateral', 'M', '6/02/2003', 'HINDU', 'uraligounder', 'gdd', 'O+', 'tamil', 'indian', '45657678', 'gejjx', 'sjbbcbc', 'xacxsuicgus', 'house wife', '70,000', '2/42,trichy', 'trichy', '5356489909', '8756342134', 'divakarpay@gamil.com', 'ghss', 34, 'tamil', 'state', '2016', 'academic', 'ghss', 45, 'tamil', 'state', '2018', '34', '67', '45', '34', '45', '456', 'hostel', '23', 'trichy', 'selvakumar', 'yes', 'no', 'yes', 'no', '63633832', '999999', 67);
+(42, '2022', 'UG', 'CSE', 'D', 8456387387823782, '47664747', 'HELLEN', 'government', 'lateral', 'M', '6/02/2003', 'HINDU', 'uraligounder', 'gdd', 'O+', 'tamil', 'indian', '45657678', 'gejjx', 'sjbbcbc', 'xacxsuicgus', 'house wife', '70,000', '2/42,trichy', 'trichy', '5356489909', '8756342134', 'divakarpay@gamil.com', 'ghss', 34, 'tamil', 'state', '2016', 'academic', 'ghss', 45, 'tamil', 'state', '2018', '34', '67', '45', '34', '45', '456', 'hostel', '23', 'trichy', 'selvakumar', 'yes', 'no', 'yes', 'no', '63633832', '999999', 67),
+(44, '2018', 'UG', 'ECE', 'NULL', 810718116005, 'B18EC005', 'Jp', 'NULL', 'NULL', 'M', '2022-04-21', 'NULL', 'BC', 'NULL', 'NULL', 'NULL', 'NULL', '', 'selvam', 'NULL', '', '0', 'NULL', 'NULL', '', '8778624681', 'NULL', 'prasad@gmail.com', 'NULL', 50, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 60, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '0', 'NULL', 'NULL', 'NULL', 'NULL', 0);
 
 -- --------------------------------------------------------
 
@@ -551,7 +554,8 @@ INSERT INTO `subjects` (`id`, `department`, `subject_name`, `subject_code`, `sem
 (1, 'ECE', 'CARE website', 'EC8701', 1, '2017'),
 (2, 'ECE', 'WIRELESS', 'EC8901', 1, '2013'),
 (3, 'ECE', 'Communication Theory of Engineering Technology ', 'CE9390', 1, '2017'),
-(4, 'ECE', 'DSP', '339430', 1, '2017');
+(4, 'ECE', 'DSP', '339430', 1, '2017'),
+(5, 'ECE', 'wds', '23232', NULL, 'e232');
 
 -- --------------------------------------------------------
 
@@ -910,19 +914,19 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `staffs`
 --
 ALTER TABLE `staffs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `test_type`
