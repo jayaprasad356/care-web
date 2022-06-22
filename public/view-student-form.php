@@ -48,7 +48,7 @@ if (isset($_POST['btnUpdate'])){
     $sslc_medium = $db->escapeString($fn->xss_clean($_POST['sslc_medium']));
     $sslc_board = $db->escapeString($fn->xss_clean($_POST['sslc_board']));
     $sslc_year = $db->escapeString($fn->xss_clean($_POST['sslc_year']));
-    $group = $db->escapeString($fn->xss_clean($_POST['group']));
+   
     $hsc_school = $db->escapeString($fn->xss_clean($_POST['hsc_school']));
     $hsc_percentage = $db->escapeString($fn->xss_clean($_POST['hsc_percentage']));
     $hsc_medium = $db->escapeString($fn->xss_clean($_POST['hsc_medium']));
@@ -133,8 +133,8 @@ if (isset($_POST['btnUpdate'])){
     if (empty($father_occupation)) {
         $error['father_occupation'] = " <span class='label label-danger'>Required!</span>";
     }
-    if (empty($mother_income)) {
-        $error['mother_income'] = " <span class='label label-danger'>Required!</span>";
+    if (empty($mother_name)) {
+        $error['mother_name'] = " <span class='label label-danger'>Required!</span>";
     }
     if (empty($mother_occupation)) {
         $error['mother_occupation'] = " <span class='label label-danger'>Required!</span>";
@@ -172,9 +172,7 @@ if (isset($_POST['btnUpdate'])){
     if (empty($sslc_year)) {
         $error['sslc_year'] = " <span class='label label-danger'>Required!</span>";
     }
-    if (empty($group)) {
-        $error['group'] = " <span class='label label-danger'>Required!</span>";
-    }
+    
     if (empty($hsc_school)) {
         $error['hsc_school'] = " <span class='label label-danger'>Required!</span>";
     }
@@ -244,8 +242,8 @@ if (isset($_POST['btnUpdate'])){
    
 
 
-    if (!empty($batch)&& !empty($degree) && !empty($department) && !empty($section) && !empty($roll_no) && !empty($register_number) && !empty($name)&& !empty($quota)&& !empty($mode) && !empty($gender)&& !empty($dob)&& !empty($religion)&& !empty($community)&& !empty($sub_caste)&& !empty($blood_group)&& !empty($mother_tongue)&& !empty($nationality)&& !empty($aadhaar_number)&& !empty($father_name) && !empty($father_occupation) && !empty($mother_name) && !empty($mother_occupation) && !empty($parent_income) && !empty($address) && !empty($district) && !empty($mobile) && !empty($parent_mobile) && !empty($email) && !empty($sslc_school) && !empty($sslc_percentage) && !empty($sslc_medium) && !empty($sslc_board) && !empty($sslc_year) && !empty($group) && !empty($hsc_school) && !empty($hsc_percentage) && !empty($hsc_medium) && !empty($hsc_board) && !empty($hsc_year) && !empty($maths) && !empty($physics) && !empty($chemistry) && !empty($average) && !empty($cut_off) && !empty($total) && !empty($type_of_stay) && !empty($bus_route_no) && !empty($boarding_point) && !empty($reference) && !empty($fg) && !empty($pstm_sch) && !empty($nsp) && !empty($bc_mbc_sch) && !empty($tnea_no) && !empty($consortium_no) && !empty($consortium_marks)) {
-        $sql = "UPDATE students SET batch='$batch',degree='$degree',department='$department', section='$section',roll_no='$roll_no',register_number='$register_number',name='$name', quota='$quota, mode='$mode,gender='$gender',dob='$dob',religion='$religion',community='$community',sub_caste='$sub_caste',blood_group='$blood_group',mother_tongue='$mother_tongue',nationality='$nationality',aadhaar_number='$aadhaar_number',father_name='$father_name',father_occupation='$father_occupation',mother_name='$mother_name',mother_occupation='$mother_occupation',parent_income='$parent_income',address='$address',district='$district',mobile='$mobile',parent_mobile='$parent_mobile',email='$email',sslc_school='$sslc_school',sslc_percentage='$sslc_percentage',sslc_medium='$sslc_medium',sslc_board='$sslc_board',sslc_year='$sslc_year',group='$group',hsc_school='$hsc_school',hsc_percentage='$hsc_percentage',hsc_medium='$hsc_medium',hsc_board='$hsc_board',hsc_year='$hsc_year',maths='$maths',physics='$physics',chemistry='$chemistry',average='$average',cut_off='$cut_off',total='$total',type_of_stay='$type_of_stay',bus_route_no='$bus_route_no',boarding_point='$boarding_point',reference='$reference',fg='$fg',pstm_sch='$pstm_sch',nsp='$nsp',bc_mbc_sch='$bc_mbc_sch',tnea_no='$tnea_no',consortium_no='$consortium_no',consortium_marks='$consortium_marks' WHERE id='$ID'";
+    if (!empty($batch) && !empty($degree) && !empty($department) && !empty($section) && !empty($roll_no) && !empty($register_number) && !empty($name) && !empty($quota) && !empty($mode) && !empty($gender) && !empty($dob) && !empty($religion) && !empty($community) && !empty($sub_caste) && !empty($blood_group) && !empty($mother_tongue) && !empty($nationality) && !empty($aadhaar_number) && !empty($father_name) && !empty($father_occupation) && !empty($mother_name) && !empty($mother_occupation) && !empty($parent_income) && !empty($address) && !empty($district) && !empty($mobile) && !empty($parent_mobile) && !empty($email) && !empty($sslc_school) && !empty($sslc_percentage) && !empty($sslc_medium) && !empty($sslc_board) && !empty($sslc_year) && !empty($hsc_school) && !empty($hsc_percentage) && !empty($hsc_medium) && !empty($hsc_board) && !empty($hsc_year) && !empty($maths) && !empty($physics) && !empty($chemistry) && !empty($average) && !empty($cut_off) && !empty($total) && !empty($type_of_stay) && !empty($bus_route_no) && !empty($boarding_point) && !empty($reference) && !empty($fg) && !empty($pstm_sch) && !empty($nsp) && !empty($bc_mbc_sch) && !empty($tnea_no) && !empty($consortium_no) && !empty($consortium_marks)) {
+        $sql = "UPDATE students SET batch='$batch',degree='$degree',department='$department', section='$section',roll_no='$roll_no',register_number='$register_number',name='$name', quota='$quota', mode='$mode',gender='$gender',dob='$dob',religion='$religion',community='$community',sub_caste='$sub_caste',blood_group='$blood_group',mother_tongue='$mother_tongue',nationality='$nationality',aadhaar_number='$aadhaar_number',father_name='$father_name',father_occupation='$father_occupation',mother_name='$mother_name',mother_occupation='$mother_occupation',parent_income='$parent_income',address='$address',district='$district',mobile='$mobile',parent_mobile='$parent_mobile',email='$email',sslc_school='$sslc_school',sslc_percentage='$sslc_percentage',sslc_medium='$sslc_medium',sslc_board='$sslc_board',sslc_year='$sslc_year',hsc_school='$hsc_school',hsc_percentage='$hsc_percentage',hsc_medium='$hsc_medium',hsc_board='$hsc_board',hsc_year='$hsc_year',maths='$maths',physics='$physics',chemistry='$chemistry',average='$average',cut_off='$cut_off',total='$total',type_of_stay='$type_of_stay',bus_route_no='$bus_route_no',boarding_point='$boarding_point',reference='$reference',fg='$fg',pstm_sch='$pstm_sch',nsp='$nsp',bc_mbc_sch='$bc_mbc_sch',tnea_no='$tnea_no',consortium_no='$consortium_no',consortium_marks='$consortium_marks' WHERE id='$ID'";
         $db->sql($sql);
         $student_result = $db->getResult();
         if (!empty($student_result)) {
@@ -491,10 +489,7 @@ foreach ($res as $row)
                         <hr>
                         <div class="row">
                             <div class="form-group">
-                                <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">Group</label> <i class="text-danger asterik">*</i><?php echo isset($error['group']) ? $error['group'] : ''; ?>
-                                    <input type="text" class="form-control" name="group" value="<?php echo $data['group']?>" required>
-                                </div>
+                               
                                 <div class='col-md-4'>
                                     <label for="exampleInputEmail1">HSC-School</label> <i class="text-danger asterik">*</i><?php echo isset($error['hsc_school']) ? $error['hsc_school'] : ''; ?>
                                     <input type="text" class="form-control" name="hsc_school" value="<?php echo $data['hsc_school']?>" required>

@@ -44,6 +44,61 @@ include "header.php";
         <section class="content">
             <div class="row">
                 <div class="col-lg-3 col-xs-6">
+                    <div class="small-box bg-aqua">
+                        <div class="inner">
+                            <h3><?php
+                            $sql = "SELECT * FROM students";
+                            $db->sql($sql);
+                            $res = $db->getResult();
+                            $num = $db->numRows($res);
+                            echo $num;
+                             ?></h3>
+                            <p>Total Students</p>
+                            
+                        </div>
+                        <div class="icon"></div>
+                        <a href="students.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-xs-6">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <h3><?php
+                            $sql = "SELECT * FROM notifications";
+                            $db->sql($sql);
+                            $res = $db->getResult();
+                            $num = $db->numRows($res);
+                            echo $num;
+                             ?></h3>
+                            <p>Total Notifications</p>
+                            
+                        </div>
+                        <div class="icon"></div>
+                        <a href="notifications.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xs-6">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <h3><?php
+                            $sql = "SELECT * FROM timetables";
+                            $db->sql($sql);
+                            $res = $db->getResult();
+                            $num = $db->numRows($res);
+                            echo $num;
+                             ?></h3>
+                            <p>Total timetable</p>
+                            
+                        </div>
+                        <div class="icon"></div>
+                        <a href="timetables.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-lg-3 col-xs-6">
                     <div class="inner">
                         <?php
                         $sql = "SELECT * FROM staffs WHERE id = $ID";
