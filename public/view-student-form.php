@@ -71,7 +71,8 @@ if (isset($_POST['btnUpdate'])){
     $tnea_no = $db->escapeString($fn->xss_clean($_POST['tnea_no']));
     $consortium_no = $db->escapeString($fn->xss_clean($_POST['consortium_no']));
     $consortium_marks = $db->escapeString($fn->xss_clean($_POST['consortium_marks']));
-   
+    $image_error = $db->escapeString($_FILES['profile']['error']);
+    
     
     if (empty($batch)) {
         $error['batch'] = " <span class='label label-danger'>Required!</span>";
@@ -239,11 +240,26 @@ if (isset($_POST['btnUpdate'])){
     if (empty($consortium_marks)) {
         $error['consortium_marks'] = " <span class='label label-danger'>Required!</span>";
     }
+    if ($image_error > 0) {
+        $error['profile'] = " <span class='label label-danger'>Required!</span>";
+
+    }
    
 
 
     if (!empty($batch) && !empty($degree) && !empty($department) && !empty($section) && !empty($roll_no) && !empty($register_number) && !empty($name) && !empty($quota) && !empty($mode) && !empty($gender) && !empty($dob) && !empty($religion) && !empty($community) && !empty($sub_caste) && !empty($blood_group) && !empty($mother_tongue) && !empty($nationality) && !empty($aadhaar_number) && !empty($father_name) && !empty($father_occupation) && !empty($mother_name) && !empty($mother_occupation) && !empty($parent_income) && !empty($address) && !empty($district) && !empty($mobile) && !empty($parent_mobile) && !empty($email) && !empty($sslc_school) && !empty($sslc_percentage) && !empty($sslc_medium) && !empty($sslc_board) && !empty($sslc_year) && !empty($hsc_school) && !empty($hsc_percentage) && !empty($hsc_medium) && !empty($hsc_board) && !empty($hsc_year) && !empty($maths) && !empty($physics) && !empty($chemistry) && !empty($average) && !empty($cut_off) && !empty($total) && !empty($type_of_stay) && !empty($bus_route_no) && !empty($boarding_point) && !empty($reference) && !empty($fg) && !empty($pstm_sch) && !empty($nsp) && !empty($bc_mbc_sch) && !empty($tnea_no) && !empty($consortium_no) && !empty($consortium_marks)) {
-        $sql = "UPDATE students SET batch='$batch',degree='$degree',department='$department', section='$section',roll_no='$roll_no',register_number='$register_number',name='$name', quota='$quota', mode='$mode',gender='$gender',dob='$dob',religion='$religion',community='$community',sub_caste='$sub_caste',blood_group='$blood_group',mother_tongue='$mother_tongue',nationality='$nationality',aadhaar_number='$aadhaar_number',father_name='$father_name',father_occupation='$father_occupation',mother_name='$mother_name',mother_occupation='$mother_occupation',parent_income='$parent_income',address='$address',district='$district',mobile='$mobile',parent_mobile='$parent_mobile',email='$email',sslc_school='$sslc_school',sslc_percentage='$sslc_percentage',sslc_medium='$sslc_medium',sslc_board='$sslc_board',sslc_year='$sslc_year',hsc_school='$hsc_school',hsc_percentage='$hsc_percentage',hsc_medium='$hsc_medium',hsc_board='$hsc_board',hsc_year='$hsc_year',maths='$maths',physics='$physics',chemistry='$chemistry',average='$average',cut_off='$cut_off',total='$total',type_of_stay='$type_of_stay',bus_route_no='$bus_route_no',boarding_point='$boarding_point',reference='$reference',fg='$fg',pstm_sch='$pstm_sch',nsp='$nsp',bc_mbc_sch='$bc_mbc_sch',tnea_no='$tnea_no',consortium_no='$consortium_no',consortium_marks='$consortium_marks' WHERE id='$ID'";
+        error_reporting(E_ERROR | E_PARSE);
+        $extension = end(explode(".", $_FILES["profile"]["name"]));
+        $string = '0123456789';
+        $file = preg_replace("/\s+/", "_", $_FILES['profile']['name']);
+        $menu_image = $function->get_random_string($string, 4) . "-" . date("Y-m-d") . "." . $extension;
+        // upload new image
+        $upload = move_uploaded_file($_FILES['profile']['tmp_name'], 'upload/profile/' . $menu_image);
+
+        // insert new data to menu table
+        $upload_image = 'upload/profile/' . $menu_image;
+
+        $sql = "UPDATE students SET batch='$batch',degree='$degree',department='$department', section='$section',roll_no='$roll_no',register_number='$register_number',name='$name', quota='$quota', mode='$mode',gender='$gender',dob='$dob',religion='$religion',community='$community',sub_caste='$sub_caste',blood_group='$blood_group',mother_tongue='$mother_tongue',nationality='$nationality',aadhaar_number='$aadhaar_number',father_name='$father_name',father_occupation='$father_occupation',mother_name='$mother_name',mother_occupation='$mother_occupation',parent_income='$parent_income',address='$address',district='$district',mobile='$mobile',parent_mobile='$parent_mobile',email='$email',sslc_school='$sslc_school',sslc_percentage='$sslc_percentage',sslc_medium='$sslc_medium',sslc_board='$sslc_board',sslc_year='$sslc_year',hsc_school='$hsc_school',hsc_percentage='$hsc_percentage',hsc_medium='$hsc_medium',hsc_board='$hsc_board',hsc_year='$hsc_year',maths='$maths',physics='$physics',chemistry='$chemistry',average='$average',cut_off='$cut_off',total='$total',type_of_stay='$type_of_stay',bus_route_no='$bus_route_no',boarding_point='$boarding_point',reference='$reference',fg='$fg',pstm_sch='$pstm_sch',nsp='$nsp',bc_mbc_sch='$bc_mbc_sch',tnea_no='$tnea_no',consortium_no='$consortium_no',consortium_marks='$consortium_marks',profile='$upload_image' WHERE id='$ID'";
         $db->sql($sql);
         $student_result = $db->getResult();
         if (!empty($student_result)) {
@@ -293,6 +309,16 @@ foreach ($res as $row)
                 <!-- form start -->
                 <form id='edit_student_form' method="post" enctype="multipart/form-data">
                     <div class="box-body">
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Profile</label>
+                                        
+                                        <input type="file" accept="image/png,  image/jpeg" onchange="readURL(this);"  name="profile" id="profile">
+                                        <p class="help-block"><img id="blah" src="<?php echo DOMAIN_URL . $res[0]['profile']; ?>" style="max-width:100%" /></p>
+                                    </div>
+                                </div>
+                            </div>
                         <div class="row">
                             <div class="form-group">
                                 <div class='col-md-4'>
@@ -632,4 +658,21 @@ foreach ($res as $row)
 <div class="separator"> </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+  <script>
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
+<?php $db->disconnect(); ?>
 
