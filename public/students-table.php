@@ -105,25 +105,25 @@
                                     <h4 class="box-title"> Quota</h4>
                                     <select id='quota' name="quota" class='form-control'>
                                         <option value="">ALL</option>
-                                        <option value="Government">Government</option>
-                                        <option value="Management">Management</option>
+                                        <option value="GQ">GQ</option>
+                                        <option value="MQ">MQ</option>
                                     </select>
                                </div>
                                <div class="form-group col-md-2">
                                     <h4 class="box-title"> Mode</h4>
                                     <select id='mode' name="mode" class='form-control'>
                                         <option value="">ALL</option>
-                                        <option value="Regular">Regular</option>
-                                        <option value="Lateral">Lateral</option>
-                                        <option value="Transfer">Transfer</option>
+                                        <option value="REGULAR">REGULAR</option>
+                                        <option value="LATERAL">LATERAL</option>
+                                        <option value="TRANSFER">TRANSFER</option>
                                     </select>
                                </div>
                                <div class="form-group col-md-2">
                                     <h4 class="box-title">Gender </h4>
                                     <select id='gender' name="gender" class='form-control'>
                                         <option value="">ALL</option>
-                                        <option value="M">Male</option>
-                                        <option value="F">Female</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
                                         <option value="Others">Others</option>
                                    </select>
                                </div>
@@ -291,7 +291,7 @@
                                     <h4 class="box-title"> Staying Option</h4>
                                     <select id='type_of_stay' name="type_of_stay" class='form-control'>
                                         <option value="">ALL</option>
-                                        <option value="Hostellor">Hostellor</option>
+                                        <option value="Hostel">Hostel</option>
                                         <option value="DayScholar">DayScholar</option>
                                     </select>
                                </div>
@@ -301,7 +301,7 @@
                                         <option value="">ALL</option>
                                                 <?php
                                                                 
-                                                    $sql = "SELECT bus_route_no FROM `bus_route_no`";
+                                                    $sql = "SELECT * FROM `students` WHERE bus_route_no <> ''  GROUP BY bus_route_no ";
                                                     $db->sql($sql);
                                                     $result = $db->getResult();
                                                     foreach ($result as $value) {
@@ -316,7 +316,8 @@
                                         <option value="">ALL</option>
                                                 <?php
                                                                 
-                                                    $sql = "SELECT boarding_point FROM `boarding_point`";
+                                                
+                                                    $sql = "SELECT * FROM `students` WHERE boarding_point <> ''  GROUP BY boarding_point ";
                                                     $db->sql($sql);
                                                     $result = $db->getResult();
                                                     foreach ($result as $value) {
@@ -351,11 +352,20 @@
                                </div>
                                <div class="form-group col-md-2">
                                     <h4 class="box-title">BC&MBC Sch</h4>
-                                    <select id='bc_mbc_sch' name="bc_mbc_sch" class='form-control'>
+                                    <select id='bc_mbc_sch' name="bc_mbc_sch[]" class='form-control'>
                                         <option value="">ALL</option>
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
+                                                <?php
+                                                                
+                                                
+                                                    $sql = "SELECT * FROM `students` WHERE bc_mbc_sch <> ''  GROUP BY bc_mbc_sch ";
+                                                    $db->sql($sql);
+                                                    $result = $db->getResult();
+                                                    foreach ($result as $value) {
+                                                    ?>
+                                                        <option value='<?= $value['bc_mbc_sch'] ?>'><?= $value['bc_mbc_sch'] ?></option>
+                                                <?php } ?>
                                     </select>
+                                
                                </div>
                             
                        
@@ -369,8 +379,8 @@
                             <thead>
                                 <tr>
                                     
-                                    <th data-field="id" data-sortable="true">ID</th>
-                                    <th data-field="action" data-events="actionEvents">File</th>
+                                    <!-- <th data-field="id" data-sortable="true">ID</th> -->
+                                    <th data-field="operate" data-events="actionEvents">Action</th>
                                     <th data-field="batch" data-sortable="true">Batch</th>
                                     <th data-field="degree" data-sortable="true">Degree</th>
                                     <th data-field="department" data-sortable="true">Department</th>
@@ -427,7 +437,7 @@
                                     <th data-field="tnea_no" data-sortable="true">TNEA Allotment No.</th>
                                     <th data-field="consortium_no" data-sortable="true">Consortium No.</th>
                                     <th data-field="consortium_marks" data-sortable="true">Consortium Marks</th>
-                                 <th data-field="operate" data-events="actionEvents">Action</th>
+                                 <!-- <th data-field="operate" data-events="actionEvents">Action</th> -->
                                 </tr>
                             </thead>
                         </table>
