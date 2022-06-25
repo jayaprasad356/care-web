@@ -19,6 +19,9 @@ $res = $db->getResult();
 
 </section>
 <section class="content">
+    <div class="p-5">
+        <img src="https://www.deltastate.edu/student-success-center/wp-content/uploads/sites/26/2015/02/person-placeholder-300x300.jpg" style="width: 100px; height: 100px;" alt="">
+    </div>
 <div class="row">
             <div class="col-md-6">
                 <div class="box">

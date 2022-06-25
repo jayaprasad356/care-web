@@ -35,10 +35,10 @@ $semester = $db->escapeString($_POST['semester']);
 $sql = "SELECT * FROM students WHERE id ='$student_id'";
 $db->sql($sql);
 $res = $db->getResult();
-$roll_no = $res[0]['roll_no'];
+$reg_no = $res[0]['reg_no'];
 $department = $res[0]['department'];
 
-$sql = "SELECT * FROM internalmarks WHERE roll_no ='$roll_no'AND department='$department'AND test_type='$test_type' AND semester='$semester'";
+$sql = "SELECT * FROM internalmarks WHERE reg_no ='$reg_no'AND department='$department'AND test_type='$test_type' AND semester='$semester'";
 $db->sql($sql);
 $res = $db->getResult();
 $num = $db->numRows($res);

@@ -39,23 +39,23 @@
                         </div>
                         <div class="form-group col-md-3">
                             <h4 class="box-title">Filter by Roll.No</h4>
-                            <select id='roll_no' name="roll_no[]" class='form-control'>
+                            <select id='reg_no' name="reg_no[]" class='form-control'>
                                         <?php
                                         $role = $_SESSION['role'];
                                         if($role == 'Exam Cell'){
-                                            $sql = "SELECT roll_no FROM `students` GROUP BY roll_no";
+                                            $sql = "SELECT reg_no FROM `students` GROUP BY reg_no";
                                         }
                                         else{
                                             $department = $_SESSION['department'];
                                             $batch = $_SESSION['batch'];
-                                            $sql = "SELECT roll_no FROM `students` WHERE department IN ('$department') AND batch IN ($batch) GROUP BY roll_no";
+                                            $sql = "SELECT reg_no FROM `students` WHERE department IN ('$department') AND batch IN ($batch) GROUP BY reg_no";
                                         }
                                         $db->sql($sql);
 
                                         $result = $db->getResult();
                                         foreach ($result as $value) {
                                         ?>
-                                            <option value='<?= $value['roll_no'] ?>'><?= $value['roll_no'] ?></option>
+                                            <option value='<?= $value['reg_no'] ?>'><?= $value['reg_no'] ?></option>
                                         <?php } ?>
                             </select>
                         </div>
@@ -82,7 +82,7 @@
                             <thead>
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
-                                    <th data-field="roll_no" data-sortable="true">Roll.No</th>
+                                    <th data-field="reg_no" data-sortable="true">Roll.No</th>
                                     <th data-field="semester" data-sortable="true">Semester</th>
                                     <th data-field="department" data-sortable="true">Department</th>
                                     <th data-field="subject_code" data-sortable="true">Subject code</th>
@@ -108,7 +108,7 @@
     $('#seller_id').on('change', function() {
         $('#products_table').bootstrapTable('refresh');
     });
-    $('#roll_no').on('change', function() {
+    $('#reg_no').on('change', function() {
         $('#universityresults_table').bootstrapTable('refresh');
     });
     $('#semester').on('change', function() {
@@ -118,7 +118,7 @@
     function queryParams(p) {
         return {
             "department": $('#department').val(),
-            "roll_no": $('#roll_no').val(),
+            "reg_no": $('#reg_no').val(),
             "semester": $('#semester').val(),
             limit: p.limit,
             sort: p.sort,
@@ -167,9 +167,9 @@
 
 
     };
-    $('#roll_no').select2({
+    $('#reg_no').select2({
         width: 'element',
-        placeholder: 'Type in roll_no to search',
+        placeholder: 'Type in reg_no to search',
 
     });
 </script>

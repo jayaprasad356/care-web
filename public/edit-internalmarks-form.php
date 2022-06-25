@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
 
 if (isset($_POST['btnUpdate'])) {
     $error = array();
-    $roll_no = $db->escapeString($fn->xss_clean($_POST['roll_no']));
+    $reg_no = $db->escapeString($fn->xss_clean($_POST['reg_no']));
     $department = $db->escapeString($fn->xss_clean($_POST['department']));
     $test_type= $db->escapeString($fn->xss_clean($_POST['test_type']));
     $number = $db->escapeString($fn->xss_clean($_POST['number']));
@@ -24,8 +24,8 @@ if (isset($_POST['btnUpdate'])) {
     $regulation = $db->escapeString($fn->xss_clean($_POST['regulation']));
     $marks = $db->escapeString($fn->xss_clean($_POST['marks']));
     
-    if (empty($roll_no)) {
-        $error['roll_no'] = " <span class='label label-danger'>Required!</span>";
+    if (empty($reg_no)) {
+        $error['reg_no'] = " <span class='label label-danger'>Required!</span>";
     }
    
     if (empty($department)) {
@@ -51,9 +51,9 @@ if (isset($_POST['btnUpdate'])) {
         $error['marks'] = " <span class='label label-danger'>Required!</span>";
     }
 
-    if ( !empty($roll_no) && !empty($department)&& !empty($test_type)&& !empty($number)&& !empty($semester) && !empty($subject_code) && !empty($regulation) && !empty($marks))
+    if ( !empty($reg_no) && !empty($department)&& !empty($test_type)&& !empty($number)&& !empty($semester) && !empty($subject_code) && !empty($regulation) && !empty($marks))
     {
-        $sql = "UPDATE internalmarks SET  roll_no='$roll_no',department='$department',test_type='$test_type',number='$number',semester='$semester',subject_code='$subject_code',regulation='$regulation',marks='$marks' WHERE id='$ID'";
+        $sql = "UPDATE internalmarks SET  reg_no='$reg_no',department='$department',test_type='$test_type',number='$number',semester='$semester',subject_code='$subject_code',regulation='$regulation',marks='$marks' WHERE id='$ID'";
         $db->sql($sql);
         $internalmarks_result = $db->getResult();
         if (!empty($internalmarks_result)) {
@@ -106,11 +106,11 @@ foreach ($res as $row)
                         <div class="row">
                             <div class="form-group">
                             <div class='col-md-4'>
-                                    <label for="">Roll.No</label> <i class="text-danger asterik">*</i> <?php echo isset($error['roll_no']) ? $error['roll_no'] : ''; ?><br>
-                                    <select id="roll_no" name="roll_no" class="form-control">
-                                        <option value="810718106001" <?=$data['roll_no'] == '810718106001' ? ' selected="selected"' : '';?> >810718106001</option>
-                                        <option value="810718106002" <?=$data['roll_no'] == '810718106002' ? ' selected="selected"' : '';?> >810718106002</option>
-                                        <option value="810718106003" <?=$data['roll_no'] == '810718106003' ? ' selected="selected"' : '';?> >810718106003</option>
+                                    <label for="">Roll.No</label> <i class="text-danger asterik">*</i> <?php echo isset($error['reg_no']) ? $error['reg_no'] : ''; ?><br>
+                                    <select id="reg_no" name="reg_no" class="form-control">
+                                        <option value="810718106001" <?=$data['reg_no'] == '810718106001' ? ' selected="selected"' : '';?> >810718106001</option>
+                                        <option value="810718106002" <?=$data['reg_no'] == '810718106002' ? ' selected="selected"' : '';?> >810718106002</option>
+                                        <option value="810718106003" <?=$data['reg_no'] == '810718106003' ? ' selected="selected"' : '';?> >810718106003</option>
                                     </select>
                             </div>
                             
@@ -200,7 +200,7 @@ foreach ($res as $row)
         ignore: [],
         debug: false,
         rules: {
-           roll_no: "required",
+           reg_no: "required",
             department:"required",
             test_type: "required",
             number: "required",

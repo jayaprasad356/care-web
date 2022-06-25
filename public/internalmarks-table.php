@@ -125,7 +125,7 @@ $num = isset($batchspin) ? $db->numRows($result) : 0;
                             <thead>
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
-                                    <th data-field="roll_no" data-sortable="true">Roll.No</th>
+                                    <th data-field="reg_no" data-sortable="true">Roll.No</th>
                                     <?php
                                     $sql = "SELECT * FROM `internalmarks` WHERE batch = '$batchspin' AND department = '$departmentspin' AND semester = '$semesterselect' AND test_type = '$testtypeselect' GROUP BY subject_code";
                                     $db->sql($sql);
@@ -189,7 +189,7 @@ $num = isset($batchspin) ? $db->numRows($result) : 0;
     $('#seller_id').on('change', function() {
         $('#products_table').bootstrapTable('refresh');
     });
-    $('#roll_no').on('change', function() {
+    $('#reg_no').on('change', function() {
         $('#internalmarks_table').bootstrapTable('refresh');
     });
     $('#department').on('change', function() {
@@ -254,9 +254,9 @@ $num = isset($batchspin) ? $db->numRows($result) : 0;
 
 
     };
-    $('#roll_no').select2({
+    $('#reg_no').select2({
         width: 'element',
-        placeholder: 'Type in roll_no to search',
+        placeholder: 'Type in reg_no to search',
 
     });
 </script>

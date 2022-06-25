@@ -167,7 +167,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'students') {
         $order = $db->escapeString($_GET['order']);
     if (isset($_GET['search']) && !empty($_GET['search'])) {
         $search = $db->escapeString($_GET['search']);
-        $where .= "AND name like '%" . $search . "%' OR roll_no like '%" . $search . "%' OR register_number like '%" . $search . "%'";
+        $where .= "AND name like '%" . $search . "%' OR roll_no like '%" . $search . "%' OR reg_no like '%" . $search . "%'";
     }
     if (isset($_GET['sort'])){
         $sort = $db->escapeString($_GET['sort']);
@@ -217,7 +217,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'students') {
         $tempRow['department'] = $row['department'];
         $tempRow['section'] = $row['section'];
         $tempRow['roll_no'] = $row['roll_no'];
-        $tempRow['register_number'] = $row['register_number'];
+        $tempRow['reg_no'] = $row['reg_no'];
         $tempRow['name'] = $row['name'];
         $tempRow['quota'] = $row['quota'];
         $tempRow['mode'] = $row['mode'];
@@ -392,11 +392,11 @@ print_r(json_encode($bulkData));
 
 if (isset($_GET['table']) && $_GET['table'] == 'universityresults') {
     $where = '';
-    if ((isset($_GET['roll_no']) && $_GET['roll_no'] != '') && (isset($_GET['semester']) && $_GET['semester'] != '')) {
-        $roll_no = $db->escapeString($fn->xss_clean($_GET['roll_no']));
+    if ((isset($_GET['reg_no']) && $_GET['reg_no'] != '') && (isset($_GET['semester']) && $_GET['semester'] != '')) {
+        $reg_no = $db->escapeString($fn->xss_clean($_GET['reg_no']));
         $semester = $db->escapeString($fn->xss_clean($_GET['semester']));
         $department = $db->escapeString($fn->xss_clean($_GET['department']));
-        $where .= " WHERE roll_no = '$roll_no' AND semester='$semester' AND department='$department' " ;
+        $where .= " WHERE reg_no = '$reg_no' AND semester='$semester' AND department='$department' " ;
     }
     $sql = "SELECT * FROM universityresults ".$where;
     $db->sql($sql);
@@ -407,7 +407,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'universityresults') {
 
         $operate = ' <a href="edit-universityresult.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
         $tempRow['id'] = $row['id'];
-        $tempRow['roll_no'] = $row['roll_no'];
+        $tempRow['reg_no'] = $row['reg_no'];
         $tempRow['semester'] = $row['semester'];
         $tempRow['department'] = $row['department'];
         $tempRow['subject_code'] = $row['subject_code'];
@@ -435,8 +435,8 @@ if (isset($_GET['table']) && $_GET['table'] == 'internalmarks') {
     $tempRow = array();
 
     foreach ($res as $row) {
-        $roll_no = $row['roll_no'];
-        $sql1 = "SELECT * FROM internalmarks ". $where ." AND roll_no = '$roll_no'";
+        $reg_no = $row['reg_no'];
+        $sql1 = "SELECT * FROM internalmarks ". $where ." AND reg_no = '$reg_no'";
         $db->sql($sql1);
         $res1 = $db->getResult();
         foreach ($res1 as $row1) {
@@ -448,7 +448,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'internalmarks') {
 
         //$operate = ' <a href="edit-internalmark.php?id=' . $row['id'] . '" title="Edit"><i class="fa fa-edit"></i></a>';
         $tempRow['id'] = $row['id'];
-        $tempRow['roll_no'] = $row['roll_no'];
+        $tempRow['reg_no'] = $row['reg_no'];
 
 
         $rows[] = $tempRow;
@@ -481,8 +481,8 @@ if (isset($_GET['table']) && $_GET['table'] == 'internalanalysis') {
             $res = $db->getResult();
             $num = $db->numRows($res);
             foreach ($res as $row) {
-                $roll_no = $row['roll_no'];
-                $sql1 = "SELECT * FROM internalmarks ". $where ." AND roll_no = '$roll_no'";
+                $reg_no = $row['reg_no'];
+                $sql1 = "SELECT * FROM internalmarks ". $where ." AND reg_no = '$reg_no'";
                 $db->sql($sql1);
                 $res1 = $db->getResult();
                 foreach ($res1 as $row1) {
@@ -502,8 +502,8 @@ if (isset($_GET['table']) && $_GET['table'] == 'internalanalysis') {
             $res = $db->getResult();
             $num = $db->numRows($res);
             foreach ($res as $row) {
-                $roll_no = $row['roll_no'];
-                $sql1 = "SELECT * FROM internalmarks ". $where ." AND roll_no = '$roll_no'";
+                $reg_no = $row['reg_no'];
+                $sql1 = "SELECT * FROM internalmarks ". $where ." AND reg_no = '$reg_no'";
                 $db->sql($sql1);
                 $res1 = $db->getResult();
                 foreach ($res1 as $row1) {
@@ -526,8 +526,8 @@ if (isset($_GET['table']) && $_GET['table'] == 'internalanalysis') {
             $res = $db->getResult();
             $num = $db->numRows($res);
             foreach ($res as $row) {
-                $roll_no = $row['roll_no'];
-                $sql1 = "SELECT * FROM internalmarks ". $where ." AND roll_no = '$roll_no'";
+                $reg_no = $row['reg_no'];
+                $sql1 = "SELECT * FROM internalmarks ". $where ." AND reg_no = '$reg_no'";
                 $db->sql($sql1);
                 $res1 = $db->getResult();
                 foreach ($res1 as $row1) {
@@ -547,8 +547,8 @@ if (isset($_GET['table']) && $_GET['table'] == 'internalanalysis') {
             $res = $db->getResult();
             $num = $db->numRows($res);
             foreach ($res as $row) {
-                $roll_no = $row['roll_no'];
-                $sql1 = "SELECT * FROM internalmarks ". $where ." AND roll_no = '$roll_no'";
+                $reg_no = $row['reg_no'];
+                $sql1 = "SELECT * FROM internalmarks ". $where ." AND reg_no = '$reg_no'";
                 $db->sql($sql1);
                 $res1 = $db->getResult();
                 foreach ($res1 as $row1) {
@@ -569,8 +569,8 @@ if (isset($_GET['table']) && $_GET['table'] == 'internalanalysis') {
             $res = $db->getResult();
             $num = $db->numRows($res);
             foreach ($res as $row) {
-                $roll_no = $row['roll_no'];
-                $sql1 = "SELECT * FROM internalmarks ". $where ." AND roll_no = '$roll_no'";
+                $reg_no = $row['reg_no'];
+                $sql1 = "SELECT * FROM internalmarks ". $where ." AND reg_no = '$reg_no'";
                 $db->sql($sql1);
                 $res1 = $db->getResult();
                 foreach ($res1 as $row1) {
@@ -590,8 +590,8 @@ if (isset($_GET['table']) && $_GET['table'] == 'internalanalysis') {
             $res = $db->getResult();
             $num = $db->numRows($res);
             foreach ($res as $row) {
-                $roll_no = $row['roll_no'];
-                $sql1 = "SELECT * FROM internalmarks ". $where ." AND roll_no = '$roll_no'";
+                $reg_no = $row['reg_no'];
+                $sql1 = "SELECT * FROM internalmarks ". $where ." AND reg_no = '$reg_no'";
                 $db->sql($sql1);
                 $res1 = $db->getResult();
                 foreach ($res1 as $row1) {
@@ -611,8 +611,8 @@ if (isset($_GET['table']) && $_GET['table'] == 'internalanalysis') {
             $res = $db->getResult();
             $num = $db->numRows($res);
             foreach ($res as $row) {
-                $roll_no = $row['roll_no'];
-                $sql1 = "SELECT * FROM internalmarks ". $where ." AND roll_no = '$roll_no'";
+                $reg_no = $row['reg_no'];
+                $sql1 = "SELECT * FROM internalmarks ". $where ." AND reg_no = '$reg_no'";
                 $db->sql($sql1);
                 $res1 = $db->getResult();
                 foreach ($res1 as $row1) {

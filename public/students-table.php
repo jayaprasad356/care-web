@@ -386,7 +386,7 @@
                                     <th data-field="department" data-sortable="true">Department</th>
                                     <th data-field="section" data-sortable="true">Section</th>
                                     <th data-field="roll_no" data-sortable="true">Roll No.</th>
-                                    <th data-field="register_number" data-sortable="true">Register Number</th>
+                                    <th data-field="reg_no" data-sortable="true">Register Number</th>
                                     <th data-field="name" data-sortable="true">Name</th>
                                     <th data-field="quota" data-sortable="true">Quota</th>
                                     <th data-field="mode" data-sortable="true">Mode</th>

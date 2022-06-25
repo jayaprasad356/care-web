@@ -17,7 +17,7 @@ $res_cur = $db->getResult();
 if (isset($_POST['btnAdd'])) {
         $error = array();
         $name = $db->escapeString($fn->xss_clean($_POST['name']));
-        $roll_no = $db->escapeString($fn->xss_clean($_POST['roll_no']));
+        $reg_no = $db->escapeString($fn->xss_clean($_POST['reg_no']));
         $email = $db->escapeString($fn->xss_clean($_POST['email']));
         $mobile = $db->escapeString($fn->xss_clean($_POST['mobile']));
         $password = $db->escapeString($fn->xss_clean($_POST['password']));
@@ -27,8 +27,8 @@ if (isset($_POST['btnAdd'])) {
         if (empty($name)) {
             $error['name'] = " <span class='label label-danger'>Required!</span>";
         }
-        if (empty($roll_no)) {
-            $error['roll_no'] = " <span class='label label-danger'>Required!</span>";
+        if (empty($reg_no)) {
+            $error['reg_no'] = " <span class='label label-danger'>Required!</span>";
         }
         if (empty($email)) {
             $error['email'] = " <span class='label label-danger'>Required!</span>";
@@ -49,14 +49,14 @@ if (isset($_POST['btnAdd'])) {
         if (empty($course)) {
             $error['course'] = " <span class='label label-danger'>Required!</span>";
         }
-        if (!empty($name) && !empty($roll_no) && !empty($mobile) && !empty($password) && !empty($department) && !empty($gender) && !empty($course))
+        if (!empty($name) && !empty($reg_no) && !empty($mobile) && !empty($password) && !empty($department) && !empty($gender) && !empty($course))
         {
-            $sql = "SELECT * FROM students WHERE roll_no = '" . $roll_no . "'";
+            $sql = "SELECT * FROM students WHERE reg_no = '" . $reg_no . "'";
             $db->sql($sql);
             $res = $db->getResult();
             $num = $db->numRows($res);
             if($num < 1){
-                $sql = "INSERT INTO students (name,roll_no,mobile,password,department,gender,course) VALUES('$name','$roll_no','$mobile','$password','$department','$gender','$course')";
+                $sql = "INSERT INTO students (name,reg_no,mobile,password,department,gender,course) VALUES('$name','$reg_no','$mobile','$password','$department','$gender','$course')";
                 $db->sql($sql);
                 $student_result = $db->getResult();
                 if (!empty($student_result)) {
@@ -113,8 +113,8 @@ if (isset($_POST['btnAdd'])) {
                                     <input type="text" class="form-control" name="name" required>
                                 </div>
                                 <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">Student Roll No.</label> <i class="text-danger asterik">*</i><?php echo isset($error['roll_no']) ? $error['roll_no'] : ''; ?>
-                                    <input type="number" class="form-control" name="roll_no" required>
+                                    <label for="exampleInputEmail1">Student Roll No.</label> <i class="text-danger asterik">*</i><?php echo isset($error['reg_no']) ? $error['reg_no'] : ''; ?>
+                                    <input type="number" class="form-control" name="reg_no" required>
                                 </div>
                                 <div class='col-md-4'>
                                     <label for="exampleInputEmail1">Email</label> <i class="text-danger asterik">*</i><?php echo isset($error['email']) ? $error['email'] : ''; ?>
@@ -194,7 +194,7 @@ if (isset($_POST['btnAdd'])) {
         debug: false,
         rules: {
             name: "required",
-            roll_no: "required",
+            reg_no: "required",
             email: "required",
             mobile: "required",
             password: "required",

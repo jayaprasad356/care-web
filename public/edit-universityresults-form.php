@@ -15,15 +15,15 @@ if (isset($_GET['id'])) {
 
 if (isset($_POST['btnUpdate'])) {
     $error = array();
-    $roll_no = $db->escapeString($fn->xss_clean($_POST['roll_no']));
+    $reg_no = $db->escapeString($fn->xss_clean($_POST['reg_no']));
     $semester = $db->escapeString($fn->xss_clean($_POST['semester']));
     $department = $db->escapeString($fn->xss_clean($_POST['department']));
     $subject_code = $db->escapeString($fn->xss_clean($_POST['subject_code']));
     $regulation = $db->escapeString($fn->xss_clean($_POST['regulation']));
     $grade = $db->escapeString($fn->xss_clean($_POST['grade']));
     
-    if (empty($roll_no)) {
-        $error['roll_no'] = " <span class='label label-danger'>Required!</span>";
+    if (empty($reg_no)) {
+        $error['reg_no'] = " <span class='label label-danger'>Required!</span>";
     }
     if (empty($semester)) {
         $error['semester'] = " <span class='label label-danger'>Required!</span>";
@@ -42,9 +42,9 @@ if (isset($_POST['btnUpdate'])) {
         $error['grade'] = " <span class='label label-danger'>Required!</span>";
     }
 
-    if ( !empty($roll_no) && !empty($semester)&& !empty($department) && !empty($subject_code) && !empty($regulation) && !empty($grade))
+    if ( !empty($reg_no) && !empty($semester)&& !empty($department) && !empty($subject_code) && !empty($regulation) && !empty($grade))
     {
-        $sql = "UPDATE universityresults SET  roll_no='$roll_no',semester='$semester',department='$department',subject_code='$subject_code',regulation='$regulation',grade='$grade' WHERE id='$ID'";
+        $sql = "UPDATE universityresults SET  reg_no='$reg_no',semester='$semester',department='$department',subject_code='$subject_code',regulation='$regulation',grade='$grade' WHERE id='$ID'";
         $db->sql($sql);
         $universityresults_result = $db->getResult();
         if (!empty($universityresults_result)) {
@@ -97,11 +97,11 @@ foreach ($res as $row)
                         <div class="row">
                             <div class="form-group">
                             <div class='col-md-4'>
-                                    <label for="">Roll.No</label> <i class="text-danger asterik">*</i> <?php echo isset($error['roll_no']) ? $error['roll_no'] : ''; ?><br>
-                                    <select id="roll_no" name="roll_no" class="form-control">
-                                        <option value="810718106001" <?=$data['roll_no'] == '810718106001' ? ' selected="selected"' : '';?> >810718106001</option>
-                                        <option value="810718106002" <?=$data['roll_no'] == '810718106002' ? ' selected="selected"' : '';?> >810718106002</option>
-                                        <option value="810718106003" <?=$data['roll_no'] == '810718106003' ? ' selected="selected"' : '';?> >810718106003</option>
+                                    <label for="">Roll.No</label> <i class="text-danger asterik">*</i> <?php echo isset($error['reg_no']) ? $error['reg_no'] : ''; ?><br>
+                                    <select id="reg_no" name="reg_no" class="form-control">
+                                        <option value="810718106001" <?=$data['reg_no'] == '810718106001' ? ' selected="selected"' : '';?> >810718106001</option>
+                                        <option value="810718106002" <?=$data['reg_no'] == '810718106002' ? ' selected="selected"' : '';?> >810718106002</option>
+                                        <option value="810718106003" <?=$data['reg_no'] == '810718106003' ? ' selected="selected"' : '';?> >810718106003</option>
                                     </select>
                             </div>
                             <div class='col-md-4'>
@@ -190,7 +190,7 @@ foreach ($res as $row)
         ignore: [],
         debug: false,
         rules: {
-           roll_no: "required",
+           reg_no: "required",
             semester: "required",
             department:"required",
             subject_code: "required",

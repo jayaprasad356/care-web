@@ -23,9 +23,9 @@ if (isset($_POST['btnAdd'])) {
     $error = array();
     
     $marks = $fn->xss_clean_array($_POST['marks']);
-    $roll_no = $fn->xss_clean_array($_POST['roll_no']);
-    for ($i = 0; $i < count($roll_no); $i++) {
-        $sql = "INSERT INTO internalmarks (roll_no,department,batch,test_type,semester,subject_code,marks) VALUES ('" . $roll_no[$i] . "','$departmentspin','$batchspin','$testtypeselect','$semesterselect','$subselect', '" . $marks[$i] . "')";
+    $reg_no = $fn->xss_clean_array($_POST['reg_no']);
+    for ($i = 0; $i < count($reg_no); $i++) {
+        $sql = "INSERT INTO internalmarks (reg_no,department,batch,test_type,semester,subject_code,marks) VALUES ('" . $reg_no[$i] . "','$departmentspin','$batchspin','$testtypeselect','$semesterselect','$subselect', '" . $marks[$i] . "')";
         $db->sql($sql);
         $result = $db->getResult();
         if (!empty($result)) {
@@ -54,9 +54,9 @@ if (isset($_POST['btnUpdate'])) {
     $error = array();
     
     $marks = $fn->xss_clean_array($_POST['marks']);
-    $roll_no = $fn->xss_clean_array($_POST['roll_no']);
-    for ($i = 0; $i < count($roll_no); $i++) {
-        $sql = "UPDATE internalmarks SET marks = '" . $marks[$i] . "' WHERE roll_no = '" . $roll_no[$i] . "' AND department = '$departmentspin' AND batch = '$batchspin' AND test_type = '$testtypeselect' AND semester = '$semesterselect' AND subject_code = '$subselect'";
+    $reg_no = $fn->xss_clean_array($_POST['reg_no']);
+    for ($i = 0; $i < count($reg_no); $i++) {
+        $sql = "UPDATE internalmarks SET marks = '" . $marks[$i] . "' WHERE reg_no = '" . $reg_no[$i] . "' AND department = '$departmentspin' AND batch = '$batchspin' AND test_type = '$testtypeselect' AND semester = '$semesterselect' AND subject_code = '$subselect'";
         $db->sql($sql);
         $result = $db->getResult();
         if (!empty($result)) {
@@ -247,7 +247,7 @@ $subselect = isset($subselect) ? $subselect : '';
                                 foreach ($result as $value) {
                                     $marks = '';
                                     foreach ($result2 as $val) {
-                                        if($value['roll_no'] == $val['roll_no']){
+                                        if($value['reg_no'] == $val['reg_no']){
                                             $marks = $val['marks'];
                                             break;
                                         }
@@ -261,7 +261,7 @@ $subselect = isset($subselect) ? $subselect : '';
                                     <div class="form-group">
                                         <div class='col-md-4'>
                                            
-                                            <input type="text" class="form-control" name="roll_no[]" value="<?php echo $value['roll_no'] ?>" readonly >
+                                            <input type="text" class="form-control" name="reg_no[]" value="<?php echo $value['reg_no'] ?>" readonly >
                                         </div>
                                         <div class='col-md-4'>
                                             <input type="text" class="form-control" name="marks[]" value="<?php echo $marks ?>">
@@ -302,7 +302,7 @@ $subselect = isset($subselect) ? $subselect : '';
         ignore: [],
         debug: false,
         rules: {
-           roll_no: "required",
+           reg_no: "required",
             semester: "required",
             department:"required",
             subject_code: "required",
