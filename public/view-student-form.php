@@ -11,7 +11,7 @@ $res = $db->getResult();
 
 ?>
 <section class="content-header">
-    <h1>View Student</h1>
+    <h1><?php echo $res[0]['name'] ?></h1>
     <?php echo isset($error['add_menu']) ? $error['add_menu'] : ''; ?>
     <ol class="breadcrumb">
         <li><a href="home.php"><i class="fa fa-home"></i> Home</a></li>

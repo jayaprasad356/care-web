@@ -14,11 +14,15 @@
         <div class="row">
             <!-- Left col -->
             <div class="col-xs-12">
+                
                 <div class="box">
                     <!-- <div class="col-xs-6"> -->
+                        
                     <div class="box-header">
+
                                 <div class="form-group col-md-2">
                                         <h4 class="box-title"> Batch</h4>
+
                                         <select name='batch[]' id='batch' class='form-control' placeholder='Enter the Batch'>
                                             
                                                     <?php

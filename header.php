@@ -184,7 +184,7 @@ $ID = $_SESSION['id'];
                     </a>
                     <ul class="treeview-menu">
                         
-                        <li><a href="bulk-student-upload.php"><i class="fa fa-sliders"></i> Bulk Student Upload</a></li>
+                        <!-- <li><a href="bulk-student-upload.php"><i class="fa fa-sliders"></i> Bulk Student Upload</a></li> -->
                         <li><a href="students.php"><i class="fa fa-sliders"></i> Manage Students</a></li>
                     </ul>
                     </li>
@@ -202,7 +202,7 @@ $ID = $_SESSION['id'];
                     </li>
                 <?php }?>
                 <?php if($_SESSION['role'] == 'Admin'){?>
-                <li class="treeview">
+                <!-- <li class="treeview">
                     <a href="#">
                         <i class="fa fa-bullseye"></i>
                         <span>Staffs</span>
@@ -212,7 +212,7 @@ $ID = $_SESSION['id'];
                         <li><a href="add-staff.php"><i class="fa fa-sliders"></i> Add Staff</a></li>
                         <li><a href="staffs.php"><i class="fa fa-sliders"></i> Manage Staffs</a></li>
                     </ul>
-                </li>
+                </li> -->
                 <?php }?>
                 <?php if($_SESSION['role'] == 'Placement Officer'){?>
                 <li class="treeview">
