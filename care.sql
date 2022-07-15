@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2022 at 11:20 AM
+-- Generation Time: Jul 16, 2022 at 01:39 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -253,7 +253,57 @@ INSERT INTO `internalmarks` (`id`, `reg_no`, `department`, `batch`, `test_type`,
 (12, '810718106005', 'ECE', 2018, 'Unit Test 1', '1', 'EC8701', '70'),
 (13, '811000000000', 'ECE', 2018, 'Unit Test 1', '1', 'EC8701', '45'),
 (14, '810718106005', 'ECE', 2018, 'Cycle Test 1', '1', 'EC8701', '30'),
-(15, '811000000000', 'ECE', 2018, 'Cycle Test 1', '1', 'EC8701', '40');
+(15, '811000000000', 'ECE', 2018, 'Cycle Test 1', '1', 'EC8701', '40'),
+(16, '810721106001', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', '50'),
+(17, '810721106002', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', '70'),
+(18, '810721106003', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', '20'),
+(19, '810721106004', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', '40'),
+(20, '810721106005', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', '90'),
+(21, '810721106006', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', '40'),
+(22, '810721106007', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', '60'),
+(23, '810721106008', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', '80'),
+(24, '810721106009', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(25, '810721106010', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(26, '810721106011', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(27, '810721106012', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(28, '810721106013', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(29, '810721106014', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(30, '810721106015', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(31, '810721106016', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(32, '810721106017', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(33, '810721106018', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(34, '810721106019', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(35, '810721106020', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(36, '810721106021', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(37, '810721106022', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(38, '810721106023', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(39, '810721106024', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', ''),
+(40, '810721106025', 'ECE', 2021, 'Unit Test 1', '3', 'EC8701', '50'),
+(41, '810721106001', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(42, '810721106002', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(43, '810721106003', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(44, '810721106004', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(45, '810721106005', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(46, '810721106006', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(47, '810721106007', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(48, '810721106008', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(49, '810721106009', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(50, '810721106010', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(51, '810721106011', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(52, '810721106012', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(53, '810721106013', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(54, '810721106014', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(55, '810721106015', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(56, '810721106016', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(57, '810721106017', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(58, '810721106018', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(59, '810721106019', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(60, '810721106020', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(61, '810721106021', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(62, '810721106022', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(63, '810721106023', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(64, '810721106024', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', ''),
+(65, '810721106025', 'ECE', 2021, 'Unit Test 1', '1', 'CE9390', '');
 
 -- --------------------------------------------------------
 
@@ -439,6 +489,7 @@ CREATE TABLE `staffs` (
   `batch` text DEFAULT NULL,
   `role` text DEFAULT NULL,
   `subject_code` text DEFAULT NULL,
+  `profile` text DEFAULT NULL,
   `last_updated` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -447,15 +498,13 @@ CREATE TABLE `staffs` (
 -- Dumping data for table `staffs`
 --
 
-INSERT INTO `staffs` (`id`, `name`, `email`, `mobile`, `password`, `department`, `batch`, `role`, `subject_code`, `last_updated`, `date_created`) VALUES
-(1, 'Deepalakshimi', 'deepa@care.ac.in', '8907654321', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'Exam Cell', NULL, '2022-04-22 08:53:03', '2022-03-24 14:51:35'),
-(2, 'jeyarani', 'jeyarani@care.ac.in', '9866543457', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'HOD', NULL, '2022-04-26 08:40:37', '2022-03-28 10:08:01'),
-(3, 'Sriram', 'sriram@gmail.com', '9876543210', 'e807f1fcf82d132f9bb018ca6738a19f', NULL, '2018,2019,2020,2021', 'Admin', NULL, '2022-04-26 08:53:54', '2022-04-21 11:05:24'),
-(4, 'Gopinath', 'gopinath@gmail.com', '9876543210', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'CC', NULL, '2022-06-08 17:14:28', '2022-04-21 11:05:24'),
-(5, 'Suresh', 'suresh@gmail.com', '9090909090', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'Placement Officer', NULL, '2022-05-26 11:05:41', '2022-05-26 10:10:05'),
-(6, 'Kumar', 'jp@gmail.com', '9876556565', 'e807f1fcf82d132f9bb018ca6738a19f', 'CIVIL,CSE,MECH', '2019', 'CC', NULL, NULL, '2022-06-08 16:47:34'),
-(7, 'Prasad', 'prasad@gmail.com', '9878787877', 'e807f1fcf82d132f9bb018ca6738a19f', 'CIVIL', '2018', 'Faculty', 'EC8701', NULL, '2022-06-10 15:39:50'),
-(8, 'Principal', 'principal.coe@care.ac.in', '9876543210', 'e807f1fcf82d132f9bb018ca6738a19f', NULL, '2018,2019,2020,2021', 'Admin', NULL, '2022-04-26 08:53:54', '2022-04-21 11:05:24');
+INSERT INTO `staffs` (`id`, `name`, `email`, `mobile`, `password`, `department`, `batch`, `role`, `subject_code`, `profile`, `last_updated`, `date_created`) VALUES
+(2, 'jeyarani', 'jeyarani@care.ac.in', '9866543457', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'HOD', NULL, NULL, '2022-04-26 08:40:37', '2022-03-28 10:08:01'),
+(3, 'Sriram', 'sriram@gmail.com', '9876543210', 'e807f1fcf82d132f9bb018ca6738a19f', NULL, '2018,2019,2020,2021', 'Admin', NULL, NULL, '2022-04-26 08:53:54', '2022-04-21 11:05:24'),
+(5, 'Suresh', 'suresh@gmail.com', '9090909090', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2018', 'Placement Officer', NULL, NULL, '2022-05-26 11:05:41', '2022-05-26 10:10:05'),
+(8, 'Principal', 'principal.coe@care.ac.in', '9876543210', 'e807f1fcf82d132f9bb018ca6738a19f', NULL, '2018,2019,2020,2021', 'Admin', NULL, NULL, '2022-04-26 08:53:54', '2022-04-21 11:05:24'),
+(11, 'Deepalakshmi', 'deepa@care.ac.in', '7358832695', '25d55ad283aa400af464c76d713c07ad', 'ECE', '2021', 'CC', 'CE9390', 'upload/images/8247-2022-07-16.png', NULL, '2022-07-15 20:12:43'),
+(12, 'Rubitha', 'rubitha@care.ac.in', '9047831905', 'e807f1fcf82d132f9bb018ca6738a19f', 'ECE', '2021', 'Faculty', 'CE9390', 'upload/images/0014-2022-07-16.png', NULL, '2022-07-15 21:44:02');
 
 -- --------------------------------------------------------
 
@@ -949,7 +998,8 @@ INSERT INTO `subjects` (`id`, `department`, `subject_name`, `subject_code`, `sem
 (2, 'ECE', 'WIRELESS', 'EC8901', 1, '2013'),
 (3, 'ECE', 'Communication Theory of Engineering Technology ', 'CE9390', 1, '2017'),
 (4, 'ECE', 'DSP', '339430', 1, '2017'),
-(5, 'ECE', 'wds', '23232', NULL, 'e232');
+(5, 'ECE', 'wds', '23232', NULL, 'e232'),
+(6, 'CSE', 'JAVA Programming', 'CS8074', 2, '2021');
 
 -- --------------------------------------------------------
 
@@ -1260,7 +1310,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `internalmarks`
 --
 ALTER TABLE `internalmarks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `medium`
@@ -1308,7 +1358,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `staffs`
 --
 ALTER TABLE `staffs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -1320,7 +1370,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `test_type`

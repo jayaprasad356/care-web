@@ -154,6 +154,7 @@ $subselect = isset($subselect) ? $subselect : '';
                             <div class='col-md-2'>
                                 <label for="">Department</label>
                                 <select name='department' id='department' class='form-control' placeholder='Enter the department you want to assign Seller' >
+                                <option value=''>All</option>
                                         <?php
                                         $department = $_SESSION['department'];
                                         $sql = "SELECT department FROM `department` WHERE department IN ('$department') ";
@@ -186,7 +187,7 @@ $subselect = isset($subselect) ? $subselect : '';
                             <label for="">Subject</label>
                             
                             <select id='subject_code' name="subject_code" class='form-control'>
-                                        <?php
+                                        <!-- <?php
                                         $subject_code = $_SESSION['subject_code'];
                                         $role = $_SESSION['role'];
                                         if ($role == 'Faculty') {
@@ -204,7 +205,7 @@ $subselect = isset($subselect) ? $subselect : '';
                                         foreach ($result as $value) {
                                         ?>
                                             <option value='<?= $value['subject_code'] ?>' <?=$subselect == $value['subject_code'] ? ' selected="selected"' : '';?>><?= $value['subject_code'] ?></option>
-                                        <?php } ?>
+                                        <?php } ?> -->
                             </select>
                         </div>
                         <div class="form-group col-md-2">
@@ -230,11 +231,15 @@ $subselect = isset($subselect) ? $subselect : '';
                                     ?>
                                     <div class="row">
                                         <div class="form-group">
-                                        <div class='col-md-4'>
+                                        <div class='col-md-3'>
+                                            <label for="exampleInputEmail1">Student Name</label>
+                                            
+                                        </div>
+                                        <div class='col-md-3'>
                                             <label for="exampleInputEmail1">Student Roll No</label>
                                             
                                         </div>
-                                        <div class='col-md-4'>
+                                        <div class='col-md-2'>
                                             <label for="exampleInputEmail1">Marks</label>
                                             
                                         </div>
@@ -259,11 +264,15 @@ $subselect = isset($subselect) ? $subselect : '';
                                 ?>
                                 <div class="row">
                                     <div class="form-group">
-                                        <div class='col-md-4'>
+                                        <div class='col-md-3'>
                                            
-                                            <input type="text" class="form-control" name="reg_no[]" value="<?php echo $value['reg_no'] ?>" readonly >
+                                            <input type="text" class="form-control" name="name[]" value="<?php echo $value['name'] ?>" readonly >
                                         </div>
-                                        <div class='col-md-4'>
+                                        <div class='col-md-3'>
+                                           
+                                           <input type="text" class="form-control" name="reg_no[]" value="<?php echo $value['reg_no'] ?>" readonly >
+                                       </div>
+                                        <div class='col-md-2'>
                                             <input type="text" class="form-control" name="marks[]" value="<?php echo $marks ?>">
                                         </div>
                                     </div>
@@ -320,4 +329,21 @@ $subselect = isset($subselect) ? $subselect : '';
         placeholder: 'Type in subject to search',
 
     });
+</script>
+<script>
+    $('#department').on('change', function(e) {
+        var department = $('#department').val();
+        $.ajax({
+            type: 'POST',
+            url: "public/db-operation.php",
+            data: 'get_subject_code_by_department=1&department=' + department,
+            beforeSend: function() {
+                $('#subject_code').html('<option>Please wait..</option>');
+            },
+            success: function(result) {
+                $('#subject_code').html(result);
+            }
+        });
+    });
+
 </script>

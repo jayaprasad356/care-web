@@ -44,6 +44,7 @@
                                     <th data-field="name" data-sortable="true">Name</th>
                                     <th data-field="department" data-sortable="true" >Department</th>
                                     <th data-field="role" data-sortable="true">Role</th>
+                                    <th data-field="profile" data-sortable="true">Profile</th>
                                     <th data-field="operate" data-events="actionEvents">Action</th>
                                 </tr>
                             </thead>

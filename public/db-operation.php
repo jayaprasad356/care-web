@@ -230,6 +230,12 @@ if (isset($_POST['upload_internalform']) && $_POST['upload_internalform'] == 1) 
     $error = false;
     $filename = $_FILES["upload_file"]["tmp_name"];
     $result = $fn->validate_image($_FILES["upload_file"], false);
+    
+
+    
+    
+    
+    //
     if (!$result) {
         $error = true;
     }
@@ -410,6 +416,23 @@ if (isset($_POST['bulk_update']) && $_POST['bulk_update'] == 1) {
     } else {
         echo "<p class='alert alert-danger'>Invalid file format! Please upload data in CSV file!</p><br>";
     }
+}
+
+if (isset($_POST['get_subject_code_by_department']) && $_POST['get_subject_code_by_department'] != '') {
+    $department = $db->escapeString($fn->xss_clean($_POST['department']));
+    if (empty($department)) {
+        echo '<option value="">Select Subjects</option>';
+        return false;
+    }
+    $sql = "SELECT * FROM subjects WHERE department = '$department'";
+    $db->sql($sql);
+    $res = $db->getResult();
+    $options = '<option value="">Select Subjects</option>';
+    foreach ($res as $option) {
+        $options .= "<option value='" . $option['id'] . "'>" . $option['subject_code'] . "</option>";
+    }
+
+    echo $options;
 }
 ?>
 

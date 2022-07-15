@@ -30,6 +30,22 @@ include "header.php";
 </head>
 
 <body>
+    <style>
+
+img {
+
+    width: 170px;
+    height: 170px;
+    border-radius: 75%;
+    padding: 5px;
+    margin-top: 12px;
+    /* text-align: center;
+    margin: auto;
+    margin-top: 12px;
+    margin-bottom: 40px; */
+
+}
+    </style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -43,8 +59,51 @@ include "header.php";
         </section>
         <section class="content">
             <div class="row">
-                <div class="col-lg-3 col-xs-6">
-                    <div class="small-box bg-aqua">
+                <div class="col-lg-6 col-xs-6">
+                    <div class="small-box bg-green" >
+                        <div class="inner" style="margin-left:4px;">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                            
+                                <?php
+                                $sql = "SELECT * FROM staffs WHERE id = '" . $_SESSION['id'] . "'";
+                                $db->sql($sql);
+                                $res = $db->getResult();
+                                $num = $db->numRows($res);
+                                if ($num == 1) {
+                                    ?>
+                                    <h4><span>Name:</span>
+                                        <b><?= $res[0]['name'] ?></b>
+                                    </h4>
+                                    <h4><span>Email:</span>
+                                        <b><?= $res[0]['email'] ?></b>
+                                    </h4>
+                                    <h4><span>Mobile:</span>
+                                        <b><?= $res[0]['mobile'] ?></b>
+                                    </h4>
+                                    <h4><span>Role:</span>
+                                        <b><?= $res[0]['role'] ?></b>
+                                    </h4>
+                                    <h4><span>Batch:</span>
+                                        <b><?= $res[0]['batch'] ?></b>
+                                    </h4>
+                                    <h4><span>Department:</span>
+                                        <b><?= $res[0]['department'] ?></b>
+                                    </h4>
+
+                                <?php } ?>
+                                </div>
+                                <div class="col-lg-6">
+                                        <div class="text-center">
+                                                <img class="img-fluid" src="<?php echo $res[0]['profile'] ?>" alt="a balloon">
+                                        </div>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-6 col-xs-6">
+                    <div class="small-box bg-aqua" style="width:100%;height:240px">
                         <div class="inner">
                             <h3><?php
                             $sql = "SELECT * FROM students";
@@ -57,9 +116,10 @@ include "header.php";
                             
                         </div>
                         <div class="icon"></div>
-                        <a href="students.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="students.php" class="small-box-footer" style="margin-top:80px;" >More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
-                </div>
+                </div> -->
+               
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">

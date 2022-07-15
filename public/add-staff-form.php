@@ -26,6 +26,21 @@ if (isset($_POST['btnAdd'])) {
         $batch = $fn->xss_clean_array($_POST['batch']);
         $batchs = implode(",", $batch);
         $departments = implode(",", $department);
+
+        //get profile image info
+        $menu_image = $db->escapeString($_FILES['category_image']['name']);
+        $image_error = $db->escapeString($_FILES['category_image']['error']);
+        $image_type = $db->escapeString($_FILES['category_image']['type']);
+
+         // create array variable to handle error
+         $error = array();
+         // common image file extensions
+        $allowedExts = array("gif", "jpeg", "jpg", "png");
+
+        // get image file extension
+        error_reporting(E_ERROR | E_PARSE);
+        $extension = end(explode(".", $_FILES["category_image"]["name"]));
+
         
         if (empty($name)) {
             $error['name'] = " <span class='label label-danger'>Required!</span>";
@@ -46,13 +61,28 @@ if (isset($_POST['btnAdd'])) {
 
         if ( !empty($name) && !empty($email)&& !empty($mobile) && !empty($password) && !empty($role))
         {
+
+            //cover_image
+            $result = $fn->validate_image($_FILES["category_image"]);
+            // create random image file name
+            $string = '0123456789';
+            $file = preg_replace("/\s+/", "_", $_FILES['category_image']['name']);
+            $menu_image = $function->get_random_string($string, 4) . "-" . date("Y-m-d") . "." . $extension;
+    
+            // upload new image
+            $upload = move_uploaded_file($_FILES['category_image']['tmp_name'], 'upload/images/' . $menu_image);
+    
+            // insert new data to menu table
+            $upload_image = 'upload/images/' . $menu_image;
+
+
             $password = md5($password);
             $sql = "SELECT * FROM staffs WHERE email = '" . $email . "'";
             $db->sql($sql);
             $res = $db->getResult();
             $num = $db->numRows($res);
             if($num < 1){
-                $sql = "INSERT INTO staffs (name,email,mobile,password,department,role,batch,subject_code) VALUES('$name','$email','$mobile','$password','$departments','$role','$batchs','$subject_code')";
+                $sql = "INSERT INTO staffs (name,email,mobile,password,department,role,batch,subject_code,profile) VALUES('$name','$email','$mobile','$password','$departments','$role','$batchs','$subject_code','$upload_image')";
                 $db->sql($sql);
                 $staffs_result = $db->getResult();
                 if (!empty($staffs_result)) {
@@ -192,10 +222,21 @@ if (isset($_POST['btnAdd'])) {
                                             <option value='<?= $value['subject_code'] ?>'><?= $value['subject_code'] ?></option>
                                         <?php } ?>
                             </select>
+                            </div>
                         </div>
+                        <hr>
+                        <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label for="exampleInputFile">Profile</label><i class="text-danger asterik">*</i><?php echo isset($error['image']) ? $error['image'] : ''; ?>
+                                        <input type="file" name="category_image" onchange="readURL(this);" accept="image/png,  image/jpeg" id="category_image" required/>
+                                        <div class="form-group">
+                                            <img id="blah" src="#" alt="image" />
+
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
-
-
                     <!-- /.box-body -->
                     <div class="box-footer">
                         <input type="submit" class="btn-primary btn" value="Add Staff" name="btnAdd" />&nbsp;
@@ -222,7 +263,8 @@ if (isset($_POST['btnAdd'])) {
             email: "required",
             password: "required",
             department: "required",
-            role: "required"
+            role: "required",
+            profile: "required",
          }
     });
     $('#btnClear').on('click', function() {
@@ -245,4 +287,20 @@ if (isset($_POST['btnAdd'])) {
         placeholder: 'Type in subject to search',
 
     });
+</script>
+<script>
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 </script>

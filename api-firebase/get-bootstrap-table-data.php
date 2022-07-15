@@ -309,6 +309,13 @@ if (isset($_GET['table']) && $_GET['table'] == 'staffs') {
             $tempRow['mobile'] = $row['mobile'];
             $tempRow['department'] = $row['department'];
             $tempRow['role'] = $row['role'];
+            if(!empty($row['profile'])){
+                $tempRow['profile'] = "<a data-lightbox='category' href='" . $row['profile'] . "' data-caption='" . $row['name'] . "'><img src='" . $row['profile'] . "' title='" . $row['name'] . "' height='50' /></a>";
+    
+            }else{
+                $tempRow['profile'] = 'No Image';
+    
+            }
             $tempRow['operate'] = $operate;
             $rows[] = $tempRow;
         }
