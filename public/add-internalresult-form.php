@@ -187,7 +187,7 @@ $subselect = isset($subselect) ? $subselect : '';
                             <label for="">Subject</label>
                             
                             <select id='subject_code' name="subject_code" class='form-control'>
-                                        <!-- <?php
+                                        <?php
                                         $subject_code = $_SESSION['subject_code'];
                                         $role = $_SESSION['role'];
                                         if ($role == 'Faculty') {
@@ -205,7 +205,7 @@ $subselect = isset($subselect) ? $subselect : '';
                                         foreach ($result as $value) {
                                         ?>
                                             <option value='<?= $value['subject_code'] ?>' <?=$subselect == $value['subject_code'] ? ' selected="selected"' : '';?>><?= $value['subject_code'] ?></option>
-                                        <?php } ?> -->
+                                        <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-2">
@@ -331,19 +331,19 @@ $subselect = isset($subselect) ? $subselect : '';
     });
 </script>
 <script>
-    $('#department').on('change', function(e) {
-        var department = $('#department').val();
-        $.ajax({
-            type: 'POST',
-            url: "public/db-operation.php",
-            data: 'get_subject_code_by_department=1&department=' + department,
-            beforeSend: function() {
-                $('#subject_code').html('<option>Please wait..</option>');
-            },
-            success: function(result) {
-                $('#subject_code').html(result);
-            }
-        });
-    });
+    // $('#department').on('change', function(e) {
+    //     var department = $('#department').val();
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: "public/db-operation.php",
+    //         data: 'get_subject_code_by_department=1&department=' + department,
+    //         beforeSend: function() {
+    //             $('#subject_code').html('<option>Please wait..</option>');
+    //         },
+    //         success: function(result) {
+    //             $('#subject_code').html(result);
+    //         }
+    //     });
+    // });
 
 </script>
