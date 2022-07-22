@@ -279,7 +279,13 @@ $ID = $_SESSION['id'];
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="add-internalresult.php"><i class="fa fa-sliders"></i> Add Internal Marks</a></li>
-                        <li><a href="internals.php"><i class="fa fa-sliders"></i>View Internal Marks</a></li>
+                        <?php if($_SESSION['role'] != 'Faculty'){
+                            ?>
+                            <li><a href="internals.php"><i class="fa fa-sliders"></i>View Internal Marks</a></li>
+                           <?php
+                        }
+                        ?>
+                        
                     </ul>
                 </li>
                 <?php }?>

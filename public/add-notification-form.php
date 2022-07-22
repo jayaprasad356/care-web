@@ -44,8 +44,13 @@ if (isset($_POST['btnAdd'])) {
         }
 
         if (!empty($title) && !empty($description) && !empty($department) && !empty($batch))
-        {
-            $sql = "INSERT INTO notifications (title,description,department,batch) VALUES('$title','$description','$departments','$batchs')";
+        {   
+            $sql="SELECT id FROM staffs WHERE email = '" . $_SESSION['email'] . "'";
+            $db->sql($sql);
+            $res = $db->getResult();
+            $num = $db->numRows($res);
+            $staff_id=$res[0]['id'];
+            $sql = "INSERT INTO notifications (staff_id,title,description,department,batch) VALUES('$staff_id','$title','$description','$departments','$batchs')";
             $db->sql($sql);
             $notification_result = $db->getResult();
             if (!empty($notification_result)) {

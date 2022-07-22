@@ -375,13 +375,56 @@ $bulkData['rows'] = $rows;
 print_r(json_encode($bulkData));
 }
 if (isset($_GET['table']) && $_GET['table'] == 'notifications') {
+    $offset = 0;
+    $limit = 10;
     $where = '';
-    
-    $sql = "SELECT * FROM notifications ";
+    $sort = 'id';
+    $order = 'DESC';
+    if (isset($_GET['offset']))
+        $offset = $db->escapeString($_GET['offset']);
+    if (isset($_GET['limit']))
+        $limit = $db->escapeString($_GET['limit']);
+    if (isset($_GET['sort']))
+        $sort = $db->escapeString($_GET['sort']);
+    if (isset($_GET['order']))
+        $order = $db->escapeString($_GET['order']);
+
+    if (isset($_GET['search']) && !empty($_GET['search'])) {
+        $search = $db->escapeString($_GET['search']);
+        $where .= "WHERE title like '%" . $search . "%' OR id like '%" . $search . "%' OR description like '%" . $search . "%'";
+    }
+    if (isset($_GET['sort'])){
+        $sort = $db->escapeString($_GET['sort']);
+
+    }
+    if (isset($_GET['order'])){
+        $order = $db->escapeString($_GET['order']);
+
+    }
+    $sql="SELECT id FROM staffs WHERE email = '" . $_SESSION['email'] . "'";
     $db->sql($sql);
     $res = $db->getResult();
+    $num = $db->numRows($res);
+    $staff_id=$res[0]['id'];
+  
+    $sql = "SELECT COUNT(`id`) as total FROM `notifications` WHERE staff_id='" . $staff_id . "'";
+    $db->sql($sql);
+    $res = $db->getResult();
+   
+    
+    foreach ($res as $row)
+        $total = $row['total'];
+ 
+
+    $sql = "SELECT * FROM notifications WHERE staff_id='$staff_id'" . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
+    $db->sql($sql);
+    $res = $db->getResult();
+    
+    $bulkData = array();
+    $bulkData['total'] = $total;
     $rows = array();
     $tempRow = array();
+
     foreach ($res as $row) {
 
         $operate = '<a href="view-product-variants.php?id=' . $row['id'] . '" title="View"><i class="fa fa-folder-open"></i></a>';
@@ -645,11 +688,49 @@ if (isset($_GET['table']) && $_GET['table'] == 'internalanalysis') {
 }
 
 if (isset($_GET['table']) && $_GET['table'] == 'timetable') {
+    $offset = 0;
+    $limit = 10;
     $where = '';
-    
-    $sql = "SELECT * FROM timetables";
+    $sort = 'id';
+    $order = 'DESC';
+    if (isset($_GET['offset']))
+        $offset = $db->escapeString($_GET['offset']);
+    if (isset($_GET['limit']))
+        $limit = $db->escapeString($_GET['limit']);
+    if (isset($_GET['sort']))
+        $sort = $db->escapeString($_GET['sort']);
+    if (isset($_GET['order']))
+        $order = $db->escapeString($_GET['order']);
+
+    if (isset($_GET['search']) && !empty($_GET['search'])) {
+        $search = $db->escapeString($_GET['search']);
+        $where .="WHERE name like '%" . $search . "%' OR department like '%" . $search . "%' OR batch like '%" . $search . "%'";
+    }
+    if (isset($_GET['sort'])){
+        $sort = $db->escapeString($_GET['sort']);
+
+    }
+    if (isset($_GET['order'])){
+        $order = $db->escapeString($_GET['order']);
+
+    }
+      
+    $sql = "SELECT COUNT(`id`) as total FROM `timetables`".$where;
     $db->sql($sql);
     $res = $db->getResult();
+   
+    
+    foreach ($res as $row)
+        $total = $row['total'];
+  
+    
+    $sql = "SELECT * FROM timetables" . $where . " ORDER BY " . $sort . " "  . $order . " LIMIT " . $offset . ", " . $limit;
+    $db->sql($sql);
+    $res = $db->getResult();
+
+    $bulkData = array();
+    $bulkData['total'] = $total;
+
     $rows = array();
     $tempRow = array();
     foreach ($res as $row) {

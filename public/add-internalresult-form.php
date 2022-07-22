@@ -195,7 +195,7 @@ $subselect = isset($subselect) ? $subselect : '';
 
                                         }
                                         else{
-                                            $sql = "SELECT * FROM `subjects`";
+                                            $sql = "SELECT * FROM `subjects` WHERE department IN ('$department') ";
 
                                         }
                                         
@@ -287,9 +287,16 @@ $subselect = isset($subselect) ? $subselect : '';
                                     <?php }
                                     else{
                                         ?>
-                                        <div class="box-footer">
-                                            <input type="submit" class="btn-primary btn" value="Update" name="btnUpdate" />&nbsp;
-                                        </div>
+                                        <?php
+                                        if($role!='Faculty'){
+                                           ?> 
+                                              <div class="box-footer">
+                                                 <input type="submit" class="btn-primary btn" value="Update" name="btnUpdate" />&nbsp;
+                                             </div>
+                                            <?php
+                                        }
+                                        ?>
+                                     
                                         <?php
                                     }
                                 ?>
